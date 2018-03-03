@@ -64,9 +64,9 @@ while instruccion == 'y':
 
 #-----------Calculo de distancia usando Harversine----------------------------
         if region == 1 :
-            #Region 1
-            latref =9.02318033
-            longref = -79.53151733
+            #Region 1   # 9.02318033 -79.53151733 original
+            latref =9.04525
+            longref = -79.40719
             radius = 6371 # km
             dlat = math.radians(latref-lat)
             dlon = math.radians(longref-longi)
@@ -77,9 +77,9 @@ while instruccion == 'y':
             print d
 #-----------Calculo de distancia usando Harversine----------------------------
         if region == 2 :
-            #Region 2
-            latref2=9.023149167
-            lonref2=-79.53156583
+            #Region 2  #9.023149167 -79.53156583 original
+            latref2=9.04485
+            lonref2=-79.40695
             radius = 6371 # km
             dlat = math.radians(latref2-lat)
             dlon = math.radians(longref2-longi)
