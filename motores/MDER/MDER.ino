@@ -19,7 +19,7 @@ int bPrimePin; //INC 5
 void setup() {
 /*---------------------------------------------------------------------------------*/
   Wire.begin(SLAVE_ADDRESS); // join i2c bus with address 0x40
-  Wire.onReceive(receiveEvent); // register event
+ Wire.onReceive(receiveEvent); // register event
 /*---------------------------------------------------------------------------------*/
   Serial.begin(9600);//inutil
   pinMode(LED_BUILTIN,OUTPUT);
@@ -138,30 +138,30 @@ while(control == 1){
       bPrimePin=5; //INC 5
       Mov_Mder ();*/
       digitalWrite(LED_BUILTIN,HIGH);
-      delay(500);
+      delay(1000);
       digitalWrite(LED_BUILTIN,LOW); //Hacia alfrente
-      delay(500);
+      delay(1000);
       if(control==2){break;}
       if(control==3){break;}
       if(control==4){break;}
       if(control==5){break;}}
 /*---------------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------*/
-while(control == 2){
-      /*
+if(control == 2){
+  for(int i=0; i<10;){
+     /*
       aPin=5; //INA 2
       bPin=4; //IND 3
       aPrimePin=3; //INB 4
       bPrimePin=2; //INC 5
       Mov_Mder ();*/
       digitalWrite(LED_BUILTIN,HIGH);
-      delay(1000);
+      delay(500);
       digitalWrite(LED_BUILTIN,LOW); //Hacia atras
-      delay(1000);
-      if(control==1){break;}
-      if(control==3){break;}
-      if(control==4){break;}
-      if(control==5){break;}}
+      delay(500);
+      
+      i=i+1;
+  }control =6;}
 /*---------------------------------------------------------------------------------*/
    if(control == 3){
 for (int i=0; i<10;){
@@ -172,12 +172,13 @@ for (int i=0; i<10;){
     bPrimePin=5; //INC 5
     Mov_Mder ();*/
     digitalWrite(LED_BUILTIN,HIGH);
-    delay(5000);
+    delay(250);
     digitalWrite(LED_BUILTIN,LOW);//Dobla hacia la izquierda
-    delay(5000);
+    delay(250);
+   
     i = i+1;
 
-  } control = 6;}
+  }control = 6;}
 /*---------------------------------------------------------------------------------*/
    if(control == 4){
       //Stop_Mder(); //Doblar hacia la Derecha

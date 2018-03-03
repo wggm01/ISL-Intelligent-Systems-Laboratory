@@ -140,16 +140,17 @@ while(control == 1){
       bPrimePinm2 = 11; //INC 11
       Mov_Mizq ();*/
       digitalWrite(LED_BUILTIN,HIGH);
-      delay(500);
+      delay(1000);
       digitalWrite(LED_BUILTIN,LOW); //Hacia alfrente
-      delay(500);
+      delay(1000);
       if(control==2){break;}
       if(control==3){break;}
       if(control==4){break;}
       if(control==5){break;}}
 /*---------------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------*/
-while(control == 2){
+if(control == 2){
+  for(int i=0; i<10;){
        /*
       aPinm2 = 11; //INA 8
       bPinm2 = 10; //IND 9
@@ -157,13 +158,12 @@ while(control == 2){
       bPrimePinm2 = 8; //INC 11
       Mov_Mizq ();*/
       digitalWrite(LED_BUILTIN,HIGH);
-      delay(1000);
+      delay(500);
       digitalWrite(LED_BUILTIN,LOW); //Hacia atras
-      delay(1000);
-      if(control==1){break;}
-      if(control==3){break;}
-      if(control==4){break;}
-      if(control==5){break;}}
+      delay(500);
+      
+      i=i+1;
+    }control =6;}
 /*---------------------------------------------------------------------------------*/
     if(control == 3){
       //Stop_Mizq(); //Doblar hacia la izquierda
@@ -179,9 +179,10 @@ for (int i=0; i<10;){
       bPrimePinm2 = 11; //INC 11
       Mov_Mizq ();*/
     digitalWrite(LED_BUILTIN,HIGH);
-     delay(5000);
+    delay(100);
     digitalWrite(LED_BUILTIN,LOW);//Dobla hacia la derecha
-    delay(5000);
+    delay(100);
+
     i = i+1;
 
   } control = 6;}
