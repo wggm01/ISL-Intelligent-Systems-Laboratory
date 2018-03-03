@@ -38,6 +38,7 @@ instruccion = raw_input("Cuando este listo presione y para iniciar \n ")
 #loop para que muestre cada lectura que recibe el gps
 while instruccion == 'y':
     region = 1 + region2
+    print(region)
     gps_sentece = gps.readline()
     gps_sentences_fields = gps_sentece.split(",")
     #FILTRO DE LA SENTENCIA $GPRMC
