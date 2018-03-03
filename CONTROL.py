@@ -24,7 +24,7 @@ bus = smbus.SMBus(1) #Bus por el cual se comunican
 #Region 2
 #latref2=9.023149167
 #lonref2=-79.53156583
-region = 0
+region2 = 0
 #-------------------------------------------------
 
 #-----------Conecciones----------------------------
