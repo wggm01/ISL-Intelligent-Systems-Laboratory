@@ -75,6 +75,31 @@ while instruccion == 'y':
             c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
             d = int((radius*c)*1000)
             print d
+            #Limites para las region1
+            min1=80
+            max1=4
+            min2=4
+            print("Region 1")
+        	#min1 = 34
+        	#max1 = 6  # min<--------------Region1--------------------------->max
+        	#min2 = 6
+        	#max2 =25"""
+            #Prueba
+            if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
+                    #arduino.write(Forward) #Mandar un comando hacia Arduino
+                bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
+                bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
+                print("Moviendo")
+
+            if d <= min2:#Establece cuando curvara
+                    #arduino.write(Turn)#Mandar un comando hacia Arduino
+                bus.write_byte(slaveAddress2, Turn)#Mandar un comando hacia MotorDerecho
+                bus.write_byte(slaveAddress1, Turn)#Mandar un comando hacia MotorIzquierdo
+                print("Curvando")
+                time.sleep(delay) #tiempo que demora en hacer un giro de 90 grados aprox
+                region2=2
+
+
 #-----------Calculo de distancia usando Harversine----------------------------
         if region == 2 :
             #Region 2  #9.023149167 -79.53156583 original
@@ -88,53 +113,23 @@ while instruccion == 'y':
             c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
             d = int((radius*c)*1000)
             print d
-#------------------------------------------------------------------------------
-#--------comando = instrucion enviada al arduino---------------------------
-#----Los limites se definen mediante las coordenadas de referencias-------
-	    if latref == 9.04525  and longref == -79.40719: # 9.02318033 -79.53151733 original
-            #Limites para las region1
-                min1=80
-                max1=4
-                min2=4
-                print("Region 1")
-    		#min1 = 34
-    		#max1 = 6  # min<--------------Region1--------------------------->max
-    		#min2 = 6
-    		#max2 =25"""
-            #Prueba
-
-
-
-	    if latref2 == 9.04485  and longref2 == -79.40695: #9.023149167 -79.53156583 original
             #Limite para Region 2
-                min1=80
-                max1=4
-                min3=4
-                print("Region 2")
+            min1=80
+            max1=4
+            min3=4
+            print("Region 2")
     		#min1 = 7
     		#max1 = 2 # min<--------------Region2--------------------------->max
     		#min3 = 1
     		#max2 = 8"""
             #Prueba
-
-
-        if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-                #arduino.write(Forward) #Mandar un comando hacia Arduino
-            bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
-            bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
-            print("Moviendo")
-
-        if d <= min2:#Establece cuando curvara
-                #arduino.write(Turn)#Mandar un comando hacia Arduino
-            bus.write_byte(slaveAddress2, Turn)#Mandar un comando hacia MotorDerecho
-            bus.write_byte(slaveAddress1, Turn)#Mandar un comando hacia MotorIzquierdo
-            print("Curvando")
-            time.sleep(delay) #tiempo que demora en hacer un giro de 90 grados aprox
-            region2=2
-        if d <= min3:#Establece cuando curvara
-                #arduino.write(Turn)#Mandar un comando hacia Arduino
-            bus.write_byte(slaveAddress2, Turn)#Mandar un comando hacia MotorDerecho
-            bus.write_byte(slaveAddress1, Turn)#Mandar un comando hacia MotorIzquierdo
-            print("Detener")
-            bus.write_byte(slaveAddress2, Stop)#Mandar un comando hacia MotorDerecho
-            bus.write_byte(slaveAddress1, Stop)#Mandar un comando hacia MotorIzquierdo
+            if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
+                    #arduino.write(Forward) #Mandar un comando hacia Arduino
+                bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
+                bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
+                print("Moviendo")
+                
+            if d <= min3:#Establece cuando curvara
+                print("Detener")
+                bus.write_byte(slaveAddress2, Stop)#Mandar un comando hacia MotorDerecho
+                bus.write_byte(slaveAddress1, Stop)#Mandar un comando hacia MotorIzquierdo
