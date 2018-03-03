@@ -1,8 +1,8 @@
-//0-hacia alfrente
-//1-hacia atras
-//2-Dobla hacia la izquierda
-//3-Dobla hacia la derecha
-//4-Detener
+//1-hacia alfrente
+//2-hacia atras
+//3-Dobla hacia la izquierda
+//4-Dobla hacia la derecha
+//5-Detener
 #include <Wire.h>
 #define SLAVE_ADDRESS 0x40 //Direccion i2c del motor derecho
 /*---------------------------------------------------------------------------------*/
@@ -119,7 +119,7 @@ void Mov_Mder (){
   delay(delay1); // So, delay1 milliseconds
   //delayMicroseconds(delay1);
   }
-  
+
 void Stop_Mder(){
   digitalWrite(aPin,      LOW);
   digitalWrite(bPin,      LOW);
@@ -129,7 +129,7 @@ void Stop_Mder(){
 /*---------------------------------------------------------------------------------*/
 //Logica de movimiento
 void loop() {
-/*---------------------------------------------------------------------------------*/  
+/*---------------------------------------------------------------------------------*/
 while(control == 1){
      /*
      aPin=2; //INA 2
@@ -146,7 +146,7 @@ while(control == 1){
       if(control==4){break;}
       if(control==5){break;}}
 /*---------------------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------*/  
+/*---------------------------------------------------------------------------------*/
 while(control == 2){
       /*
       aPin=5; //INA 2
@@ -163,7 +163,7 @@ while(control == 2){
       if(control==4){break;}
       if(control==5){break;}}
 /*---------------------------------------------------------------------------------*/
-   if(control == 3){      
+   if(control == 3){
 for (int i=0; i<10;){
     /*
     aPin=2; //INA 2
@@ -176,15 +176,15 @@ for (int i=0; i<10;){
     digitalWrite(LED_BUILTIN,LOW);//Dobla hacia la izquierda
     delay(5000);
     i = i+1;
-   
-  } control = 6;}   
+
+  } control = 6;}
 /*---------------------------------------------------------------------------------*/
-   if(control == 4){      
+   if(control == 4){
       //Stop_Mder(); //Doblar hacia la Derecha
       //control = 5;
  }
-/*---------------------------------------------------------------------------------*/  
- if(control == 5){      
+/*---------------------------------------------------------------------------------*/
+ if(control == 5){
       //Stop_Mder(); //Doblar hacia la izquierda
       //control = 6;
  }
@@ -192,24 +192,11 @@ for (int i=0; i<10;){
 }//Fin de la logica de movimiento
 
 
-/*---------------------------------------------------------------------------------*/  
+/*---------------------------------------------------------------------------------*/
 //Recepción de Datos provenientes de la raspberry pi3 model B  Rev 2
 void receiveEvent(int howMany) {
 
 if (Wire.available()==1) { // loop through all but the last
   control = Wire.read();
-     
+
   }}
-
-
-
-
-
-
-
-      
-
-     
-
-    
-

@@ -1,8 +1,8 @@
-//0-hacia alfrente
-//1-hacia atras
-//2-Dobla hacia la izquierda
-//3-Dobla hacia la derecha
-//4-Detener
+//1-hacia alfrente
+//2-hacia atras
+//3-Dobla hacia la izquierda
+//4-Dobla hacia la derecha
+//5-Detener
 #include <Wire.h>
 #define SLAVE_ADDRESS 0x50 //Direccion i2c del motor izquierda
 /*---------------------------------------------------------------------------------*/
@@ -10,7 +10,7 @@ int control;
 int delay2 =2;
 /*---------------------------------------------------------------------------------*/
 //MotorIzquierdo
-int aPinm2; //INA 8                                
+int aPinm2; //INA 8
 int bPinm2; //IND 9
 int aPrimePinm2; //INB 10
 int bPrimePinm2; //INC 11
@@ -38,7 +38,7 @@ void setup() {
 }
 
 /*---------------------------------------------------------------------------------*/
-//Funcion para mover motor izquierdo 
+//Funcion para mover motor izquierdo
 void Mov_Mizq (){
   // 1. Set the aPin High
   digitalWrite(aPinm2,      HIGH);
@@ -127,13 +127,13 @@ void Mov_Mizq (){
   digitalWrite(aPrimePinm2, LOW);
   digitalWrite(bPrimePinm2, LOW);
   }
-  
+
 /*---------------------------------------------------------------------------------*/
 //Logica de movimiento
 void loop() {
 /*---------------------------------------------------------------------------------*/
 while(control == 1){
-       /* 
+       /*
       aPinm2 = 8; //INA 8
       bPinm2 = 9; //IND 9
       aPrimePinm2 = 10; //INB 10
@@ -150,7 +150,7 @@ while(control == 1){
 /*---------------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------*/
 while(control == 2){
-       /* 
+       /*
       aPinm2 = 11; //INA 8
       bPinm2 = 10; //IND 9
       aPrimePinm2 = 9; //INB 10
@@ -165,14 +165,14 @@ while(control == 2){
       if(control==4){break;}
       if(control==5){break;}}
 /*---------------------------------------------------------------------------------*/
-    if(control == 3){      
+    if(control == 3){
       //Stop_Mizq(); //Doblar hacia la izquierda
       //control = 5;
  }
-/*---------------------------------------------------------------------------------*/  
-   if(control == 4){      
+/*---------------------------------------------------------------------------------*/
+   if(control == 4){
 for (int i=0; i<10;){
-       /* 
+       /*
       aPinm2 = 8; //INA 8
       bPinm2 = 9; //IND 9
       aPrimePinm2 = 10; //INB 10
@@ -183,14 +183,14 @@ for (int i=0; i<10;){
     digitalWrite(LED_BUILTIN,LOW);//Dobla hacia la derecha
     delay(5000);
     i = i+1;
-   
-  } control = 6;} 
+
+  } control = 6;}
 /*---------------------------------------------------------------------------------*/
- if(control == 5){      
+ if(control == 5){
       //Stop_Mizq(); //Doblar hacia la izquierda
       //control = 6;
  }
-/*---------------------------------------------------------------------------------*/      
+/*---------------------------------------------------------------------------------*/
 } //Fin de la logica de movimiento
 
 /*---------------------------------------------------------------------------------*/
@@ -199,5 +199,5 @@ void receiveEvent(int howMany) {
 
 if (Wire.available()==1) { // loop through all but the last
   control = Wire.read();
-     
+
   }}
