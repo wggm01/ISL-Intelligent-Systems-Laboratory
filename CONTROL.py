@@ -5,7 +5,7 @@
 #5-Detener
 
 #-------------Librerias--------------------------
-#import serial
+import serial
 import time
 #import machinarie
 import math
