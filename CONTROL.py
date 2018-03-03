@@ -90,22 +90,30 @@ while instruccion == 'y':
 #------------------------------------------------------------------------------
 #--------comando = instrucion enviada al arduino---------------------------
 #----Los limites se definen mediante las coordenadas de referencias-------
-	   if latref == 9.02318033 and longref == -79.53151733 :
+	   if latref ==  and longref ==  : # 9.02318033 -79.53151733 original
             #Limites para las region1
-    		min1 = 34
+    		"""min1 = 34
     		max1 = 6  # min<--------------Region1--------------------------->max
     		min2 = 6
-    		#max2 =25
-
+    		#max2 =25"""
+            #Prueba
+            min1=80
+            max1=4
+            min2=4
     		print("Region 1")
 
 
-	   if latref2 == 9.023149167 and longref2 == -79.53156583 :
+	   if latref2 ==  and longref2 ==  : #9.023149167 -79.53156583 original
             #Limite para Region 2
-    		min1 = 7
+    		"""min1 = 7
     		max1 = 2 # min<--------------Region2--------------------------->max
     		min3 = 1
-    		#max2 = 8
+    		#max2 = 8"""
+            #Prueba
+            min1=80
+            max1=4
+            min3=4
+
     		print("Region 2")
 
        if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
