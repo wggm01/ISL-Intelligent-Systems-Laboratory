@@ -96,7 +96,7 @@ while instruccion == 'y':
             min1=80
             max1=4
             min2=4
-    	    print("Region 1")
+            print("Region 1")
     		#min1 = 34
     		#max1 = 6  # min<--------------Region1--------------------------->max
     		#min2 = 6
@@ -110,7 +110,7 @@ while instruccion == 'y':
             min1=80
             max1=4
             min3=4
-        	print("Region 2")
+            print("Region 2")
     		#min1 = 7
     		#max1 = 2 # min<--------------Region2--------------------------->max
     		#min3 = 1
