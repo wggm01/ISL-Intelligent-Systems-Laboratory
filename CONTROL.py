@@ -59,10 +59,11 @@ while instruccion == 'y':
 
         if region == 3:
             region =2
+            print(region)
 
 
 
-#-----------Calculo de distancia usando Harversine----------------------------
+#-----------Calculo de distancia usando Harversine para region 1----------------------------
         if region == 1 :
             #Region 1   # 9.02318033 -79.53151733 original
             latref =9.04525
@@ -100,14 +101,14 @@ while instruccion == 'y':
                 region2=2
 
 
-#-----------Calculo de distancia usando Harversine----------------------------
+#-----------Calculo de distancia usando Harversine para region2----------------------------
         if region == 2 :
             #Region 2  #9.023149167 -79.53156583 original
             latref2=9.04485
             lonref2=-79.40695
             radius = 6371 # km
             dlat = math.radians(latref2-lat)
-            dlon = math.radians(longref2-longi)
+            dlon = math.radians(lonref2-longi)
             a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(lat)) \
             * math.cos(math.radians(latref2)) * math.sin(dlon/2) * math.sin(dlon/2)
             c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
@@ -128,7 +129,7 @@ while instruccion == 'y':
                 bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
                 bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
                 print("Moviendo")
-                
+
             if d <= min3:#Establece cuando curvara
                 print("Detener")
                 bus.write_byte(slaveAddress2, Stop)#Mandar un comando hacia MotorDerecho
