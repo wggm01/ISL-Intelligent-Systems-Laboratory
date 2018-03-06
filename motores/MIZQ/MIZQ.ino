@@ -7,7 +7,7 @@
 #define SLAVE_ADDRESS 0x50 //Direccion i2c del motor izquierda
 /*---------------------------------------------------------------------------------*/
 int control;
-int delay2 =2;
+int delay2 =1;
 /*---------------------------------------------------------------------------------*/
 //MotorIzquierdo
 int aPinm2; //INA 8
@@ -133,16 +133,27 @@ void Mov_Mizq (){
 void loop() {
 /*---------------------------------------------------------------------------------*/
 while(control == 1){
+<<<<<<< HEAD
        
+=======
+
+>>>>>>> 317a6ccbb1cf2301c062b1905f6404bb3adf7f05
       aPinm2 = 8; //INA 8
       bPinm2 = 9; //IND 9
       aPrimePinm2 = 10; //INB 10
       bPrimePinm2 = 11; //INC 11
       Mov_Mizq ();
+<<<<<<< HEAD
       //digitalWrite(LED_BUILTIN,HIGH);
       //delay(1000);
       //digitalWrite(LED_BUILTIN,LOW); //Hacia alfrente
       //delay(1000);
+=======
+      /*digitalWrite(LED_BUILTIN,HIGH);
+      delay(1000);
+      digitalWrite(LED_BUILTIN,LOW); //Hacia alfrente
+      delay(1000);*/
+>>>>>>> 317a6ccbb1cf2301c062b1905f6404bb3adf7f05
       if(control==2){break;}
       if(control==3){break;}
       if(control==4){break;}
@@ -151,17 +162,29 @@ while(control == 1){
 /*---------------------------------------------------------------------------------*/
 if(control == 2){
   for(int i=0; i<400;){
+<<<<<<< HEAD
        
+=======
+
+>>>>>>> 317a6ccbb1cf2301c062b1905f6404bb3adf7f05
       aPinm2 = 11; //INA 8
       bPinm2 = 10; //IND 9
       aPrimePinm2 = 9; //INB 10
       bPrimePinm2 = 8; //INC 11
       Mov_Mizq ();
+<<<<<<< HEAD
       //digitalWrite(LED_BUILTIN,HIGH);
       //delay(500);
       //digitalWrite(LED_BUILTIN,LOW); //Hacia atras
       //delay(500);
       
+=======
+      /*digitalWrite(LED_BUILTIN,HIGH);
+      delay(500);
+      digitalWrite(LED_BUILTIN,LOW); //Hacia atras
+      delay(500);*/
+
+>>>>>>> 317a6ccbb1cf2301c062b1905f6404bb3adf7f05
       i=i+1;
     }control =6;}
 /*---------------------------------------------------------------------------------*/
@@ -172,16 +195,27 @@ if(control == 2){
 /*---------------------------------------------------------------------------------*/
    if(control == 4){
 for (int i=0; i<400;){
+<<<<<<< HEAD
        
+=======
+
+>>>>>>> 317a6ccbb1cf2301c062b1905f6404bb3adf7f05
       aPinm2 = 8; //INA 8
       bPinm2 = 9; //IND 9
       aPrimePinm2 = 10; //INB 10
       bPrimePinm2 = 11; //INC 11
       Mov_Mizq ();
+<<<<<<< HEAD
     //digitalWrite(LED_BUILTIN,HIGH);
     //delay(100);
     //digitalWrite(LED_BUILTIN,LOW);//Dobla hacia la derecha
     //delay(100);
+=======
+    /*digitalWrite(LED_BUILTIN,HIGH);
+    delay(100);
+    digitalWrite(LED_BUILTIN,LOW);//Dobla hacia la derecha
+    delay(100);*/
+>>>>>>> 317a6ccbb1cf2301c062b1905f6404bb3adf7f05
 
     i = i+1;
 
