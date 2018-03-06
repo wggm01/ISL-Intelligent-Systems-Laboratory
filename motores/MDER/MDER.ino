@@ -132,7 +132,11 @@ void loop() {
 /*---------------------------------------------------------------------------------*/
 while(control == 1){
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+     
+>>>>>>> 162ac47ac2b51dc66559206d25d747e1ea72104f
      aPin=2; //INA 2
 =======
 
@@ -162,7 +166,11 @@ while(control == 1){
 if(control == 2){
   for(int i=0; i<400;){
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+     
+>>>>>>> 162ac47ac2b51dc66559206d25d747e1ea72104f
 =======
 
 >>>>>>> 317a6ccbb1cf2301c062b1905f6404bb3adf7f05
@@ -176,7 +184,11 @@ if(control == 2){
       //delay(500);
       //digitalWrite(LED_BUILTIN,LOW); //Hacia atras
       //delay(500);
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 162ac47ac2b51dc66559206d25d747e1ea72104f
 =======
       /*digitalWrite(LED_BUILTIN,HIGH);
       delay(500);
@@ -190,7 +202,11 @@ if(control == 2){
    if(control == 3){
 for (int i=0; i<400;){
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 162ac47ac2b51dc66559206d25d747e1ea72104f
 =======
 
 >>>>>>> 317a6ccbb1cf2301c062b1905f6404bb3adf7f05
@@ -204,7 +220,11 @@ for (int i=0; i<400;){
     //delay(250);
     //digitalWrite(LED_BUILTIN,LOW);//Dobla hacia la izquierda
     //delay(250);
+<<<<<<< HEAD
 
+=======
+   
+>>>>>>> 162ac47ac2b51dc66559206d25d747e1ea72104f
 =======
     /*digitalWrite(LED_BUILTIN,HIGH);
     delay(250);
