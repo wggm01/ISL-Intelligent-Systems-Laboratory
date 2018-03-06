@@ -7,7 +7,7 @@
 #define SLAVE_ADDRESS 0x40 //Direccion i2c del motor derecho
 /*---------------------------------------------------------------------------------*/
 int control;
-int delay1 =2;
+int delay1 =1;
 /*---------------------------------------------------------------------------------*/
 //MotorDerecho
 int aPin; //INA 2
@@ -131,16 +131,28 @@ void Stop_Mder(){
 void loop() {
 /*---------------------------------------------------------------------------------*/
 while(control == 1){
+<<<<<<< HEAD
      
      aPin=2; //INA 2
+=======
+
+      aPin=2; //INA 2
+>>>>>>> 317a6ccbb1cf2301c062b1905f6404bb3adf7f05
       bPin=3; //IND 3
       aPrimePin=4; //INB 4
       bPrimePin=5; //INC 5
       Mov_Mder ();
+<<<<<<< HEAD
       //digitalWrite(LED_BUILTIN,HIGH);
       //delay(1000);
       //digitalWrite(LED_BUILTIN,LOW); //Hacia alfrente
       //delay(1000);
+=======
+      /*digitalWrite(LED_BUILTIN,HIGH);
+      delay(1000);
+      digitalWrite(LED_BUILTIN,LOW); //Hacia alfrente
+      delay(1000);*/
+>>>>>>> 317a6ccbb1cf2301c062b1905f6404bb3adf7f05
       if(control==2){break;}
       if(control==3){break;}
       if(control==4){break;}
@@ -149,33 +161,57 @@ while(control == 1){
 /*---------------------------------------------------------------------------------*/
 if(control == 2){
   for(int i=0; i<400;){
+<<<<<<< HEAD
      
+=======
+
+>>>>>>> 317a6ccbb1cf2301c062b1905f6404bb3adf7f05
       aPin=5; //INA 2
       bPin=4; //IND 3
       aPrimePin=3; //INB 4
       bPrimePin=2; //INC 5
       Mov_Mder ();
+<<<<<<< HEAD
       //digitalWrite(LED_BUILTIN,HIGH);
       //delay(500);
       //digitalWrite(LED_BUILTIN,LOW); //Hacia atras
       //delay(500);
       
+=======
+      /*digitalWrite(LED_BUILTIN,HIGH);
+      delay(500);
+      digitalWrite(LED_BUILTIN,LOW); //Hacia atras
+      delay(500);*/
+
+>>>>>>> 317a6ccbb1cf2301c062b1905f6404bb3adf7f05
       i=i+1;
   }control =6;}
 /*---------------------------------------------------------------------------------*/
    if(control == 3){
 for (int i=0; i<400;){
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 317a6ccbb1cf2301c062b1905f6404bb3adf7f05
     aPin=2; //INA 2
     bPin=3; //IND 3
     aPrimePin=4; //INB 4
     bPrimePin=5; //INC 5
     Mov_Mder ();
+<<<<<<< HEAD
     //digitalWrite(LED_BUILTIN,HIGH);
     //delay(250);
     //digitalWrite(LED_BUILTIN,LOW);//Dobla hacia la izquierda
     //delay(250);
    
+=======
+    /*digitalWrite(LED_BUILTIN,HIGH);
+    delay(250);
+    digitalWrite(LED_BUILTIN,LOW);//Dobla hacia la izquierda
+    delay(250);*/
+
+>>>>>>> 317a6ccbb1cf2301c062b1905f6404bb3adf7f05
     i = i+1;
 
   }control = 6;}

@@ -12,12 +12,12 @@ import math
 import smbus
 #-----------Variables principales-----------------
 Forward=1
-Turn= 4
+Turn= 3
 Stop = 5
-delay = 10 #Este valor hay que estimarlo al ojo.
+delay = 5 #Este valor hay que estimarlo al ojo.
 slaveAddress2 = 0x40 #MotorIzquierdo
 slaveAddress1 = 0x50 #MotorDerecho
-bus = smbus.SMBus(1) #Bus por el cual se comunican
+#bus = smbus.SMBus(1) #Bus por el cual se comunican
 #Region 1
 #latref =9.02318033
 #longref = -79.53151733
@@ -48,14 +48,18 @@ while instruccion == 'y':
         latdeg = int(get_unformated_latitude/100)
         latmin = get_unformated_latitude - latdeg*100
         lat = latdeg + (latmin/60)
+        latitud = round(lat,5)
 
         longdeg = int(get_unformated_longitude/100)
         longmin = get_unformated_longitude - longdeg*100
         longi = longdeg + (longmin/60)
+        longitud = round(longi,5)
+
         if gps_sentences_fields[4] == "S":
-            lat = -lat
+            latitud = -latitud
         if  gps_sentences_fields[6] == "W":
-            longi = -longi
+            longitud = -longitud
+
 
         if region == 3:
             region =2
@@ -66,12 +70,13 @@ while instruccion == 'y':
 #-----------Calculo de distancia usando Harversine para region 1----------------------------
         if region == 1 :
             #Region 1   # 9.02318033 -79.53151733 original
-            latref =9.04525
-            longref = -79.40719
+            #Pruebas 9.04525 -79.40719
+            latref =9.02318
+            longref = -79.53152
             radius = 6371 # km
-            dlat = math.radians(latref-lat)
-            dlon = math.radians(longref-longi)
-            a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(lat)) \
+            dlat = math.radians(latref-latitud)
+            dlon = math.radians(longref-longitud)
+            a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(latitud)) \
             * math.cos(math.radians(latref)) * math.sin(dlon/2) * math.sin(dlon/2)
             c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
             d = int((radius*c)*1000)
@@ -104,12 +109,13 @@ while instruccion == 'y':
 #-----------Calculo de distancia usando Harversine para region2----------------------------
         if region == 2 :
             #Region 2  #9.023149167 -79.53156583 original
-            latref2=9.04485
-            lonref2=-79.40695
+            #Pruebas 9.04485 -79.40695
+            latref2=9.02315
+            lonref2=-79.53156
             radius = 6371 # km
-            dlat = math.radians(latref2-lat)
-            dlon = math.radians(lonref2-longi)
-            a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(lat)) \
+            dlat = math.radians(latref2-latitud)
+            dlon = math.radians(lonref2-longitud)
+            a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(latitud)) \
             * math.cos(math.radians(latref2)) * math.sin(dlon/2) * math.sin(dlon/2)
             c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
             d = int((radius*c)*1000)
