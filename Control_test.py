@@ -7,12 +7,13 @@
 #-------------Librerias--------------------------
 import serial
 import time
+import csv
 #import machinarie
 import math
 #import smbus
 #-----------Variables principales-----------------
 Forward=1
-Turn= 3
+Turn= 4
 Stop = 5
 delay = 5 #Este valor hay que estimarlo al ojo.
 slaveAddress2 = 0x40 #MotorIzquierdo
@@ -38,7 +39,7 @@ instruccion = raw_input("Cuando este listo presione y para iniciar \n ")
 #loop para que muestre cada lectura que recibe el gps
 while instruccion == 'y':
     region = 1 + region2
-    print(region)
+    #print(region)
     gps_sentece = gps.readline()
     gps_sentences_fields = gps_sentece.split(",")
     #FILTRO DE LA SENTENCIA $GPRMC
