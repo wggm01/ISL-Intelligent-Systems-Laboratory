@@ -71,8 +71,8 @@ while instruccion == 'y':
         if region == 1 :
             #Region 1   # 9.02318033 -79.53151733 original
             #Pruebas 9.04525 -79.40719
-            latref =9.04525
-            longref = -79.40719
+            latref =9.02327
+            longref = -79.53143
             radius = 6371 # km
             dlat = math.radians(latref-latitud)
             dlon = math.radians(longref-longitud)
@@ -83,8 +83,8 @@ while instruccion == 'y':
             print d
             #Limites para las region1
             min1=80
-            max1=4
-            min2=4
+            max1=3
+            min2=3
             print("Region 1")
         	#min1 = 34
         	#max1 = 6  # min<--------------Region1--------------------------->max
@@ -110,8 +110,8 @@ while instruccion == 'y':
         if region == 2 :
             #Region 2  #9.023149167 -79.53156583 original
             #Pruebas 9.04485 -79.40695
-            latref2=9.04485
-            lonref2=-79.40695
+            latref2=9.02321
+            lonref2=-79.53147
             radius = 6371 # km
             dlat = math.radians(latref2-latitud)
             dlon = math.radians(lonref2-longitud)
@@ -122,8 +122,8 @@ while instruccion == 'y':
             print d
             #Limite para Region 2
             min1=80
-            max1=4
-            min3=4
+            max1=3
+            min3=3
             print("Region 2")
     		#min1 = 7
     		#max1 = 2 # min<--------------Region2--------------------------->max
