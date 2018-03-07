@@ -7,14 +7,15 @@
 #-------------Librerias--------------------------
 import serial
 import time
+import csv
 #import machinarie
 import math
 #import smbus
 #-----------Variables principales-----------------
 Forward=1
-Turn= 3
+Turn= 4
 Stop = 5
-delay = 5 #Este valor hay que estimarlo al ojo.
+delay = 10 #Este valor hay que estimarlo al ojo.
 slaveAddress2 = 0x40 #MotorIzquierdo
 slaveAddress1 = 0x50 #MotorDerecho
 #bus = smbus.SMBus(1) #Bus por el cual se comunican
@@ -38,7 +39,7 @@ instruccion = raw_input("Cuando este listo presione y para iniciar \n ")
 #loop para que muestre cada lectura que recibe el gps
 while instruccion == 'y':
     region = 1 + region2
-    print(region)
+    #print(region)
     gps_sentece = gps.readline()
     gps_sentences_fields = gps_sentece.split(",")
     #FILTRO DE LA SENTENCIA $GPRMC
@@ -71,8 +72,8 @@ while instruccion == 'y':
         if region == 1 :
             #Region 1   # 9.02318033 -79.53151733 original
             #Pruebas 9.04525 -79.40719
-            latref =9.02327
-            longref = -79.53143
+            latref =9.02318033
+            longref = -79.53151733
             radius = 6371 # km
             dlat = math.radians(latref-latitud)
             dlon = math.radians(longref-longitud)
@@ -83,14 +84,12 @@ while instruccion == 'y':
             print d
             #Limites para las region1
             min1=80
-            max1=3
-            min2=3
-            print("Region 1")
-        	#min1 = 34
-        	#max1 = 6  # min<--------------Region1--------------------------->max
-        	#min2 = 6
-        	#max2 =25"""
-            #Prueba
+            max1=2
+            min2=2
+            re= "Region 1"
+            print(re)
+            with open ("logreg1.csv", "a") as pos:
+                pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
             if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
                     #arduino.write(Forward) #Mandar un comando hacia Arduino
                 #bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
@@ -110,8 +109,8 @@ while instruccion == 'y':
         if region == 2 :
             #Region 2  #9.023149167 -79.53156583 original
             #Pruebas 9.04485 -79.40695
-            latref2=9.02321
-            lonref2=-79.53147
+            latref2=9.023149167
+            lonref2=-79.53156583
             radius = 6371 # km
             dlat = math.radians(latref2-latitud)
             dlon = math.radians(lonref2-longitud)
@@ -122,14 +121,12 @@ while instruccion == 'y':
             print d
             #Limite para Region 2
             min1=80
-            max1=3
-            min3=3
-            print("Region 2")
-    		#min1 = 7
-    		#max1 = 2 # min<--------------Region2--------------------------->max
-    		#min3 = 1
-    		#max2 = 8"""
-            #Prueba
+            max1=2
+            min3=2
+            re = "Region2"
+            print(re)
+    	    with open ("logreg2.csv", "a") as pos:
+                pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
             if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
                     #arduino.write(Forward) #Mandar un comando hacia Arduino
                 #bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
