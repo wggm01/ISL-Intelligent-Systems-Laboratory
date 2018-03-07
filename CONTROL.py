@@ -17,7 +17,7 @@ Stop = 5
 delay = 5 #Este valor hay que estimarlo al ojo.
 slaveAddress2 = 0x40 #MotorIzquierdo
 slaveAddress1 = 0x50 #MotorDerecho
-#bus = smbus.SMBus(1) #Bus por el cual se comunican
+bus = smbus.SMBus(1) #Bus por el cual se comunican
 #Region 1
 #latref =9.02318033
 #longref = -79.53151733
