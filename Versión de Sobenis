@@ -174,7 +174,7 @@ if(control == 2){
   }}
 /*---------------------------------------------------------------------------------*/
    if(control == 3){
-for (int i=0; i<400;){
+for (int i=0; i<j;){
     aPin=2; //INA 2
     bPin=3; //IND 3
     aPrimePin=4; //INB 4
@@ -188,9 +188,13 @@ for (int i=0; i<400;){
     delay(250);
     digitalWrite(LED_BUILTIN,LOW);//Dobla hacia la izquierda
     delay(250);*/
+    if(control==1){i=j; control==1;}
+    if(control==2){i=j; control==2;}
+    if(control==4){i=j; control==4;}
+    if(control==5){i=j; control==5;}
     i = i+1;
 
-  }control = 6;}
+  }}
 /*---------------------------------------------------------------------------------*/
    if(control == 4){
       Stop_Mder(); //Doblar hacia la Derecha
