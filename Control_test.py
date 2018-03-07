@@ -86,12 +86,10 @@ while instruccion == 'y':
             min1=80
             max1=3
             min2=3
-            print("Region 1")
-        	#min1 = 34
-        	#max1 = 6  # min<--------------Region1--------------------------->max
-        	#min2 = 6
-        	#max2 =25"""
-            #Prueba
+            re= "Region 1"
+            print(re)
+            with open ("log.csv", "a") as pos:
+                pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
             if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
                     #arduino.write(Forward) #Mandar un comando hacia Arduino
                 #bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
@@ -125,12 +123,10 @@ while instruccion == 'y':
             min1=80
             max1=3
             min3=3
-            print("Region 2")
-    		#min1 = 7
-    		#max1 = 2 # min<--------------Region2--------------------------->max
-    		#min3 = 1
-    		#max2 = 8"""
-            #Prueba
+            re = "Region2"
+            print(re)
+    	    with open ("log.csv", "a") as pos:
+                pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
             if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
                     #arduino.write(Forward) #Mandar un comando hacia Arduino
                 #bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho

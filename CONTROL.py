@@ -123,7 +123,7 @@ while instruccion == 'y':
             max1=4
             min3=4
             re = "Region2"
-            print("re")
+            print(re)
     	    with open ("log.csv", "a") as pos:
                 pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
             if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
