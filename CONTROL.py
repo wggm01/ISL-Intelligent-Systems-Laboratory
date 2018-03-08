@@ -87,7 +87,7 @@ while instruccion == 'y':
             min2=4
             re= "Region 1"
             print(re)
-            with open ("log.csv", "a") as pos:
+            with open ("logreg1.csv", "a") as pos:
                 pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
             if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
                     #arduino.write(Forward) #Mandar un comando hacia Arduino
@@ -124,7 +124,7 @@ while instruccion == 'y':
             min3=4
             re = "Region2"
             print(re)
-    	    with open ("log.csv", "a") as pos:
+    	    with open ("logreg2.csv", "a") as pos:
                 pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
             if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
                     #arduino.write(Forward) #Mandar un comando hacia Arduino
