@@ -15,7 +15,7 @@ import math
 Forward=1
 Turn= 4
 Stop = 5
-delay = 5 #Este valor hay que estimarlo al ojo.
+delay = 10 #Este valor hay que estimarlo al ojo.
 slaveAddress2 = 0x40 #MotorIzquierdo
 slaveAddress1 = 0x50 #MotorDerecho
 #bus = smbus.SMBus(1) #Bus por el cual se comunican
@@ -72,8 +72,8 @@ while instruccion == 'y':
         if region == 1 :
             #Region 1   # 9.02318033 -79.53151733 original
             #Pruebas 9.04525 -79.40719
-            latref =9.02327
-            longref = -79.53143
+            latref =9.02318033
+            longref = -79.53151733
             radius = 6371 # km
             dlat = math.radians(latref-latitud)
             dlon = math.radians(longref-longitud)
@@ -84,8 +84,8 @@ while instruccion == 'y':
             print d
             #Limites para las region1
             min1=80
-            max1=3
-            min2=3
+            max1=2
+            min2=2
             re= "Region 1"
             print(re)
             with open ("logreg1.csv", "a") as pos:
@@ -109,8 +109,8 @@ while instruccion == 'y':
         if region == 2 :
             #Region 2  #9.023149167 -79.53156583 original
             #Pruebas 9.04485 -79.40695
-            latref2=9.02321
-            lonref2=-79.53147
+            latref2=9.023149167
+            lonref2=-79.53156583
             radius = 6371 # km
             dlat = math.radians(latref2-latitud)
             dlon = math.radians(lonref2-longitud)
@@ -121,8 +121,8 @@ while instruccion == 'y':
             print d
             #Limite para Region 2
             min1=80
-            max1=3
-            min3=3
+            max1=2
+            min3=2
             re = "Region2"
             print(re)
     	    with open ("logreg2.csv", "a") as pos:

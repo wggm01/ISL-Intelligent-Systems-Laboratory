@@ -48,12 +48,12 @@ while instruccion == 'y':
         latdeg = int(get_unformated_latitude/100)
         latmin = get_unformated_latitude - latdeg*100
         lat = latdeg + (latmin/60)
-        latitud = round(lat,5)
+        latitud = round(lat,7)
 
         longdeg = int(get_unformated_longitude/100)
         longmin = get_unformated_longitude - longdeg*100
         longi = longdeg + (longmin/60)
-        longitud = round(longi,5)
+        longitud = round(longi,7)
 
         if gps_sentences_fields[4] == "S":
             latitud = -latitud
@@ -69,10 +69,10 @@ while instruccion == 'y':
 
 #-----------Calculo de distancia usando Harversine para region 1----------------------------
         if region == 1 :
-            #Region 1   # 9.02318033 -79.53151733 original
+            #Region 1    9.02318033 -79.53151733 original
             #Pruebas 9.04525 -79.40719
-            latref =9.02327
-            longref = -79.53143
+            latref =9.02318033
+            longref = -79.53151733
             radius = 6371 # km
             dlat = math.radians(latref-latitud)
             dlon = math.radians(longref-longitud)
@@ -83,20 +83,20 @@ while instruccion == 'y':
             print d
             #Limites para las region1
             min1=80
-            max1=4
-            min2=4
+            max1=2
+            min2=2
             re= "Region 1"
             print(re)
             with open ("logreg1.csv", "a") as pos:
                 pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
             if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-                    #arduino.write(Forward) #Mandar un comando hacia Arduino
+                #arduino.write(Forward) #Mandar un comando hacia Arduino
                 bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
                 bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
                 print("Moviendo")
 
             if d <= min2:#Establece cuando curvara
-                    #arduino.write(Turn)#Mandar un comando hacia Arduino
+                #arduino.write(Turn)#Mandar un comando hacia Arduino
                 bus.write_byte(slaveAddress2, Turn)#Mandar un comando hacia MotorDerecho
                 bus.write_byte(slaveAddress1, Turn)#Mandar un comando hacia MotorIzquierdo
                 print("Curvando")
@@ -108,8 +108,8 @@ while instruccion == 'y':
         if region == 2 :
             #Region 2  #9.023149167 -79.53156583 original
             #Pruebas 9.04485 -79.40695
-            latref2=9.02321
-            lonref2=-79.53147
+            latref2=9.023149167
+            lonref2=-79.53156583
             radius = 6371 # km
             dlat = math.radians(latref2-latitud)
             dlon = math.radians(lonref2-longitud)
@@ -120,8 +120,8 @@ while instruccion == 'y':
             print d
             #Limite para Region 2
             min1=80
-            max1=4
-            min3=4
+            max1=2
+            min3=2
             re = "Region2"
             print(re)
     	    with open ("logreg2.csv", "a") as pos:
