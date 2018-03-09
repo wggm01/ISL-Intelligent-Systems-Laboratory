@@ -131,10 +131,10 @@ void Stop_Mder(){
 void loop() {
 /*---------------------------------------------------------------------------------*/
 while(control == 1){
-      aPin=2; //INA 2
+      aPin=5; //INA 2
       bPin=3; //IND 3
       aPrimePin=4; //INB 4
-      bPrimePin=5; //INC 5
+      bPrimePin=2; //INC 5
       Mov_Mder ();
       //digitalWrite(LED_BUILTIN,HIGH);
       //delay(1000);
@@ -152,10 +152,10 @@ while(control == 1){
 /*---------------------------------------------------------------------------------*/
 if(control == 2){
   for(int i=0; i<400;){
-      aPin=5; //INA 2
+      aPin=2; //INA 2
       bPin=4; //IND 3
       aPrimePin=3; //INB 4
-      bPrimePin=2; //INC 5
+      bPrimePin=5; //INC 5
       Mov_Mder ();
       //digitalWrite(LED_BUILTIN,HIGH);
       //delay(500);
@@ -170,10 +170,10 @@ if(control == 2){
 /*---------------------------------------------------------------------------------*/
    if(control == 3){
 for (int i=0; i<400;){
-    aPin=2; //INA 2
+    aPin=5; //INA 2
     bPin=3; //IND 3
     aPrimePin=4; //INB 4
-    bPrimePin=5; //INC 5
+    bPrimePin=2; //INC 5
     Mov_Mder ();
     //digitalWrite(LED_BUILTIN,HIGH);
     //delay(250);
@@ -207,4 +207,5 @@ void receiveEvent(int howMany) {
 if (Wire.available()==1) { // loop through all but the last
   control = Wire.read();
 
-  }}
+  }}                                                                                                                                                                1
+

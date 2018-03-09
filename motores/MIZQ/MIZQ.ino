@@ -11,8 +11,8 @@ int delay2 =1;
 /*---------------------------------------------------------------------------------*/
 //MotorIzquierdo
 int aPinm2; //INA 8
-int bPinm2; //IND 9
-int aPrimePinm2; //INB 10
+int bPinm2; //INB 10
+int aPrimePinm2; //IND 9
 int bPrimePinm2; //INC 11
 /*---------------------------------------------------------------------------------*/
 
@@ -134,8 +134,8 @@ void loop() {
 /*---------------------------------------------------------------------------------*/
 while(control == 1){
       aPinm2 = 8; //INA 8
-      bPinm2 = 9; //IND 9
-      aPrimePinm2 = 10; //INB 10
+      bPinm2 = 10; //INB 10
+      aPrimePinm2 = 9; //IND 9
       bPrimePinm2 = 11; //INC 11
       Mov_Mizq ();
       //digitalWrite(LED_BUILTIN,HIGH);
@@ -154,10 +154,10 @@ while(control == 1){
 /*---------------------------------------------------------------------------------*/
 if(control == 2){
   for(int i=0; i<400;){
-      aPinm2 = 11; //INA 8
-      bPinm2 = 10; //IND 9
-      aPrimePinm2 = 9; //INB 10
-      bPrimePinm2 = 8; //INC 11
+      aPinm2 = 11; //INC 11
+      bPinm2 = 9; //IND 9
+      aPrimePinm2 = 10; //INB 10
+      bPrimePinm2 = 8; //INA 8
       Mov_Mizq ();
       //digitalWrite(LED_BUILTIN,HIGH);
       //delay(500);
@@ -178,8 +178,8 @@ if(control == 2){
    if(control == 4){
 for (int i=0; i<400;){
       aPinm2 = 8; //INA 8
-      bPinm2 = 9; //IND 9
-      aPrimePinm2 = 10; //INB 10
+      bPinm2 = 10; //INB 10
+      aPrimePinm2 = 9; //IND 9
       bPrimePinm2 = 11; //INC 11
       Mov_Mizq ();
     //digitalWrite(LED_BUILTIN,HIGH);
