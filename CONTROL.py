@@ -15,16 +15,16 @@ Forward=1
 Turn= 4
 Stop = 5
 delay = 5 #Este valor hay que estimarlo al ojo.
+region2 = 0
 slaveAddress2 = 0x40 #MotorIzquierdo
 slaveAddress1 = 0x50 #MotorDerecho
-bus = smbus.SMBus(1) #Bus por el cual se comunican
+bus = smbus.SMBus(1) #Bus de comunicación i2c
 #Region 1
 #latref =9.02318033
 #longref = -79.53151733
 #Region 2
 #latref2=9.023149167
 #lonref2=-79.53156583
-region2 = 0
 #-------------------------------------------------
 
 #-----------Conecciones----------------------------
