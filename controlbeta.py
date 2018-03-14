@@ -110,8 +110,8 @@ while instruccion == 'y':
         if region == 2 :
             #Region 2  #9.023149167 -79.53156583 original
             #Pruebas 9.04485 -79.40695
-            latref2=9.023148833
-            lonref2=-79.53155833
+            latref2=9.023149167
+            lonref2=-79.53156583
             radius = 6371 # km
             dlat = math.radians(latref2-latitud)
             dlon = math.radians(lonref2-longitud)
