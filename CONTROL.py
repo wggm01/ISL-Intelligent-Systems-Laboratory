@@ -19,7 +19,6 @@ region2 = 0
 slaveAddress2 = 0x40 #MotorIzquierdo
 slaveAddress1 = 0x50 #MotorDerecho
 bus = smbus.SMBus(1) #Bus de comunicación i2c
-#Region 1
 #latref =9.02318033
 #longref = -79.53151733
 #Region 2
@@ -109,8 +108,8 @@ while instruccion == 'y':
             #Region 2  #9.023149167 -79.53156583 original
             #Pruebas 9.04485 -79.40695
             #cambio 9.0230422 -79.5316507
-            latref2=9.023149167
-            lonref2=-79.53156583
+            latref2= 9.023149167
+            lonref2= -79.53156583
             radius = 6371 # km
             dlat = math.radians(latref2-latitud)
             dlon = math.radians(lonref2-longitud)
