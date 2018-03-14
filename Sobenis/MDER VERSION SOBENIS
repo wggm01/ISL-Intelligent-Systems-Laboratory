@@ -8,6 +8,7 @@
 /*---------------------------------------------------------------------------------*/
 int control;
 int delay1 =1;
+int a, b;
 /*---------------------------------------------------------------------------------*/
 //MotorDerecho
 int aPin; //INA 2
@@ -126,6 +127,13 @@ void Stop_Mder(){
   digitalWrite(aPrimePin, LOW);
   digitalWrite(bPrimePin, LOW);
   }
+  //Recepción de Datos provenientes de la raspberry pi3 model B  Rev 2
+void receiveEvent(int howMany) {
+
+if (Wire.available()==1) { // loop through all but the last
+  control = Wire.read();
+}
+} 
 /*---------------------------------------------------------------------------------*/
 //Logica de movimiento
 void loop() {
@@ -145,18 +153,42 @@ while(control == 1){
       digitalWrite(LED_BUILTIN,LOW); //Hacia alfrente
       delay(1000);*/
       if(control==2){break;}
-      if(control==3){break;}
-      if(control==4){break;}
-      if(control==5){break;}}
+     else if(control==3){break;}
+     else if(control==4){break;}
+     else if(control==5){break;}
+     else if(control==6){break;}
+     else if(control==7){break;}
+     else if(control==8){break;}}
 /*---------------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------*/
 if(control == 2){
-  for(int i=0; i<400;){
+b=2;
+  for(;;){ 
       aPin=2; //INA 2
       bPin=4; //IND 3
       aPrimePin=3; //INB 4
       bPrimePin=5; //INC 5
-      Mov_Mder ();
+ 
+    switch (b){
+        case 1 : control = 1;
+        break;
+        case 2 : Mov_Mder ();
+        b= control;
+        break;
+        case 3 : control = 3;
+        break;
+        case 4 : control = 4; 
+        break;
+        case 5 : control = 5;
+        break;
+        case 6 : control = 6;
+        break;
+        case 7 : control = 7;
+        break;
+        default : control = 8;
+        break;
+      }
+ return 0;
       //digitalWrite(LED_BUILTIN,HIGH);
       //delay(500);
       //digitalWrite(LED_BUILTIN,LOW); //Hacia atras
@@ -165,8 +197,8 @@ if(control == 2){
       delay(500);
       digitalWrite(LED_BUILTIN,LOW); //Hacia atras
       delay(500);*/
-      i=i+1;
-  }control =6;}
+     
+  }control =8;}
 /*---------------------------------------------------------------------------------*/
    if(control == 3){
 for (int i=0; i<400;){
@@ -185,27 +217,38 @@ for (int i=0; i<400;){
     delay(250);*/
     i = i+1;
 
-  }control = 6;}
+  }control = 8;}
 /*---------------------------------------------------------------------------------*/
    if(control == 4){
       Stop_Mder(); //Doblar hacia la Derecha
       control = 5;
  }
 /*---------------------------------------------------------------------------------*/
- if(control == 5){
+  else if(control == 5){
       Stop_Mder(); //Doblar hacia la izquierda
-      control = 6;
+      control = 8;
  }
 /*---------------------------------------------------------------------------------*/
-}//Fin de la logica de movimiento
-
-
+ else if (control == 6){
+  for (int i=0; i<400;){
+      aPin=2; //INA 2
+      bPin=4; //IND 3
+      aPrimePin=3; //INB 4
+      bPrimePin=5; //INC 5
+      Mov_Mder ();
+      i = i+1;
+  }}
 /*---------------------------------------------------------------------------------*/
-//Recepción de Datos provenientes de la raspberry pi3 model B  Rev 2
-void receiveEvent(int howMany) {
-
-if (Wire.available()== 1) { // loop through all but the last
-  control = Wire.read();
-
- }}                                                                                                                                                                
-
+ else if (control == 7){
+   for (int i=0; i<400;){
+      aPin=5; //INA 2
+      bPin=3; //IND 3
+      aPrimePin=4; //INB 4
+      bPrimePin=2; //INC 5
+    Mov_Mder ();
+    i = i+1;
+    }
+ }
+ 
+/*---------------------------------------------------------------------------------*/
+}//Fin de la logica de movimiento                                                                                                                                                         1

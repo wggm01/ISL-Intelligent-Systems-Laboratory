@@ -16,16 +16,15 @@ Forward=1
 Turn= 4
 Stop = 5
 delay = 5 #Este valor hay que estimarlo al ojo.
+region2 = 0
 slaveAddress2 = 0x40 #MotorIzquierdo
 slaveAddress1 = 0x50 #MotorDerecho
-bus = smbus.SMBus(1) #Bus por el cual se comunican
-#Region 1
+bus = smbus.SMBus(1) #Bus de comunicación i2c
 #latref =9.02318033
 #longref = -79.53151733
 #Region 2
 #latref2=9.023149167
 #lonref2=-79.53156583
-region2 = 0
 #-------------------------------------------------
 
 #-----------Conecciones----------------------------
@@ -109,8 +108,9 @@ while instruccion == 'y':
         if region == 2 :
             #Region 2  #9.023149167 -79.53156583 original
             #Pruebas 9.04485 -79.40695
-            latref2=9.023148833
-            lonref2=-79.53155833
+            #cambio 9.0230422 -79.5316507
+            latref2= 9.023149167
+            lonref2= -79.53156583
             radius = 6371 # km
             dlat = math.radians(latref2-latitud)
             dlon = math.radians(lonref2-longitud)
