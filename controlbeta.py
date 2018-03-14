@@ -81,7 +81,8 @@ while instruccion == 'y':
             a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(latitud)) \
             * math.cos(math.radians(latref)) * math.sin(dlon/2) * math.sin(dlon/2)
             c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
-            d = int((radius*c)*1000)
+            d_raw = float((radius*c)*1000)
+            d = round(d_raw,2)
             print d
             #Limites para las region1
             min1=80
@@ -118,7 +119,8 @@ while instruccion == 'y':
             a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(latitud)) \
             * math.cos(math.radians(latref2)) * math.sin(dlon/2) * math.sin(dlon/2)
             c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
-            d = int((radius*c)*1000)
+            d_raw = float((radius*c)*1000)
+            d = round(d_raw,2)
             print d
             #Limite para Region 2
             min1=80
