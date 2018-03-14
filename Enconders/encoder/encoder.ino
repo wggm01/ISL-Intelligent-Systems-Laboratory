@@ -25,7 +25,7 @@ void setup() {
   Wire.onRequest(requestEvent);
   Serial.begin(9600);
   pinMode(input,INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(input),Raw_input,RISING); //El mismo para los dos arduinos
+  attachInterrupt(digitalPinToInterrupt(input),Raw_input,FALLING); //El mismo para los dos arduinos
   Timer1.initialize(1000000);// Temporizador seteado a 1.63 segundo
   Timer1.attachInterrupt(timerIsr);
 }
