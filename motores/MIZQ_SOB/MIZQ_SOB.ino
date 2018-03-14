@@ -255,7 +255,7 @@ for (int i=0; i<400;){  // 210 para una vuelta de rueda
  }
 /*---------------------------------------------------------------------------------*/
  else if (control == 6){
-  for (int i=0; i<400;){
+  for (int i=0; i<2;){
       aPinm2 = 8; //INA 8   // Turbo Giro derecha
       bPinm2 = 10; //INB 10
       aPrimePinm2 = 9; //IND 9
@@ -265,7 +265,7 @@ for (int i=0; i<400;){  // 210 para una vuelta de rueda
   }}
 /*---------------------------------------------------------------------------------*/
  else if (control == 7){
-   for (int i=0; i<400;){
+   for (int i=0; i<2;){
      aPinm2 = 11; //INC 11 // Turbo Giro izquierda
      bPinm2 = 9; //IND 9
      aPrimePinm2 = 10; //INB 10
