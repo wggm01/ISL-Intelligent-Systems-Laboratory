@@ -204,8 +204,8 @@ for (int i=0; i<400;){
 //Recepción de Datos provenientes de la raspberry pi3 model B  Rev 2
 void receiveEvent(int howMany) {
 
-if (Wire.available()==1) { // loop through all but the last
+if (Wire.available()== 1) { // loop through all but the last
   control = Wire.read();
 
-  }}                                                                                                                                                                1
+ }}                                                                                                                                                                
 

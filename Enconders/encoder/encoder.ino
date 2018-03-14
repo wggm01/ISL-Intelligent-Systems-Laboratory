@@ -1,31 +1,44 @@
 #include <TimerOne.h>
-volatile int RPM=0;
+#include <Wire.h>
+ int vrp; //Vueltas rueda pequeña
+ int RPM; // de rueda grande
 const byte input=2;
-unsigned int contador_de_pulsos=0;
+volatile int cdp=0;//Contador de pulsos
+int c=0;
 
 void Raw_input (){
-  contador_de_pulsos++;
+  cdp++;
 }
 
 void timerIsr(){
   Timer1.detachInterrupt();
-  RPM = (contador_de_pulsos/8);
-  contador_de_pulsos=0;
+  Serial.println(cdp);
+  //RPM = vrp*60;
+  //Serial.println(RPM);
+  cdp=0;
   Timer1.attachInterrupt(timerIsr);
   
 }
   
 void setup() {
+  Wire.begin(0X70);
+  Wire.onRequest(requestEvent);
+  Serial.begin(9600);
   pinMode(input,INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(input),Raw_input,RISING); //El mismo para los dos arduinos
-  Timer1.initialize(60000000);// Temporizador seteado a 1 segundo
+  Timer1.initialize(1000000);// Temporizador seteado a 1.63 segundo
   Timer1.attachInterrupt(timerIsr);
 }
 
 
 void loop() {
-  // put your main code here, to run repeatedly:
 
 }
+
+void requestEvent(){
+  Wire.write(RPM);
+  
+  }
+
 
 
