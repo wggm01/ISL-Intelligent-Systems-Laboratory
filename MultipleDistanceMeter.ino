@@ -1,31 +1,34 @@
 //code created to implement distance sensor in navigation
 //created by josue rodriguez 
 
-const int trigPin1 = 3;
-const int echoPin1 = 5;
+// Right Sensor {1}
+const int trigPinr = 3;
+const int echoPinr = 5;
 
-const int trigPin2 = 6;
-const int echoPin2 = 9;
+// Center Sensor {2}
+const int trigPinc = 6;
+const int echoPinc = 9;
 
-const int trigPin3 = 10;
-const int echoPin3 = 11;
+// LEFT SENSOR {3}
+const int trigPinl = 10; 
+const int echoPinl = 11; 
 
 
-float duration1;  
-int distance1;
-float duration2;  
-int distance2;
-float duration3;  
-int distance3;
+float durationr;  
+int distancer;
+float durationc;  
+int distancec;
+float durationl;  
+int distancel;
 
 void setup() {
   // put your setup code here, to run once:
-  pinMode(trigPin1, OUTPUT);
-  pinMode(echoPin1, INPUT);
-  pinMode(trigPin2, OUTPUT);
-  pinMode(echoPin2, INPUT);
-  pinMode(trigPin3, OUTPUT);
-  pinMode(echoPin3, INPUT);
+  pinMode(trigPinr, OUTPUT);
+  pinMode(echoPinr, INPUT);
+  pinMode(trigPinc, OUTPUT);
+  pinMode(echoPinc, INPUT);
+  pinMode(trigPinl, OUTPUT);
+  pinMode(echoPinl, INPUT);
   Serial.begin(9600);
 
 
@@ -33,55 +36,53 @@ void setup() {
 
 void loop() {
 
-// STARTS SENSOR 1
+// STARTS SENSOR 1 left sensor
 
-  digitalWrite(trigPin1, LOW);
+  digitalWrite(trigPinr, LOW);
     delayMicroseconds(2);
-    digitalWrite(trigPin1, HIGH);
+    digitalWrite(trigPinr, HIGH);
     delayMicroseconds(10);
-    digitalWrite(trigPin1, LOW);
+    digitalWrite(trigPinr, LOW);
 
-    duration1 = pulseIn(echoPin1, HIGH);
-    distance1 = (duration1*.0343)/2;
+    durationr = pulseIn(echoPinr, HIGH);
+    distancer = (durationr*.0343)/2;
  
 
-// STARTS SENSOR 2
+// STARTS SENSOR 2 Center Sensor
 
-    digitalWrite(trigPin2, LOW);
+    digitalWrite(trigPinc, LOW);
     delayMicroseconds(2);
-    digitalWrite(trigPin2, HIGH);
+    digitalWrite(trigPinc, HIGH);
     delayMicroseconds(10);
-    digitalWrite(trigPin2, LOW);
+    digitalWrite(trigPinc, LOW);
 
-    duration2 = pulseIn(echoPin2, HIGH);
-    distance2 = (duration2*.0343)/2;
+    durationc = pulseIn(echoPinc, HIGH);
+    distancec = (durationc*.0343)/2;
  
 
-// STARTS SENSOR 3
+// STARTS SENSOR 3 Right Sensor
 
-    digitalWrite(trigPin3, LOW);
+    digitalWrite(trigPinl, LOW);
     delayMicroseconds(2);
-    digitalWrite(trigPin3, HIGH);
+    digitalWrite(trigPinl, HIGH);
     delayMicroseconds(10); 
-    digitalWrite(trigPin3, LOW);
+    digitalWrite(trigPinl, LOW);
     
-    duration3 = pulseIn(echoPin3, HIGH);
-    distance3 = (duration3*.0343)/2;
+    durationl = pulseIn(echoPinl, HIGH);
+    distancel = (durationl*.0343)/2;
     
    // RESULT
 
-    Serial.print("Distance 1: ");
-    Serial.println(distance1);
+    Serial.print("Distance RIGHT: ");
+    Serial.println(distancer);
     
-    Serial.print("Distance 2: ");
-    Serial.println(distance2);
+    Serial.print("Distance CENTER: ");
+    Serial.println(distancec);
 
-    Serial.print("Distance 3: ");
-    Serial.println(distance3);
+    Serial.print("Distance Left: ");
+    Serial.println(distancel);
     
-    Serial.println("  ");
+
+     Serial.println();
    
-    delay(1000); 
-  // put your main code here, to run repeatedly:
-
-}
+    delay(500); 

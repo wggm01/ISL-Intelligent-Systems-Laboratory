@@ -7,7 +7,8 @@
 #define SLAVE_ADDRESS 0x40 //Direccion i2c del motor derecho
 /*---------------------------------------------------------------------------------*/
 int control;
-int delay1 =1;
+int delay1= 900;
+//float delay1= 1;
 /*---------------------------------------------------------------------------------*/
 //MotorDerecho
 int aPin; //INA 2
@@ -46,7 +47,7 @@ void Mov_Mder (){
   digitalWrite(bPrimePin, LOW);
   // Allow some delay between energizing the coils to allow
   //  the stepper rotor time to respond.
-  delay(delay1); // So, delay1 milliseconds
+  delayMicroseconds(delay1); // So, delay1 milliseconds
   //delayMicroseconds(delay1);
 
   // 2. Energize aPin and bPin to HIGH
@@ -56,7 +57,7 @@ void Mov_Mder (){
   digitalWrite(bPrimePin, LOW);
   // Allow some delay between energizing the coils to allow
   //  the stepper rotor time to respond.
-  delay(delay1); // So, delay1 milliseconds
+  delayMicroseconds(delay1); // So, delay1 milliseconds
   //delayMicroseconds(delay1);
 
   // 3. Set the bPin to High
@@ -66,7 +67,7 @@ void Mov_Mder (){
   digitalWrite(bPrimePin, LOW);
   // Allow some delay between energizing the coils to allow
   //  the stepper rotor time to respond.
-  delay(delay1); // So, delay1 milliseconds
+  delayMicroseconds(delay1); // So, delay1 milliseconds
   //delayMicroseconds(delay1);
 
   // 4. Set the bPin and the aPrimePin to HIGH
@@ -76,7 +77,7 @@ void Mov_Mder (){
   digitalWrite(bPrimePin, LOW);
   // Allow some delay between energizing the coils to allow
   //  the stepper rotor time to respond.
-  delay(delay1); // So, delay1 milliseconds
+ delayMicroseconds(delay1); // So, delay1 milliseconds
   //delayMicroseconds(delay1);
 
   //  5. Set the aPrime Pin to high
@@ -86,7 +87,7 @@ void Mov_Mder (){
   digitalWrite(bPrimePin, LOW);
   // Allow some delay between energizing the coils to allow
   //  the stepper rotor time to respond.
-  delay(delay1); // So, delay1 milliseconds
+  delayMicroseconds(delay1); // So, delay1 milliseconds
   //delayMicroseconds(delay1);
 
   // 6. Set the aPrimePin and the bPrime Pin to HIGH
@@ -96,7 +97,7 @@ void Mov_Mder (){
   digitalWrite(bPrimePin, HIGH);
   // Allow some delay between energizing the coils to allow
   //  the stepper rotor time to respond.
-  delay(delay1); // So, delay1 milliseconds
+  delayMicroseconds(delay1); // So, delay1 milliseconds
   //delayMicroseconds(delay1);
 
   // 7. Set the bPrimePin to HIGH
@@ -106,7 +107,7 @@ void Mov_Mder (){
   digitalWrite(bPrimePin, HIGH);
   // Allow some delay between energizing the coils to allow
   //  the stepper rotor time to respond.
-  delay(delay1); // So, delay1 milliseconds
+  delayMicroseconds(delay1); // So, delay1 milliseconds
   //delayMicroseconds(delay1);
 
   // 8. Set the bPrimePin and the aPin to HIGH
@@ -116,7 +117,7 @@ void Mov_Mder (){
   digitalWrite(bPrimePin, HIGH);
   // Allow some delay between energizing the coils to allow
   //  the stepper rotor time to respond.
-  delay(delay1); // So, delay1 milliseconds
+  delayMicroseconds(delay1); // So, delay1 milliseconds
   //delayMicroseconds(delay1);
   }
 
