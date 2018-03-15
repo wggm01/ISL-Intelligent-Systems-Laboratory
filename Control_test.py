@@ -80,7 +80,8 @@ while instruccion == 'y':
             a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(latitud)) \
             * math.cos(math.radians(latref)) * math.sin(dlon/2) * math.sin(dlon/2)
             c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
-            d = int((radius*c)*1000)
+            d_raw = float((radius*c)*1000)
+            d=round(d_raw,2)
             print d
             #Limites para las region1
             min1=80
@@ -88,7 +89,7 @@ while instruccion == 'y':
             min2=2
             re= "Region 1"
             print(re)
-            with open ("logreg1.csv", "a") as pos:
+            with open ("logreg1laptop.csv", "a") as pos:
                 pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
             if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
                     #arduino.write(Forward) #Mandar un comando hacia Arduino
@@ -117,7 +118,8 @@ while instruccion == 'y':
             a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(latitud)) \
             * math.cos(math.radians(latref2)) * math.sin(dlon/2) * math.sin(dlon/2)
             c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
-            d = int((radius*c)*1000)
+            d_raw = float((radius*c)*1000)
+            d=round(d_raw,2)
             print d
             #Limite para Region 2
             min1=80
@@ -125,7 +127,7 @@ while instruccion == 'y':
             min3=2
             re = "Region2"
             print(re)
-    	    with open ("logreg2.csv", "a") as pos:
+    	    with open ("logreg2laptop.csv", "a") as pos:
                 pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
             if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
                     #arduino.write(Forward) #Mandar un comando hacia Arduino
