@@ -12,7 +12,7 @@ void Raw_input (){
 
 void temporizador(){
   Timer1.detachInterrupt();
-  vrp = cdp/huecos; //Por segundo
+  vrp = (cdp/huecos)-6; //Por segundo
   Serial.println(vrp);
   RPM = vrp*60;
   Serial.println(RPM);
@@ -26,8 +26,8 @@ void setup() {
   Wire.onRequest(requestEvent);
   Serial.begin(9600);
   pinMode(input,INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(input),Raw_input,FALLING); //El mismo para los dos arduinos
-  Timer1.initialize(1000000);// Temporizador seteado a 1.63 segundo
+  attachInterrupt(digitalPinToInterrupt(input),Raw_input,FALLING); 
+  Timer1.initialize(1000000);
   Timer1.attachInterrupt(timerIsr);
 }
 

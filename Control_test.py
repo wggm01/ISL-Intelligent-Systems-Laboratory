@@ -29,7 +29,7 @@ region2 = 0
 #-------------------------------------------------
 
 #-----------Conecciones----------------------------
-gps = serial.Serial("/dev/ttyACM0", baudrate = 9600)
+gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
 #arduino = serial.Serial('/dev/ttyUSB0', 9600)
 #gps = serial.Serial('COM3', 9600)
 #--------------------------------------------------
@@ -49,12 +49,12 @@ while instruccion == 'y':
         latdeg = int(get_unformated_latitude/100)
         latmin = get_unformated_latitude - latdeg*100
         lat = latdeg + (latmin/60)
-        latitud = round(lat,5)
+        latitud = round(lat,8)
 
         longdeg = int(get_unformated_longitude/100)
         longmin = get_unformated_longitude - longdeg*100
         longi = longdeg + (longmin/60)
-        longitud = round(longi,5)
+        longitud = round(longi,8)
 
         if gps_sentences_fields[4] == "S":
             latitud = -latitud
@@ -88,7 +88,7 @@ while instruccion == 'y':
             min2=2
             re= "Region 1"
             print(re)
-            with open ("logreg1.csv", "a") as pos:
+            with open ("logreg1_laptop.csv", "a") as pos:
                 pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
             if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
                     #arduino.write(Forward) #Mandar un comando hacia Arduino
@@ -125,7 +125,7 @@ while instruccion == 'y':
             min3=2
             re = "Region2"
             print(re)
-    	    with open ("logreg2.csv", "a") as pos:
+    	    with open ("logreg2_laptop.csv", "a") as pos:
                 pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
             if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
                     #arduino.write(Forward) #Mandar un comando hacia Arduino
