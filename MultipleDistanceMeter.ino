@@ -1,3 +1,6 @@
+//code created to implement distance sensor in navigation
+//created by josue rodriguez 
+
 const int trigPin1 = 3;
 const int echoPin1 = 5;
 
