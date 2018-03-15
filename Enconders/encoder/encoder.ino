@@ -1,22 +1,23 @@
 #include <TimerOne.h>
 #include <Wire.h>
  int vrp; //Vueltas rueda pequeña
- int RPM; // de rueda grande
+ int huecos;
+ int RPM; // de rueda pequeña
 const byte input=2;
 volatile int cdp=0;//Contador de pulsos
-int c=0;
 
 void Raw_input (){
   cdp++;
 }
 
-void timerIsr(){
+void temporizador(){
   Timer1.detachInterrupt();
-  Serial.println(cdp);
-  //RPM = vrp*60;
-  //Serial.println(RPM);
+  vrp = (cdp/huecos)-6; //Por segundo
+  Serial.println(vrp);
+  RPM = vrp*60;
+  Serial.println(RPM);
   cdp=0;
-  Timer1.attachInterrupt(timerIsr);
+  Timer1.attachInterrupt(temporizador);
   
 }
   
@@ -25,8 +26,8 @@ void setup() {
   Wire.onRequest(requestEvent);
   Serial.begin(9600);
   pinMode(input,INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(input),Raw_input,FALLING); //El mismo para los dos arduinos
-  Timer1.initialize(1000000);// Temporizador seteado a 1.63 segundo
+  attachInterrupt(digitalPinToInterrupt(input),Raw_input,FALLING); 
+  Timer1.initialize(1000000);
   Timer1.attachInterrupt(timerIsr);
 }
 
