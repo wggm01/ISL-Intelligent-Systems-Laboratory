@@ -20,14 +20,14 @@ while True:
      if bus.read_byte(0X60) == 1:
 	bus.write_byte(slaveAddress1,1)
 	bus.write_byte(slaveAddress2,1)
-	print("Drive")
+	print(bus.read_byte(0X40))
      if bus.read_byte(0X60) == 2:
-	bus.write_byte(slaveAddress1,4)
-	bus.write_byte(slaveAddress2,4)
-    	print("Reverse")
+	bus.write_byte(slaveAddress1,2)
+	bus.write_byte(slaveAddress2,2)
+    	print(bus.read_byte(0X50))
 
      if bus.read_byte(0X60) == 7:
 	bus.write_byte(slaveAddress1,7)
 	bus.write_byte(slaveAddress2,7)
-	print("Turn")
+	print(bus.read_byte(0X60))
  #   writeNumber(var)
