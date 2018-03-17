@@ -3,12 +3,12 @@ import serial
 import csv
 import math
 from vincenty import vincenty
-<<<<<<< HEAD
+
 #gps = serial.Serial('COM14', 4800)
 gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
-=======
-gps = serial.Serial("/dev/ttyACM0", 4800)
->>>>>>> ba805980c0210b3a65b6a4a1a9fef22be178efda
+
+
+
 def Data():
     gps_sentece = gps.readline()
     gps_sentences_fields = gps_sentece.split(",")
@@ -65,8 +65,8 @@ def distReg1_pi(latitud,longitud):
     latref =9.02318033
     longref = -79.53151733 #UTP
     a=latref-latitud
-    b=lonref-longitud
-    d=sqrt(pow(a,2)+pow(b,2))
+    b=longref-longitud
+    d=math.sqrt(math.pow(a,2)+math.pow(b,2))
     return d
 
 
@@ -102,9 +102,9 @@ def distReg2_v(latitud,longitud):
 def distReg2_pi(latitud,longitud):
     latref2 =9.023149167
     longref2 = -79.53156583 #UTP
-    a=latref-latitud
-    b=lonref-longitud
-    d=sqrt(pow(a,2)+pow(b,2))
+    a=latref2-latitud
+    b=longref2-longitud
+    d=math.sqrt(math.pow(a,2)+math.pow(b,2))
     return d
 
 def veloWalli():

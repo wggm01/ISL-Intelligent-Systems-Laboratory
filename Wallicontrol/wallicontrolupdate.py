@@ -43,11 +43,11 @@ while instruccion == 'y':
         if region==1:
             #d=machinarie.distReg1(latitud,longitud)
             #d=machinarie.distReg1_v(latitud,longitud)
-            #d=machinarie.distReg1_pi(latitud,longitud)
+            d=machinarie.distReg1_pi(latitud,longitud)
             #drp = machinarie.angVariant(latitud,longitud,d)
             print("Wall-i esta a:",d," m De su objetivo")
             #print("Distancia a modelo:",drp)
-            min1=80
+            min1=200
             max1=2
             min2=2
             if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
@@ -65,11 +65,11 @@ while instruccion == 'y':
                 region2=2
 
         if region == 2:
-            d=machinarie.distReg2(latitud,longitud)
+            #d=machinarie.distReg2(latitud,longitud)
             #d=machinarie.distReg2_v(latitud,longitud)
-            #d=machinarie.distReg2_pi(latitud,longitud)
+            d=machinarie.distReg2_pi(latitud,longitud)
             print("Wall-i esta a:",d,"m De su objetivo")
-            min1=80
+            min1=200
             max1=2
             min3=2
             if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
