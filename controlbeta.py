@@ -30,7 +30,7 @@ region2 = 0
 #-------------------------------------------------
 
 #-----------Conecciones----------------------------
-gps = serial.Serial("/dev/ttyACM0", baudrate = 9600)
+gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
 #arduino = serial.Serial('/dev/ttyUSB0', 9600)
 #gps = serial.Serial('COM3', 9600)
 #--------------------------------------------------
@@ -72,7 +72,8 @@ while instruccion == 'y':
 #-----------Calculo de distancia usando Harversine para region 1----------------------------
         if region == 1 :
             #Region 1    9.02318033 -79.53151733 original
-            #Pruebas 9.04525 -79.40719
+            #16-3-18 LAT= 9.0232128 LONG=-79.5315418
+            #Pruebas alrededor de casa 9.04525 -79.40719
             latref =9.02318033
             longref = -79.53151733
             radius = 6371 # km
