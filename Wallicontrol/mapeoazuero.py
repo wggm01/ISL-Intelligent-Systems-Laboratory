@@ -1,6 +1,6 @@
-import serial
+
 import machinarie
-gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
+
 
 
 print("Programa para recoleccion de data")
@@ -10,5 +10,6 @@ while instruccion == 'y':
     data = machinarie.Data()
     if data!= None :
         latitud,longitud = data
-    	with open ("Data_azuero.csv", "a") as pos:
-        	pos.write("%s, %s\n" % ( latitud, longitud))
+ 	with open ("Data_azuero.csv", "a") as pos:
+		pos.write("%s, %s\n" % ( latitud, longitud))
+    machinarie.Data_arduino()	
