@@ -1,5 +1,5 @@
 import pygame, sys
-from time import sleep
+import time
 
 # setup the pygame window
 pygame.init()
@@ -62,4 +62,4 @@ while True:
     if hats != 0:
       for i in range(hats):
         getHat(i)
-sleep(0.5)
+time.sleep(5)
