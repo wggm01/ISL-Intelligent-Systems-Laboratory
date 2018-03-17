@@ -43,13 +43,9 @@ with SixAxisResource() as joystick:
         SixAxis.get_and_clear_button_press_history()
 
     # Register the handler to the SQUARE button
-    joystick.register_button_handler(mov_f, SixAxis.BUTTON_D_UP)
-    joystick.register_button_handler(mov_b, SixAxis.BUTTON_D_DOWN)
-    joystick.register_button_handler(mov_tr, SixAxis.BUTTON_D_RIGHT)
-    joystick.register_button_handler(mov_tl, SixAxis.BUTTON_D_LEFT)
-    joystick.register_button_handler(mov_sr, SixAxis.BUTTON_R1)
-    joystick.register_button_handler(mov_sl, SixAxis.BUTTON_L1)
-    joystick.register_button_handler(mov_f, SixAxis.BUTTON_CROSS)
+    joystick.register_button_handler(mov_f, SixAxis.BUTTON_TRIANGLE)
+    joystick.register_button_handler(mov_b, SixAxis.BUTTON_CROSS)
+  
     while 1:
         # Do stuff here, only register the button handlers once, not in this loop!
         # If the buttons are pressed, your handlers will be called but not from this thread.
