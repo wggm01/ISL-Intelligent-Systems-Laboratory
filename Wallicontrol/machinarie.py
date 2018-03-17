@@ -19,7 +19,7 @@ delay = 5
 #Connecion al puerto serial
 #gps = serial.Serial('COM14', 4800)
 gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
-ard_gyro = serial.Serial("/dev/ttyACM1", baudrate = 9600)
+ard_gyro = serial.Serial("/dev/ttyACM1", baudrate = 57600)
 #ard_ultra = serial.Serial("/dev/ttyACM", baudrate = 9600)
 
 
@@ -30,6 +30,9 @@ def Data():
     if gps_sentences_fields[0] == "$GPRMC" and  gps_sentences_fields[2] == "A":
         get_unformated_latitude = float(gps_sentences_fields[3])
         get_unformated_longitude = float(gps_sentences_fields[5])
+	time = gps_sentences_fields[1]
+	date = gps_sentences_fields[9]
+
         latdeg = int(get_unformated_latitude/100)
         latmin = get_unformated_latitude - latdeg*100
         lat = latdeg + (latmin/60)
@@ -44,12 +47,12 @@ def Data():
             latitud = -latitud
         if  gps_sentences_fields[6] == "W":
             longitud = -longitud
-        return latitud,longitud
+        return latitud,longitud,date,time
     else:
         print ("Data no disponible aun,espere")
 
 def Data_arduino_gyro():
-    arduino = ard.readline()
+    arduino = ard_gyro.readline()
     arduino_input = arduino.split(",")
     arduino_input[0] = x
     arduino_input[1] = y

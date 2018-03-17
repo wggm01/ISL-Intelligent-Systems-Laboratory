@@ -11,5 +11,5 @@ while instruccion == 'y':
     if data!= None :
         latitud,longitud = data
  	with open ("Data_azuero.csv", "a") as pos:
-		pos.write("%s, %s\n" % ( latitud, longitud))
+		pos.write("%s, %s, %s, %s\n" % ( latitud, longitud,date,time))
     machinarie.Data_arduino()	
