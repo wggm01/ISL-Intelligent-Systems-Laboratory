@@ -71,8 +71,8 @@ while instruccion == 'y':
 
 #-----------Calculo de distancia usando Harversine para region 1----------------------------
         if region == 1 :
-            #Region 1    9.02318033 -79.53151733 original
-            #16-3-18 LAT= 9.0232128 LONG=-79.5315418
+            #Region 1 original 9.02318033 -79.53151733 (no forma parte del mapeo hecho orignalmente)
+            #Promedio  9.0232113 -79.5315376 (Si forma parte del mapeo)
             #Pruebas alrededor de casa 9.04525 -79.40719
             latref =9.02318033
             longref = -79.53151733
@@ -110,10 +110,11 @@ while instruccion == 'y':
 
 #-----------Calculo de distancia usando Harversine para region2----------------------------
         if region == 2 :
-            #Region 2  #9.023149167 -79.53156583 original
-            #Pruebas 9.04485 -79.40695
-            latref2=9.023149167
-            lonref2=-79.53156583
+            #Region 2 orignal 9.023149167 -79.53156583 (demasiado de cerca de region 1)
+            #Promedio 9.0230422 -79.5316507
+            #Pruebas 9.04485 -79.40695 alrededor casa
+            latref2=9.0230422
+            lonref2=-79.5316507
             radius = 6371 # km
             dlat = math.radians(latref2-latitud)
             dlon = math.radians(lonref2-longitud)
@@ -129,7 +130,7 @@ while instruccion == 'y':
             min3=2
             re = "Region2"
             print(re)
-    	    with open ("logreg2.csv", "a") as pos:
+            with open ("logreg2.csv", "a") as pos:
                 pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
             if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
                     #arduino.write(Forward) #Mandar un comando hacia Arduino
