@@ -35,7 +35,9 @@ while instruccion == 'y':
         #print(reg2)
         if region==1:
             d=machinarie.distReg1(latitud,longitud)
+            #angle = machinarie.angVariant(latitud,longitud,d)
             print("Wall-i esta a:",d," m De su objetivo")
+            #print("Angulo actual:",angle)
             min1=80
             max1=2
             min2=2

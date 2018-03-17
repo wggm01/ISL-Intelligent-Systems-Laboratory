@@ -76,6 +76,15 @@ def veloWalli():
         velocidad = float(gps_sentences_fields[7])
         return velocidad
 
+def angVariant(latitud,longitud,d): #Usar bajo su propio riesgo
+    #Distancia punto a recta
+    top = 0.69738*latitud+longitud
+    absolute= math.fabs(top)
+    bottom = math.sqrt(math.pow(0.69738,2)+ 1)
+    dpr = absolute/bottom
+    #Calculo de angulo porque se forma un triangulo rectangulo.
+    angle = math.atan(dpr/d)
+    return angle
 
 
 
