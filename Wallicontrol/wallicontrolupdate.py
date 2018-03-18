@@ -1,3 +1,4 @@
+from vincenty import vincenty
 #import serial
 import time
 import machinarie
@@ -22,7 +23,7 @@ while instruccion == 'y':
     if region == 3:
             region =2
     #velo=machinarie.veloWalli()
-    #if velo != None:  
+    #if velo != None:
      #   print ("La velocidad de Wall-i es de :",velo/1000,"m/s")
     data = machinarie.Data()
     if data!= None :
@@ -34,7 +35,8 @@ while instruccion == 'y':
         #reg2=machinarie.distReg2(latitud,longitud)
         #print(reg2)
         if region==1:
-            d=machinarie.distReg1(latitud,longitud)
+            #d=machinarie.distReg1(latitud,longitud)
+            d=machinarie.distReg1_v(latitud,longitud)
             #angle = machinarie.angVariant(latitud,longitud,d)
             print("Wall-i esta a:",d," m De su objetivo")
             #print("Angulo actual:",angle)
@@ -54,9 +56,10 @@ while instruccion == 'y':
                 print("Wall-i actualmente esta curvando")
                 time.sleep(delay) #tiempo que demora en hacer un giro de 90 grados aprox
                 region2=2
-        
+
         if region == 2:
-            d=machinarie.distReg2(latitud,longitud)
+            #d=machinarie.distReg2(latitud,longitud)
+            d=machinarie.distReg2_v(latitud,longitud)
             print("Wall-i esta a:",d,"m De su objetivo")
             min1=80
             max1=2
@@ -71,5 +74,3 @@ while instruccion == 'y':
                 print("Wall-i actualmente esta curvando")
                 #bus.write_byte(slaveAddress2, Stop)#Mandar un comando hacia MotorDerecho
                 #bus.write_byte(slaveAddress1, Stop)#Mandar un comando hacia MotorIzquierdo
-               
-  

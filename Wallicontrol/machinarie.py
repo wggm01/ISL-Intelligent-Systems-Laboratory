@@ -2,6 +2,7 @@ import time
 import serial
 import csv
 import math
+from vincenty import vincenty
 gps = serial.Serial('COM14', 4800)
 def Data():
     gps_sentece = gps.readline()
@@ -24,7 +25,7 @@ def Data():
             latitud = -latitud
         if  gps_sentences_fields[6] == "W":
             longitud = -longitud
-            
+
         return latitud,longitud
 
 def distReg1(latitud,longitud):
@@ -47,7 +48,16 @@ def distReg1(latitud,longitud):
     with open ("logreg1.csv", "a") as pos:
         pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
     return d
-def distReg2(latitud,longitud):   
+
+def distReg1_v(latitud,longitud):
+    input_gps= (latitud,longitud)
+    ref = (9.02318033,-79.53151733)
+    d = vincenty(input_gps,ref)
+    return d
+
+
+
+def distReg2(latitud,longitud):
     #Region 2 orignal 9.023149167 -79.53156583 (demasiado de cerca de region 1)
     #Promedio 9.0230422 -79.5316507
     #Pruebas 9.04485 -79.40695 alrededor casa
@@ -68,6 +78,12 @@ def distReg2(latitud,longitud):
         pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
     return d
 
+def distReg2_v(latitud,longitud):
+    input_gps= (latitud,longitud)
+    ref = (9.023149167,-79.53156583)
+    d = vincenty(input_gps,ref)
+    return d
+
 def veloWalli():
     gps_sentece = gps.readline()
     gps_sentences_fields = gps_sentece.split(",")
@@ -85,9 +101,3 @@ def angVariant(latitud,longitud,d): #Usar bajo su propio riesgo
     #Calculo de angulo porque se forma un triangulo rectangulo.
     angle = math.atan(dpr/d)
     return angle
-
-
-
-
-
-
