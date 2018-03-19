@@ -51,8 +51,9 @@ def distReg1(latitud,longitud):
 
 def distReg1_v(latitud,longitud):
     input_gps= (latitud,longitud)
-    ref = (9.02318033,-79.53151733)
-    d = vincenty(input_gps,ref)
+    ref = (9.04525,-79.40719)
+    #ref = (9.02318033,-79.53151733)
+    d = vincenty(input_gps,ref)*1000
     return d
 
 
@@ -80,8 +81,9 @@ def distReg2(latitud,longitud):
 
 def distReg2_v(latitud,longitud):
     input_gps= (latitud,longitud)
-    ref = (9.023149167,-79.53156583)
-    d = vincenty(input_gps,ref)
+    ref = (9.04485,-79.40695)
+    #ref = (9.023149167,-79.53156583)
+    d = vincenty(input_gps,ref)*1000
     return d
 
 def veloWalli():

@@ -1,4 +1,4 @@
-from vincenty import vincenty
+
 #import serial
 import time
 import machinarie
@@ -7,6 +7,7 @@ region2=0
 #Lectura del puerto serial
 #gps = serial.Serial("/dev/ttyACM0", baudrate = 2000000)
 #gps = serial.Serial('COM14', 4800)
+delay = 5 #Este valor hay que estimarlo al ojo.
 """Forward=1
 Turn= 4
 Stop = 5
