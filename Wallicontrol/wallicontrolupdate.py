@@ -6,11 +6,11 @@ import machinarie
 import smbus
 region2=0
 #Lectura del puerto serial
-<<<<<<< HEAD
+
 #gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
-=======
+
 """gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)"""
->>>>>>> ba805980c0210b3a65b6a4a1a9fef22be178efda
+
 #gps = serial.Serial('COM14', 4800)
 delay = 5 #Este valor hay que estimarlo al ojo.
 Forward=1
@@ -42,7 +42,8 @@ while instruccion == 'y':
         #print(reg2)
         if region==1:
             #d=machinarie.distReg1(latitud,longitud)
-            d=machinarie.distReg1_v(latitud,longitud)
+            #d=machinarie.distReg1_v(latitud,longitud)
+            #d=machinarie.distReg1_pi(latitud,longitud)
             #drp = machinarie.angVariant(latitud,longitud,d)
             print("Wall-i esta a:",d," m De su objetivo")
             #print("Distancia a modelo:",drp)
@@ -64,8 +65,9 @@ while instruccion == 'y':
                 region2=2
 
         if region == 2:
-            #d=machinarie.distReg2(latitud,longitud)
-            d=machinarie.distReg2_v(latitud,longitud)
+            d=machinarie.distReg2(latitud,longitud)
+            #d=machinarie.distReg2_v(latitud,longitud)
+            #d=machinarie.distReg2_pi(latitud,longitud)
             print("Wall-i esta a:",d,"m De su objetivo")
             min1=80
             max1=2
