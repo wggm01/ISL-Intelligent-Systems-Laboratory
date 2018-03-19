@@ -32,10 +32,10 @@ def distReg1(latitud,longitud):
     #Region 1 original 9.02318033 -79.53151733 (no forma parte del mapeo hecho orignalmente)
     #Promedio  9.0232113 -79.5315376 (Si forma parte del mapeo)
     #Pruebas alrededor de casa 9.04525 -79.40719
-    latref =9.04525 #Casa
-    longref = -79.40719
-    #latref =9.02318033
-    #longref = -79.53151733 UTP
+    #latref =9.04525 #Casa
+    #longref = -79.40719
+    latref =9.02318033
+    longref = -79.53151733 #UTP
     radius = 6371 # km
     dlat = math.radians(latref-latitud)
     dlon = math.radians(longref-longitud)
@@ -51,8 +51,8 @@ def distReg1(latitud,longitud):
 
 def distReg1_v(latitud,longitud):
     input_gps= (latitud,longitud)
-    ref = (9.04525,-79.40719)
-    #ref = (9.02318033,-79.53151733)
+    #ref = (9.04525,-79.40719)
+    ref = (9.02318033,-79.53151733)
     d = vincenty(input_gps,ref)*1000
     return d
 
@@ -62,10 +62,10 @@ def distReg2(latitud,longitud):
     #Region 2 orignal 9.023149167 -79.53156583 (demasiado de cerca de region 1)
     #Promedio 9.0230422 -79.5316507
     #Pruebas 9.04485 -79.40695 alrededor casa
-    latref2=9.04485 #casa
-    lonref2=-79.40695
-    #latref2=9.0230422 UTP
-    #lonref2=-79.5316507
+    #latref2=9.04485 #casa
+    #lonref2=-79.40695
+    latref2=9.0230422 #UTP
+    lonref2=-79.5316507
     radius = 6371 # km
     dlat = math.radians(latref2-latitud)
     dlon = math.radians(lonref2-longitud)
@@ -81,8 +81,8 @@ def distReg2(latitud,longitud):
 
 def distReg2_v(latitud,longitud):
     input_gps= (latitud,longitud)
-    ref = (9.04485,-79.40695)
-    #ref = (9.023149167,-79.53156583)
+    #ref = (9.04485,-79.40695)
+    ref = (9.023149167,-79.53156583)
     d = vincenty(input_gps,ref)*1000
     return d
 
@@ -101,5 +101,5 @@ def angVariant(latitud,longitud,d): #Usar bajo su propio riesgo
     bottom = math.sqrt(math.pow(0.69738,2)+ 1)
     dpr = absolute/bottom
     #Calculo de angulo porque se forma un triangulo rectangulo.
-    angle = math.atan(dpr/d)
-    return angle
+    #angle = math.atan(dpr/d)
+    return drp
