@@ -6,7 +6,7 @@ import machinarie
 import smbus
 region2=0
 #Lectura del puerto serial
-gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
+#gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
 #gps = serial.Serial('COM14', 4800)
 delay = 5 #Este valor hay que estimarlo al ojo.
 Forward=1
