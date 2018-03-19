@@ -1,11 +1,12 @@
 
-#import serial
+import serial
+import sys
 import time
 import machinarie
 import smbus
 region2=0
 #Lectura del puerto serial
-gps = serial.Serial("/dev/ttyACM0", baudrate = 2000000)
+gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
 #gps = serial.Serial('COM14', 4800)
 delay = 5 #Este valor hay que estimarlo al ojo.
 Forward=1
@@ -20,6 +21,10 @@ print("Wall-i actualmente se encuentra esperando su instruccion")
 instruccion = raw_input("Presion y luego enter para empezar\n ")
 #loop para que muestre cada lectura que recibe el gps
 while instruccion == 'y':
+    if sys.stdin.read(1)==5:
+        print("Wall-i se ha detenido")
+        bus.write_byte(slaveAddress2, Stop)#Mandar un comando hacia MotorDerecho
+        bus.write_byte(slaveAddress1, Stop)
     region = 1 + region2
     if region == 3:
             region =2
