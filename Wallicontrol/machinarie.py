@@ -3,8 +3,12 @@ import serial
 import csv
 import math
 from vincenty import vincenty
+<<<<<<< HEAD
 #gps = serial.Serial('COM14', 4800)
 gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
+=======
+gps = serial.Serial("/dev/ttyACM0", 4800)
+>>>>>>> ba805980c0210b3a65b6a4a1a9fef22be178efda
 def Data():
     gps_sentece = gps.readline()
     gps_sentences_fields = gps_sentece.split(",")
