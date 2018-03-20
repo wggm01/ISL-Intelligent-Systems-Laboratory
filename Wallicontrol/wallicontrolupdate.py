@@ -41,9 +41,9 @@ while instruccion == 'y':
         #reg2=machinarie.distReg2(latitud,longitud)
         #print(reg2)
         if region==1:
-            #d=machinarie.distReg1(latitud,longitud)
+            d=machinarie.distReg1(latitud,longitud)
             #d=machinarie.distReg1_v(latitud,longitud)
-            d=machinarie.distReg1_pi(latitud,longitud)
+            #d=machinarie.distReg1_pi(latitud,longitud)
             #drp = machinarie.angVariant(latitud,longitud,d)
             print("Wall-i esta a:",d," m De su objetivo")
             #print("Distancia a modelo:",drp)
@@ -56,7 +56,7 @@ while instruccion == 'y':
                 bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
                 print("Wall-i acutalmente se esta moviendo")
 
-            if d <= min2:#Establece cuando curvara
+            if d <= min2 or latitud > 9.02318033  :#Establece cuando curvara
                 #arduino.write(Turn)#Mandar un comando hacia Arduino
                 bus.write_byte(slaveAddress2, Turn)#Mandar un comando hacia MotorDerecho
                 bus.write_byte(slaveAddress1, Turn)#Mandar un comando hacia MotorIzquierdo
@@ -65,9 +65,9 @@ while instruccion == 'y':
                 region2=2
 
         if region == 2:
-            #d=machinarie.distReg2(latitud,longitud)
+            d=machinarie.distReg2(latitud,longitud)
             #d=machinarie.distReg2_v(latitud,longitud)
-            d=machinarie.distReg2_pi(latitud,longitud)
+            #d=machinarie.distReg2_pi(latitud,longitud)
             print("Wall-i esta a:",d,"m De su objetivo")
             min1=200
             max1=2
