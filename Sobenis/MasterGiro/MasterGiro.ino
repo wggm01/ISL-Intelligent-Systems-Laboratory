@@ -94,6 +94,7 @@ void loop(){
   angle_roll_output = angle_roll_output * 0.9 + angle_roll * 0.1;      //Take 90% of the output roll value and add 10% of the raw roll value
   
   //write_LCD();                                                         //Write the roll and pitch values to the LCD display
+  
  if (sw1 == 0)
  {
  angle_ref = angle_pitch_output;
@@ -101,9 +102,11 @@ void loop(){
  Serial.print("angle_ref");
  Serial.println(angle_ref);
  }
+ 
 // Write_Ang();
 // Función de escritura
    Limites();
+   Stop();
   while(micros() - loop_timer < 4000);                                 //Wait until the loop_timer reaches 4000us (250Hz) before starting the next loop
   loop_timer = micros();                                               //Reset the loop timer
 }
@@ -154,8 +157,8 @@ void setup_mpu_6050_registers(){
 
 void Limites()
 {
-  angle_pitch_limit1 = angle_ref + 2;
-  angle_pitch_limit2 = angle_ref - 2;
+  angle_pitch_limit1 = angle_ref + 0.4;
+  angle_pitch_limit2 = angle_ref - 0.4;
   if (angle_pitch_output > angle_pitch_limit1)
   {
   Wire.beginTransmission(0x50);
@@ -192,10 +195,21 @@ void Limites()
   }
 }
 
-
-  
-
-
+void Stop(){
+  while(Serial.available()){
+    char i = Serial.read();
+   while (i == 'a' ){
+  Wire.beginTransmission(0x50);
+  Wire.write(5); 
+  Serial.println("5");
+  Wire.endTransmission(0x50);
+  Wire.beginTransmission(0x40);
+  Wire.write(5); 
+  Serial.println("5");
+  Wire.endTransmission(0x40);
+   }
+   }
+}
 
 
 
