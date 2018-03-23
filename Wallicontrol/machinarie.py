@@ -48,7 +48,7 @@ def distReg1(latitud,longitud):
     * math.cos(math.radians(latref)) * math.sin(dlon/2) * math.sin(dlon/2)
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
     d_raw = float((radius*c)*1000)
-    d = round(d_raw,2)
+    d = int(d_raw)
     re= "Region 1"
     with open ("logreg1.csv", "a") as pos:
         pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
@@ -86,7 +86,7 @@ def distReg2(latitud,longitud):
     * math.cos(math.radians(latref2)) * math.sin(dlon/2) * math.sin(dlon/2)
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
     d_raw = float((radius*c)*1000)
-    d = round(d_raw,2)
+    d = int(d_raw)
     re= "Region 2"
     with open ("logreg2.csv", "a") as pos:
         pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))

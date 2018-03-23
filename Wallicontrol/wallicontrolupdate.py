@@ -56,7 +56,7 @@ while instruccion == 'y':
                 bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
                 print("Wall-i acutalmente se esta moviendo")
 
-            if d <= min2 or latitud > 9.02318033  :#Establece cuando curvara
+            if d <= min2 :#Establece cuando curvara
                 #arduino.write(Turn)#Mandar un comando hacia Arduino
                 bus.write_byte(slaveAddress2, Turn)#Mandar un comando hacia MotorDerecho
                 bus.write_byte(slaveAddress1, Turn)#Mandar un comando hacia MotorIzquierdo
