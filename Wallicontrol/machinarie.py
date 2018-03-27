@@ -1,9 +1,22 @@
+#Inicializacion de librerias
 import time
 import serial
 import csv
 import math
+import smbus
 from vincenty import vincenty
-
+#Variables y Esclavos
+slaveAddress2 = 0x40
+slaveAddress1 = 0x50
+sensorAdress = 0x60
+bus = smbus.SMBus(1)
+Forward=1
+Backward =2
+Turn= 4
+TurnLeftEje = 7
+Stop = 5
+delay = 5
+#Connecion al puerto serial
 #gps = serial.Serial('COM14', 4800)
 gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
 
@@ -30,8 +43,11 @@ def Data():
             latitud = -latitud
         if  gps_sentences_fields[6] == "W":
             longitud = -longitud
-
         return latitud,longitud
+    else:
+        print ("Data no disponible aun,espere")
+
+        
 
 def distReg1(latitud,longitud):
     #Region 1 original 9.02318033 -79.53151733 (no forma parte del mapeo hecho orignalmente)
@@ -59,6 +75,9 @@ def distReg1_v(latitud,longitud):
     #ref = (9.04525,-79.40719)
     ref = (9.02318033,-79.53151733)
     d = vincenty(input_gps,ref)*1000
+    re= "Region 1"
+    with open ("logreg1_v.csv", "a") as pos:
+        pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
     return d
 
 def distReg1_pi(latitud,longitud):
@@ -97,6 +116,9 @@ def distReg2_v(latitud,longitud):
     #ref = (9.04485,-79.40695)
     ref = (9.023149167,-79.53156583)
     d = vincenty(input_gps,ref)*1000
+    re= "Region 2"
+    with open ("logreg2_V.csv", "a") as pos:
+        pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
     return d
 
 def distReg2_pi(latitud,longitud):
@@ -124,3 +146,79 @@ def angVariant(latitud,longitud,d): #Usar bajo su propio riesgo
     #Calculo de angulo porque se forma un triangulo rectangulo.
     #angle = math.atan(dpr/d)
     return drp
+
+def secCorrec ():
+    if bus.read_byte(sensorAdress) == 9:
+        bus.write_byte(slaveAddress2, Stop)
+        bus.write_byte(slaveAddress1, Stop)
+        time.sleep(2)
+        bus.write_byte(slaveAddress2,Backward )
+        bus.write_byte(slaveAddress1,Backward)
+        time.sleep(2)
+        bus.write_byte(slaveAddress2,Stop)
+        bus.write_byte(slaveAddress1,Stop)
+        time.sleep(2)
+        bus.write_byte(slaveAddress2,TurnLeftEje)
+        bus.write_byte(slaveAddress1,TurnLeftEje)
+        time.sleep(3.21)
+        bus.write_byte(slaveAddress2,Stop)
+        bus.write_byte(slaveAddress1,Stop)
+        time.sleep(2)
+        bus.write_byte(slaveAddress2,Forward)
+        bus.write_byte(slaveAddress1,Forward)
+        time.sleep(2)
+        bus.write_byte(slaveAddress2,Stop)
+        bus.write_byte(slaveAddress1,Stop)
+        time.sleep(2)
+        bus.write_byte(slaveAddress2, Turn)
+        bus.write_byte(slaveAddress1, Turn)
+        time.sleep(3)
+        
+    elif bus.read_byte(sensorAdress) == 8:
+        checkD2=2
+        return checkD2
+    
+    else:
+        bus.write_byte(slaveAddress2, Forward)
+        bus.write_byte(slaveAddress1, Forward)
+        
+    
+        
+        
+    
+
+def region1Bounds(d):
+    min1=200
+    max1=2
+    min2=2
+    if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
+        #arduino.write(Forward) #Mandar un comando hacia Arduino
+        bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
+        bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
+        print("Wall-i acutalmente se esta moviendo")
+
+    if d <= min2 :#Establece cuando curvara
+        #arduino.write(Turn)#Mandar un comando hacia Arduino
+        bus.write_byte(slaveAddress2, Turn)#Mandar un comando hacia MotorDerecho
+        bus.write_byte(slaveAddress1, Turn)#Mandar un comando hacia MotorIzquierdo
+        print("Wall-i actualmente esta curvando")
+        time.sleep(delay) #tiempo que demora en hacer un giro de 90 grados aprox
+        region2=2
+
+def region2Bounds(d):
+    min1=200
+    max1=2
+    min3=2
+    if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
+        #arduino.write(Forward) #Mandar un comando hacia Arduino
+        bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
+        bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
+        print("Wall-i acutalmente se esta moviendo")
+
+    if d <= min3:#Establece cuando curvara
+        print("Wall-i actualmente esta curvando")
+        bus.write_byte(slaveAddress2, Stop)#Mandar un comando hacia MotorDerecho
+        bus.write_byte(slaveAddress1, Stop)#Mandar un comando hacia MotorIzquierdo
+
+
+    
