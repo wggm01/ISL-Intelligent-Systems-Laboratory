@@ -47,12 +47,12 @@ with SixAxisResource() as joystick:
     joystick.register_button_handler(mov_b, SixAxis.BUTTON_CROSS)
     joystick.register_button_handler(mov_sr, SixAxis.BUTTON_CIRCLE)
     joystick.register_button_handler(mov_sl, SixAxis.BUTTON_SQUARE)
-    joystick.register_button_handler(mov_tr, SixAxis.BUTTON_R1)
-    joystick.register_button_handler(mov_tl, SixAxis.BUTTON_R2)
-    joystick.register_button_handler(mov_s, SixAxis.BUTTON_PS)
+    joystick.register_button_handler(mov_tr, SixAxis.BUTTON_RIGHT_STICK)
+    joystick.register_button_handler(mov_tl, SixAxis.BUTTON_LEFT_STICK)
+    joystick.register_button_handler(mov_s, SixAxis.BUTTON_START)
 
     while 1:
         # Do stuff here, only register the button handlers once, not in this loop!
         # If the buttons are pressed, your handlers will be called but not from this thread.
-        time.sleep(3)
+        
         pass

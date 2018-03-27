@@ -22,14 +22,14 @@ while True:
 	bus.write_byte(slaveAddress1,1)
 	bus.write_byte(slaveAddress2,1)
 	print(bus.read_byte(0X40))
-     if bus.read_byte(0X60) == 3:
-	bus.write_byte(slaveAddress1,3)
-	bus.write_byte(slaveAddress2,3)
+     if bus.read_byte(0X60) == 7:
+	bus.write_byte(slaveAddress1,7)
+	bus.write_byte(slaveAddress2,7)
     	print(bus.read_byte(0X50))
 
-     if bus.read_byte(0X60) == 4:
-	bus.write_byte(slaveAddress1,4)
-	bus.write_byte(slaveAddress2,4)
+     if bus.read_byte(0X60) == 8:
+	bus.write_byte(slaveAddress1,8)
+	bus.write_byte(slaveAddress2,8)
 	print(bus.read_byte(0X60))
  #   writeNumber(var)
 
