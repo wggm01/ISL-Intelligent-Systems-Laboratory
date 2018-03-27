@@ -19,7 +19,8 @@ delay = 5
 #Connecion al puerto serial
 #gps = serial.Serial('COM14', 4800)
 gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
-
+ard_gyro = serial.Serial("/dev/ttyACM1", baudrate = 9600)
+#ard_ultra = serial.Serial("/dev/ttyACM", baudrate = 9600)
 
 
 def Data():
@@ -46,6 +47,24 @@ def Data():
         return latitud,longitud
     else:
         print ("Data no disponible aun,espere")
+
+def Data_arduino_gyro():
+    arduino = ard.readline()
+    arduino_input = arduino.split(",")
+    arduino_input[0] = x
+    arduino_input[1] = y
+    with open ("gyrodataazuero.csv", "a") as pos:
+        pos.write("%s, %s\n" % ( x,y))
+
+def Data_arduino_ultra():
+    arduino = ard.readline()
+    arduino_input = arduino.split(",")
+    arduino_input[0] = s1
+    arduino_input[1] = s2
+    arduino_input[2] = s3
+    arduino_input[3] = s4
+    with open ("dataultrasonicos.csv", "a") as pos:
+        pos.write("%s, %s\n" % ( x,y))
 
         
 
