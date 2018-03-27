@@ -17,7 +17,7 @@ float angle_ref = 0, angle_pitch_limit1 = 0, angle_pitch_limit2 = 0;
 
 void setup() {
   Wire.begin();                                                    //Start I2C as slave
-  Serial.begin(9600);                                               //Use only for debugging
+  Serial.begin(57600);                                               //Use only for debugging
   pinMode(13, OUTPUT);                                                 //Set output 13 (LED) as output
   setup_mpu_6050_registers();                                          //Setup the registers of the MPU-6050 (500dfs / +/-8g) and start the gyro
 

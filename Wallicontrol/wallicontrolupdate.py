@@ -73,10 +73,10 @@ while instruccion == 'y':
             max1=2
             min3=2
             if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-                    #arduino.write(Forward) #Mandar un comando hacia Arduino
                 bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
                 bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
                 print("Wall-i acutalmente se esta moviendo")
+                
 
             if d <= min3:#Establece cuando curvara
                 print("Wall-i actualmente esta curvando")
