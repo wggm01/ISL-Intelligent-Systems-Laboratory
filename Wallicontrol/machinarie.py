@@ -3,10 +3,10 @@ import time
 import serial
 import csv
 import math
-import smbus
-from vincenty import vincenty
+#import smbus
+#from vincenty import vincenty
 #Variables y Esclavos
-slaveAddress2 = 0x40
+"""slaveAddress2 = 0x40
 slaveAddress1 = 0x50
 sensorAdress = 0x60
 bus = smbus.SMBus(1)
@@ -15,11 +15,11 @@ Backward =2
 Turn= 4
 TurnLeftEje = 7
 Stop = 5
-delay = 5
+delay = 5"""
 #Connecion al puerto serial
 #gps = serial.Serial('COM14', 4800)
 gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
-ard_gyro = serial.Serial("/dev/ttyACM1", baudrate = 9600)
+#ard_gyro = serial.Serial("/dev/ttyACM1", baudrate = 9600)
 #ard_ultra = serial.Serial("/dev/ttyACM", baudrate = 9600)
 
 
@@ -30,8 +30,7 @@ def Data():
     if gps_sentences_fields[0] == "$GPRMC" and  gps_sentences_fields[2] == "A":
         get_unformated_latitude = float(gps_sentences_fields[3])
         get_unformated_longitude = float(gps_sentences_fields[5])
-	#time = gps_sentences_fields[1]
-	#date = gps_sentences_fields[9]
+
 
         latdeg = int(get_unformated_latitude/100)
         latmin = get_unformated_latitude - latdeg*100
@@ -48,27 +47,27 @@ def Data():
         if  gps_sentences_fields[6] == "W":
             longitud = -longitud
         return latitud,longitud
-    
-        
+
+
 
 def Data_arduino_gyro():
     arduino = ard_gyro.readline()
-    
+
     with open ("gyrodata.txt", "a") as pos:
         pos.write("%s\n" % (arduino))
     print(arduino)
 
-"""def Data_arduino_ultra():
+def Data_arduino_ultra():
     arduino = ard.readline()
-    arduino_input = arduino.split(",")
+    arduino_input = arduino.split(",") #Le falta trabajo
     arduino_input[0] = s1
     arduino_input[1] = s2
     arduino_input[2] = s3
     arduino_input[3] = s4
     with open ("dataultrasonicos.csv", "a") as pos:
-        pos.write("%s, %s\n" % ( x,y))"""
+        pos.write("%s, %s\n" % ( x,y))
 
-        
+
 
 def distReg1(latitud,longitud):
     #Region 1 original 9.02318033 -79.53151733 (no forma parte del mapeo hecho orignalmente)
@@ -194,19 +193,19 @@ def secCorrec ():
         bus.write_byte(slaveAddress2, Turn)
         bus.write_byte(slaveAddress1, Turn)
         time.sleep(3)
-        
+
     elif bus.read_byte(sensorAdress) == 8:
         checkD2=2
         return checkD2
-    
+
     else:
         bus.write_byte(slaveAddress2, Forward)
         bus.write_byte(slaveAddress1, Forward)
-        
-    
-        
-        
-    
+
+
+
+
+
 
 def region1Bounds(d):
     min1=200
@@ -240,6 +239,3 @@ def region2Bounds(d):
         print("Wall-i actualmente esta curvando")
         bus.write_byte(slaveAddress2, Stop)#Mandar un comando hacia MotorDerecho
         bus.write_byte(slaveAddress1, Stop)#Mandar un comando hacia MotorIzquierdo
-
-
-    
