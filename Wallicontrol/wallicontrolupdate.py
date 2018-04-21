@@ -48,7 +48,7 @@ while instruccion == 'y':
             d=machinarie.distReg2(latitud,longitud)
             #d=machinarie.distReg2_v(latitud,longitud)
             print("Wall-i esta a:",d,"m De su objetivo")
-<<<<<<< HEAD
+
             min1=200
             max1=2
             min3=2
@@ -62,7 +62,7 @@ while instruccion == 'y':
                 print("Wall-i actualmente esta curvando")
                 bus.write_byte(slaveAddress2, Stop)#Mandar un comando hacia MotorDerecho
                 bus.write_byte(slaveAddress1, Stop)#Mandar un comando hacia MotorIzquierdo
-=======
+
             machinarie.region2Bounds(d)
             while checkD == 1:
                machinarie.secCorrec()
@@ -70,4 +70,4 @@ while instruccion == 'y':
                    checkD2=2
                    break;
             
->>>>>>> 114756d2449c9ac30e9c124e9d26a34162a1c6b8
+
