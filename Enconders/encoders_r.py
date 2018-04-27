@@ -1,11 +1,48 @@
-ticks = 0;
 import RPi.GPIO as GPIO
-GPIO.setmode(GPIO.BOARD)
-button1=27
-button2=22
-GPIO.setup(button1,GPIO.IN,pull_up_down=GPIO.PUD_UP)
-GPIO.setup(button2,GPIO.IN,pull_up_down=GPIO.PUD_UP)
+import smbus
+import time
+
+slaveAddress2 = 0x40
+slaveAddress1 = 0x50
+bus = smbus.SMBus(1)
+
+Forward=1
+Backward =2
+Turn= 4
+TurnLeftEje = 7
+Stop = 5
+delay = 1
+
+ticks1 = 0;
+ticks2 = 0;
+distance = 0; #Colocar experimentalmente
+GPIO.setmode(GPIO.BCM)
+enco1=27
+enco2=22
+GPIO.setup(enco1,GPIO.IN,pull_up_down=GPIO.PUD_UP)
+GPIO.setup(enco2,GPIO.IN,pull_up_down=GPIO.PUD_UP)
+#Funciones acciondas por cambio
+def ticks1_count ():
+    ticks1 = ticks1+1
+    #return ticks1
+def ticks2_count ():
+    ticks2 = ticks2+1
+    #return ticks2
+
+
+GPIO.add_event_detect(enco1,GPIO.RISING,callback=ticks1_count)
+GPIO.add_event_detect(enco2,GPIO.RISING,callback=ticks2_count)
+
+
+
+
 while(1):
-    if GPIO.input(button1)== 0 and GPIO.input(button2)== 0 :
-        ticks = ticks + 1
-        print( "ticks")
+    if ticks1>=distance  and ticks2>=distance :
+        bus.write_byte(slaveAddress2, Stop)
+        bus.write_byte(slaveAddress1, Stop)
+        time.sleep(delay)
+        ticks1 =0
+        ticks2=0
+    else:
+        bus.write_byte(slaveAddress2, Forward)
+        bus.write_byte(slaveAddress1, Forward)

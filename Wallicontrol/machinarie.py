@@ -3,7 +3,7 @@ import time
 import serial
 import csv
 import math
-#import smbus
+import smbus
 #from vincenty import vincenty
 #Variables y Esclavos
 slaveAddress2 = 0x40
@@ -57,7 +57,8 @@ def Data():
             longitud = -longitud
         return latitud,longitud
 
-def distReg1(latitud,longitud):
+#Calculo de de distancia para cada region (cambiar referencia en cada uno)
+def distReg0(latitud,longitud):
     #Region 1 original 9.02318033 -79.53151733 (no forma parte del mapeo hecho orignalmente)
     #Promedio  9.0232113 -79.5315376 (Si forma parte del mapeo)
     #Pruebas alrededor de casa 9.04525 -79.40719
@@ -78,7 +79,7 @@ def distReg1(latitud,longitud):
         pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
     return d
 
-def distReg2(latitud,longitud):
+def distReg1(latitud,longitud):
     #Region 2 orignal 9.023149167 -79.53156583 (demasiado de cerca de region 1)
     #Promedio 9.0230422 -79.5316507
     #Pruebas 9.04485 -79.40695 alrededor casa
@@ -99,6 +100,49 @@ def distReg2(latitud,longitud):
         pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
     return d
 
+def distReg2(latitud,longitud):
+    #Region 1 original 9.02318033 -79.53151733 (no forma parte del mapeo hecho orignalmente)
+    #Promedio  9.0232113 -79.5315376 (Si forma parte del mapeo)
+    #Pruebas alrededor de casa 9.04525 -79.40719
+    #latref =9.04525 #Casa
+    #longref = -79.40719
+    latref =9.02318033
+    longref = -79.53151733 #UTP
+    radius = 6371 # km
+    dlat = math.radians(latref-latitud)
+    dlon = math.radians(longref-longitud)
+    a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(latitud)) \
+    * math.cos(math.radians(latref)) * math.sin(dlon/2) * math.sin(dlon/2)
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
+    d_raw = float((radius*c)*1000)
+    d = int(d_raw)
+    re= "Region 1"
+    with open ("logreg1.csv", "a") as pos:
+        pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
+    return d
+
+def distReg3(latitud,longitud):
+    #Region 2 orignal 9.023149167 -79.53156583 (demasiado de cerca de region 1)
+    #Promedio 9.0230422 -79.5316507
+    #Pruebas 9.04485 -79.40695 alrededor casa
+    #latref2=9.04485 #casa
+    #lonref2=-79.40695
+    latref2=9.0230422 #UTP
+    lonref2=-79.5316507
+    radius = 6371 # km
+    dlat = math.radians(latref2-latitud)
+    dlon = math.radians(lonref2-longitud)
+    a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(latitud)) \
+    * math.cos(math.radians(latref2)) * math.sin(dlon/2) * math.sin(dlon/2)
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
+    d_raw = float((radius*c)*1000)
+    d = int(d_raw)
+    re= "Region 2"
+    with open ("logreg2.csv", "a") as pos:
+        pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
+    return d
+
+#Limites de desplazamiento del robot
 def region0Bounds(d,reg0):
     min1=200 #colocar
     max1=2
@@ -173,6 +217,7 @@ def region3Bounds(d,reg3):
         bus.write_byte(slaveAddress1, Turn)#Mandar un comando hacia MotorIzquierdo"""
         time.sleep(delay)
 
+#Traslacion de coordenadas
 def virtual_pos0 (latitud,longitud):
     p[0]=latitud
     p[1]=longitud
@@ -237,6 +282,7 @@ def virtual_pos3 (latitud,longitud):
 
     return q[0],q[1]
 
+#Chequeo de punto actual del robot a recta
 def check_drp (latitud,longitud):
     #Calculo de distancia a los modelos
     #    drp[0]= #y0

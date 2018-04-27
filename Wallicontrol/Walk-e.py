@@ -17,7 +17,7 @@ if data!= None :
         #codigo
         virtual = machinarie.virtual_pos0()
         latv,lonv= virtual
-        d=machinarie.distReg1(latv,longv)
+        d=machinarie.distReg0(latv,longv)
         machinarie.region0Bounds(d,reg0)
 
     elif reg1 <= limit:
@@ -25,16 +25,16 @@ if data!= None :
         virtual = machinarie.virtual_pos1()
         latv,longv= virtual
         d=machinarie.distReg1(latv,longv)
-        machinarie.region0Bounds(d,reg1)
+        machinarie.region1Bounds(d,reg1)
     elif reg2 <= limit:
         #codigo
         virtual = machinarie.virtual_pos2()
         latv,longv= virtual
-        d=machinarie.distReg1(latv,longv)
-        machinarie.region0Bounds(d,reg2)
+        d=machinarie.distReg2(latv,longv)
+        machinarie.region2Bounds(d,reg2)
     elif reg3 <= limit;
         #codigo
         virtual = machinarie.virtual_pos3()
         latv,longv= virtual
-        d=machinarie.distReg1(latv,longv)
-        machinarie.region0Bounds(d,reg3)
+        d=machinarie.distReg3(latv,longv)
+        machinarie.region3Bounds(d,reg3)
