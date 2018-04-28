@@ -9,7 +9,7 @@ while instruccion == 'y':
 data = machinarie.Data()
 if data!= None :
     latitud,longitud = data   #Revision de posicion acual sin procesarself.
-
+    
     region = machinarie.check_drp(latitud,longitud)
     reg0,reg1,reg2,reg3= region #Separacion de las regiones
 

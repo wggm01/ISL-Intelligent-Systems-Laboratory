@@ -1,4 +1,5 @@
 #Inicializacion de librerias
+import datetime
 import time
 import serial
 import csv
@@ -55,6 +56,10 @@ def Data():
             latitud = -latitud
         if  gps_sentences_fields[6] == "W":
             longitud = -longitud
+
+        with open ("conescapan.csv", "a") as pos:
+            pos.write("%s, %s, %s\n" % ( latitud, longitud,now))
+
         return latitud,longitud
 
 #Calculo de de distancia para cada region (cambiar referencia en cada uno)
