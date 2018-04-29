@@ -1,4 +1,12 @@
-
+import pubnub
+from pubnub.pnconfiguration import PNConfiguration
+from pubnub.pubnub import PubNub
+from pubnub.exceptions import PubNubException
+#Stream data
+pnconfig = PNConfiguration()
+pnconfig.publish_key = "pub-c-b4c2e4df-fb98-4907-85f7-8e6392a93e48"
+pnconfig.ssl = False
+pubnub = PubNub(pnconfig)
 
 limit = 0
 #Ciclo repetido
@@ -9,7 +17,8 @@ while instruccion == 'y':
 data = machinarie.Data()
 if data!= None :
     latitud,longitud = data   #Revision de posicion acual sin procesarself.
-    
+    envelope = pubnub.publish().channel("map2-channel").message({
+    'lat': float(latitud),'lng': float(longitud)}).sync()
     region = machinarie.check_drp(latitud,longitud)
     reg0,reg1,reg2,reg3= region #Separacion de las regiones
 

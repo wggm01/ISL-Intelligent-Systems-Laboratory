@@ -4,13 +4,15 @@ import time
 import serial
 import csv
 import math
-import smbus
+import smbus2
+from smbus2 import SMBus
+from smbus2 import SMBusWrapper
 #from vincenty import vincenty
 #Variables y Esclavos
 slaveAddress2 = 0x40
 slaveAddress1 = 0x50
 sensorAdress = 0x60
-bus = smbus.SMBus(1)
+bus = SMBus(1)
 Forward=1
 Backward =2
 Turn= 4
@@ -31,8 +33,14 @@ ya = [0,0,0,0] #Y1 Y Y2 corresponden a ordenadas del punto inicio y finalsel.
 q = [0,0] # Puntos virtual trasladado
 drp = [0,0,0,0]#una para cada modelo y0,y1,y2,y3
 
-#Latitud(x), Longitud(y)
+def wr_i2c (instruction):
+    with SMBusWrapper(1) as bus:
+    # Write a byte to address 80, offset 0
+        data = instruction  
+        bus.write_byte_data(slaveAddress1, 0, data)
+        bus.write_byte_data(slaveAddress2, 0, data)
 
+#Latitud(x), Longitud(y)
 def Data():
     gps_sentece = gps.readline()
     gps_sentences_fields = gps_sentece.split(",")
@@ -56,7 +64,7 @@ def Data():
             latitud = -latitud
         if  gps_sentences_fields[6] == "W":
             longitud = -longitud
-
+        now = datetime.datetime.now()
         with open ("conescapan.csv", "a") as pos:
             pos.write("%s, %s, %s\n" % ( latitud, longitud,now))
 
@@ -153,15 +161,12 @@ def region0Bounds(d,reg0):
     max1=2
     min2=2
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-        #arduino.write(Forward) #Mandar un comando hacia Arduino
-        bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
-        bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
+        wr_i2c(Forward)
         print("Wall-i acutalmente se esta moviendo")
 
     if d <= min2 and reg0 >= limit  :#Establece cuando curvara
         #arduino.write(Turn)#Mandar un comando hacia Arduino
-        bus.write_byte(slaveAddress2, Turn)#Mandar un comando hacia MotorDerecho
-        bus.write_byte(slaveAddress1, Turn)#Mandar un comando hacia MotorIzquierdo
+        wr_i2c(Turn)
         print("Wall-i actualmente esta curvando")
         time.sleep(delay) #tiempo que demora en hacer un giro de 90 grados aprox
         #bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
@@ -172,15 +177,12 @@ def region1Bounds(d,reg1):
     max1=2
     min3=2
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-        #arduino.write(Forward) #Mandar un comando hacia Arduino
-        bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
-        bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
+        wr_i2c(Forward)
         print("Wall-i acutalmente se esta moviendo")
 
     if d <= min3 and reg1>=limit:#Establece cuando curvara
+        wr_i2c(Turn)
         print("Wall-i actualmente esta curvando")
-        bus.write_byte(slaveAddress2, Turn)#Mandar un comando hacia MotorDerecho
-        bus.write_byte(slaveAddress1, Turn)#Mandar un comando hacia MotorIzquierdo"""
         time.sleep(delay)
 
 def region2Bounds(d,reg2):
@@ -188,15 +190,11 @@ def region2Bounds(d,reg2):
     max1=2
     min2=2
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-        #arduino.write(Forward) #Mandar un comando hacia Arduino
-        bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
-        bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
+        wr_i2c(Forward)
         print("Wall-i acutalmente se esta moviendo")
 
     if d <= min2 and reg2 >= limit  :#Establece cuando curvara
-        #arduino.write(Turn)#Mandar un comando hacia Arduino
-        bus.write_byte(slaveAddress2, Turn)#Mandar un comando hacia MotorDerecho
-        bus.write_byte(slaveAddress1, Turn)#Mandar un comando hacia MotorIzquierdo
+        wr_i2c(Turn)
         print("Wall-i actualmente esta curvando")
         time.sleep(delay) #tiempo que demora en hacer un giro de 90 grados aprox
         #bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
@@ -207,19 +205,12 @@ def region3Bounds(d,reg3):
     max1=2
     min3=2
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-        #arduino.write(Forward) #Mandar un comando hacia Arduino
-        bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
-        bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
+        wr_i2c(Forward)
         print("Wall-i acutalmente se esta moviendo")
 
-    if d <= min3 and reg3
-
-
-
-    >=limit:#Establece cuando curvara
+    if d <= min3 and reg3>=limit:#Establece cuando curvara
+        wr_i2c(Turn)
         print("Wall-i actualmente esta curvando")
-        bus.write_byte(slaveAddress2, Turn)#Mandar un comando hacia MotorDerecho
-        bus.write_byte(slaveAddress1, Turn)#Mandar un comando hacia MotorIzquierdo"""
         time.sleep(delay)
 
 #Traslacion de coordenadas
