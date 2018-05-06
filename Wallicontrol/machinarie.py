@@ -27,6 +27,11 @@ gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
 #ard_ultra = serial.Serial("/dev/ttyACM", baudrate = 9600)
 
 #Vectores como variables globales incializdas en 0 para luego ser modi.
+global p
+global xa
+global ya
+global q
+global drp
 p = [0,0] #Posicion dinamica
 xa = [-79.53169299,-79.53152138,-79.53177739,-79.53184155] #X1 Y X2 corresponden a abcisas del punto inicio y finalsel.
 ya = [9.023410836,9.023175628,9.022897331,9.023147334] #Y1 Y Y2 corresponden a ordenadas del punto inicio y finalsel.
@@ -67,7 +72,8 @@ def Data():
         now = datetime.datetime.now()
         with open ("conescapan.csv", "a") as pos:
             pos.write("%s, %s, %s\n" % ( latitud, longitud,now))
-
+    #else:
+     #   print("Esperando senal de aprobacion por parte del gps")
         return latitud,longitud
 
 #Calculo de de distancia para cada region (cambiar referencia en cada uno)
@@ -82,7 +88,7 @@ def distReg0(latitud,longitud):
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
     d_raw = float((radius*c)*1000)
     d = int(d_raw)
-    re= "Region 1"
+    re= "Region 0"
     with open ("logreg0.csv", "a") as pos:
         pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
     return d
@@ -98,7 +104,7 @@ def distReg1(latitud,longitud):
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
     d_raw = float((radius*c)*1000)
     d = int(d_raw)
-    re= "Region 2"
+    re= "Region 1"
     with open ("logreg1.csv", "a") as pos:
         pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
     return d
@@ -114,7 +120,7 @@ def distReg2(latitud,longitud):
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
     d_raw = float((radius*c)*1000)
     d = int(d_raw)
-    re= "Region 1"
+    re= "Region 2"
     with open ("logreg2.csv", "a") as pos:
         pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
     return d
@@ -130,7 +136,7 @@ def distReg3(latitud,longitud):
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
     d_raw = float((radius*c)*1000)
     d = int(d_raw)
-    re= "Region 2"
+    re= "Region 3"
     with open ("logreg3.csv", "a") as pos:
         pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
     return d
@@ -141,12 +147,12 @@ def region0Bounds(d,reg0):
     max1=2
     min2=2
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-        wr_i2c(Forward)
+       # wr_i2c(Forward)
         print("Wall-i acutalmente se esta moviendo")
 
     if d <= min2 and reg0 >= limit  :#Establece cuando curvara
         #arduino.write(Turn)#Mandar un comando hacia Arduino
-        wr_i2c(Turn)
+        #wr_i2c(Turn)
         print("Wall-i actualmente esta curvando")
         time.sleep(delay) #tiempo que demora en hacer un giro de 90 grados aprox
         #bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
@@ -157,11 +163,11 @@ def region1Bounds(d,reg1):
     max1=2
     min3=2
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-        wr_i2c(Forward)
+       # wr_i2c(Forward)
         print("Wall-i acutalmente se esta moviendo")
 
     if d <= min3 and reg1>=limit:#Establece cuando curvara
-        wr_i2c(Turn)
+       # wr_i2c(Turn)
         print("Wall-i actualmente esta curvando")
         time.sleep(delay)
 
@@ -170,11 +176,11 @@ def region2Bounds(d,reg2):
     max1=2
     min2=2
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-        wr_i2c(Forward)
+       # wr_i2c(Forward)
         print("Wall-i acutalmente se esta moviendo")
 
     if d <= min2 and reg2 >= limit  :#Establece cuando curvara
-        wr_i2c(Turn)
+       # wr_i2c(Turn)
         print("Wall-i actualmente esta curvando")
         time.sleep(delay) #tiempo que demora en hacer un giro de 90 grados aprox
         #bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
@@ -185,18 +191,19 @@ def region3Bounds(d,reg3):
     max1=2
     min3=2
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-        wr_i2c(Forward)
+       # wr_i2c(Forward)
         print("Wall-i acutalmente se esta moviendo")
 
     if d <= min3 and reg3>=limit:#Establece cuando curvara
-        wr_i2c(Turn)
+      #  wr_i2c(Turn)
         print("Wall-i actualmente esta curvando")
         time.sleep(delay)
 
 #Traslacion de coordenadas
 def virtual_pos0 (latitud,longitud):
-    longitud=p[0]#x
-    latitud=p[1]
+    p[0]=longitud#x
+    p[1]=latitud
+    
     #Calculo de pendientes:
     m1 =(ya[1]-ya[0])/(xa[1]-xa[0])
     m2 = -1/m1
@@ -211,14 +218,14 @@ def virtual_pos0 (latitud,longitud):
     return q[1],q[0]
 
 def virtual_pos1 (latitud,longitud):
-    longitud=p[0] #x
-    latitud=p[1]
+    p[0]=longitud#x
+    p[1]=latitud
     #Calculo de pendientes:
-    m1 =(ya[1]-ya[0])/(xa[1]-xa[0])
+    m1 =(ya[2]-ya[1])/(xa[2]-xa[1])
     m2 = -1/m1
     #calculo de interseccion de ambas rectas,esto me da la lat,long (virtual)
-    x = (m1*xa[0]-ya[0]+p[1]-m2*p[0])/(m1-m2)
-    y = m1*(x-xa[0])+ya[0]
+    x = (m1*xa[1]-ya[1]+p[1]-m2*p[0])/(m1-m2)
+    y = m1*(x-xa[1])+ya[1]
     q[0]=x#Longitud
     q[1]=y#Latitud
     #calculo de distancia entre punto virtual trasladado y punto de referenciaself.
@@ -227,14 +234,14 @@ def virtual_pos1 (latitud,longitud):
     return q[1],q[0]
 
 def virtual_pos2 (latitud,longitud):
-    longitud=p[0] #x
-    latitud=p[1]
+    p[0]=longitud#x
+    p[1]=latitud
     #Calculo de pendientes:
-    m1 =(ya[1]-ya[0])/(xa[1]-xa[0])
+    m1 =(ya[3]-ya[2])/(xa[3]-xa[2])
     m2 = -1/m1
     #calculo de interseccion de ambas rectas,esto me da la lat,long (virtual)
-    x = (m1*xa[0]-ya[0]+p[1]-m2*p[0])/(m1-m2)
-    y = m1*(x-xa[0])+ya[0]
+    x = (m1*xa[2]-ya[2]+p[1]-m2*p[0])/(m1-m2)
+    y = m1*(x-xa[2])+ya[2]
     q[0]=x#Latitud
     q[1]=y#Longitud
     #calculo de distancia entre punto virtual trasladado y punto de referenciaself.
@@ -243,14 +250,14 @@ def virtual_pos2 (latitud,longitud):
     return q[1],q[0]
 
 def virtual_pos3 (latitud,longitud):
-    longitud=p[0] #x
-    latitud=p[1]
+    p[0]=longitud#x
+    p[1]=latitud
     #Calculo de pendientes:
-    m1 =(ya[1]-ya[0])/(xa[1]-xa[0])
+    m1 =(ya[1]-ya[3])/(xa[1]-xa[3])
     m2 = -1/m1
     #calculo de interseccion de ambas rectas,esto me da la lat,long (virtual)
-    x = (m1*xa[0]-ya[0]+p[1]-m2*p[0])/(m1-m2)
-    y = m1*(x-xa[0])+ya[0]
+    x = (m1*xa[3]-ya[3]+p[1]-m2*p[0])/(m1-m2)
+    y = m1*(x-xa[3])+ya[3]
     q[0]=x#Latitud
     q[1]=y#Longitud
     #calculo de distancia entre punto virtual trasladado y punto de referenciaself.
@@ -259,10 +266,11 @@ def virtual_pos3 (latitud,longitud):
     return q[1],q[0]
 
 #Chequeo de punto actual del robot a recta
-def check_0drp (latitud,longitud,latv0,lonv0):
+def check_0drp (latitud,longitud,latref,longref):
     #Calculo de distancia a los modelos
-    latref = latv0
-    longref = lonv0
+    #latv0=latref
+    #lonv0=longref
+    print(latitud,longitud,latref,longref)
     radius = 6371 # km
     dlat = math.radians(latref-latitud)
     dlon = math.radians(longref-longitud)
@@ -271,7 +279,7 @@ def check_0drp (latitud,longitud,latv0,lonv0):
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
     d_raw = float((radius*c)*1000)
     d = int(d_raw)
-    d = drp[0]
+    drp[0]= d
     
     return drp[0]
 
@@ -287,7 +295,7 @@ def check_1drp (latitud,longitud,latv1,lonv1):
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
     d_raw = float((radius*c)*1000)
     d = int(d_raw)
-    d = drp[1]
+    drp[1]=d
     
     return drp[1]
 
@@ -303,7 +311,7 @@ def check_2drp (latitud,longitud,latv2,lonv2):
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
     d_raw = float((radius*c)*1000)
     d = int(d_raw)
-    d = drp[2]
+    drp[2]=d
     
     return drp[2]
 
@@ -319,7 +327,7 @@ def check_3drp (latitud,longitud,latv3,lonv3):
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
     d_raw = float((radius*c)*1000)
     d = int(d_raw)
-    d = drp[3]
+    drp[3]=d
   
     return drp[3]
 
