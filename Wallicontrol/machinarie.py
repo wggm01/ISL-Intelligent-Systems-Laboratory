@@ -70,6 +70,8 @@ def Data():
         if  gps_sentences_fields[6] == "W":
             longitud = -longitud
         now = datetime.datetime.now()
+    else
+        print("Aun no se recibe informacion viable del gps")
         with open ("conescapan.csv", "a") as pos:
             pos.write("%s, %s, %s\n" % ( latitud, longitud,now))
     #else:
@@ -145,15 +147,16 @@ def distReg3(latitud,longitud):
 def region0Bounds(d,reg0):
     min1=200 #colocar
     max1=2
-    min2=2
+    min2=3
+    ed0 = enco_check_reg0()
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
        # wr_i2c(Forward)
-        print("Wall-i acutalmente se esta moviendo")
+        print("Wall-i acutalmente se esta moviendo reg0")
 
-    if d <= min2 and reg0 >= limit  :#Establece cuando curvara
+    if d <= min2 and ed0 != 0:#Establece cuando curvara
         #arduino.write(Turn)#Mandar un comando hacia Arduino
         #wr_i2c(Turn)
-        print("Wall-i actualmente esta curvando")
+        print("Wall-i actualmente esta curvandoreg0")
         time.sleep(delay) #tiempo que demora en hacer un giro de 90 grados aprox
         #bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
         #bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
@@ -161,27 +164,29 @@ def region0Bounds(d,reg0):
 def region1Bounds(d,reg1):
     min1=200 #colocar
     max1=2
-    min3=2
+    min3=3
+    ed1 = enco_check_reg1()
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-       # wr_i2c(Forward)
-        print("Wall-i acutalmente se esta moviendo")
+        wr_i2c(Forward)
+        print("Wall-i acutalmente se esta moviendoreg1")
 
-    if d <= min3 and reg1>=limit:#Establece cuando curvara
-       # wr_i2c(Turn)
-        print("Wall-i actualmente esta curvando")
+    if d <= min3 and ed1 != 0:#Establece cuando curvara
+        wr_i2c(Turn)
+        print("Wall-i actualmente esta curvando reg1")
         time.sleep(delay)
 
 def region2Bounds(d,reg2):
     min1=200 #colocar
     max1=2
-    min2=2
+    min2=3
+    ed2 = enco_check_reg2()
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-       # wr_i2c(Forward)
-        print("Wall-i acutalmente se esta moviendo")
+        wr_i2c(Forward)
+        print("Wall-i acutalmente se esta moviendoreg2")
 
-    if d <= min2 and reg2 >= limit  :#Establece cuando curvara
-       # wr_i2c(Turn)
-        print("Wall-i actualmente esta curvando")
+    if d <= min2 and ed2!= 0:#Establece cuando curvara
+        wr_i2c(Turn)
+        print("Wall-i actualmente esta curvandoreg2")
         time.sleep(delay) #tiempo que demora en hacer un giro de 90 grados aprox
         #bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
         #bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
@@ -189,14 +194,15 @@ def region2Bounds(d,reg2):
 def region3Bounds(d,reg3):
     min1=200 #colocar
     max1=2
-    min3=2
+    min3=3
+    ed3 = enco_check_reg3()
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-       # wr_i2c(Forward)
-        print("Wall-i acutalmente se esta moviendo")
+        wr_i2c(Forward)
+        print("Wall-i acutalmente se esta moviendoreg3")
 
-    if d <= min3 and reg3>=limit:#Establece cuando curvara
-      #  wr_i2c(Turn)
-        print("Wall-i actualmente esta curvando")
+    if d <= min3 and ed3!= 0:#Establece cuando curvara
+        wr_i2c(Turn)
+        print("Wall-i actualmente esta curvandoreg3")
         time.sleep(delay)
 
 #Traslacion de coordenadas
@@ -331,8 +337,37 @@ def check_3drp (latitud,longitud,latv3,lonv3):
   
     return drp[3]
 
+#------------------------
+def enco_check_reg0():
+    distance = 294
 
+#codigo de sobenis
 
+    return edr0  
+#--------------------------
+def enco_check_reg1():
+    distance = 294
+
+#codigo de sobenis
+
+    return edr1  
+#--------------------------      
+def enco_check_reg2():
+    distance = 294
+
+#codigo de sobenis
+
+    return edr2
+#--------------------------
+def enco_check_reg3():
+    distance = 294
+
+#codigo de sobenis
+
+    return edr3          
+      
+
+        
 
 
 

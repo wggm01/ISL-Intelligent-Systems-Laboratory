@@ -11,7 +11,7 @@ from pubnub.pubnub import PubNub
 #pnconfig.ssl = False
 #pubnub = PubNub(pnconfig)
 
-limit = 2
+limit = 3
 #Ciclo repetido
 print("Wall-i actualmente se encuentra esperando su instruccion")
 instruccion = raw_input("Presion ""y"" y luego enter para empezar\n ")
@@ -95,3 +95,5 @@ while instruccion == 'y':
             with open ("d3.csv", "a") as pos:
                 pos.write("%s\n" % (d))
             machinarie.region3Bounds(d,reg3)
+        else
+            print("No se donde estoy")
