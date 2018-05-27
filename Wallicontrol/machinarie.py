@@ -1,3 +1,29 @@
+#Librerias de gpio
+from RPi import GPIO
+global clk1
+global dt1
+global clk2
+global dt2
+clk1=5
+dt1=13
+clk2=6
+dt2=19
+#seteo de pines del gpio
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(clk1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(dt1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(clk2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(dt2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+derecha1 = 0
+izquierda1 = 0
+derecha2 = 0
+izquierda2 = 0
+
+CLS1 = GPIO.input(clk1)
+CLS2 = GPIO.input(clk2)
+
+
 #Inicializacion de librerias
 import datetime
 import time
@@ -339,32 +365,79 @@ def check_3drp (latitud,longitud,latv3,lonv3):
 
 #------------------------
 def enco_check_reg0():
-    distance = 294
+    count = 294 # distancia de region en ticks
+    CS1 = GPIO.input(clk1)
+    DTS1 = GPIO.input(dt1)
+    CS2 = GPIO.input(clk2)
+    DTS2 = GPIO.input(dt2)
+    if CS1 != CLS1:
+        if DTS1 != CS1:
+            derecha1 += 1
+    if CS2 != CLS2:
+        if DTS1 != CS1:
+            derecha2 += 1
+    if (derecha1 > count) or (derecha2 > count):
+        edr0 = 1
+        return edr0
+    else
+        edr0 = 0
+         
 
-#codigo de sobenis
-
-    return edr0  
+     
 #--------------------------
 def enco_check_reg1():
-    distance = 294
-
-#codigo de sobenis
-
-    return edr1  
+    count = 294 # distancia de region en ticks
+    CS1 = GPIO.input(clk1)
+    DTS1 = GPIO.input(dt1)
+    CS2 = GPIO.input(clk2)
+    DTS2 = GPIO.input(dt2)
+    if CS1 != CLS1:
+        if DTS1 != CS1:
+            derecha1 += 1
+    if CS2 != CLS2:
+        if DTS1 != CS1:
+            derecha2 += 1
+    if (derecha1 > count) or (derecha2 > count):
+        edr1 = 1
+        return edr0
+    else
+        edr1 = 0
 #--------------------------      
 def enco_check_reg2():
-    distance = 294
-
-#codigo de sobenis
-
-    return edr2
+    count = 294 # distancia de region en ticks
+    CS1 = GPIO.input(clk1)
+    DTS1 = GPIO.input(dt1)
+    CS2 = GPIO.input(clk2)
+    DTS2 = GPIO.input(dt2)
+    if CS1 != CLS1:
+        if DTS1 != CS1:
+            derecha1 += 1
+    if CS2 != CLS2:
+        if DTS1 != CS1:
+            derecha2 += 1
+    if (derecha1 > count) or (derecha2 > count):
+        edr2 = 1
+        return edr0
+    else
+        edr2 = 0
 #--------------------------
 def enco_check_reg3():
-    distance = 294
-
-#codigo de sobenis
-
-    return edr3          
+    count = 294 # distancia de region en ticks
+    CS1 = GPIO.input(clk1)
+    DTS1 = GPIO.input(dt1)
+    CS2 = GPIO.input(clk2)
+    DTS2 = GPIO.input(dt2)
+    if CS1 != CLS1:
+        if DTS1 != CS1:
+            derecha1 += 1
+    if CS2 != CLS2:
+        if DTS1 != CS1:
+            derecha2 += 1
+    if (derecha1 > count) or (derecha2 > count):
+        edr3 = 1
+        return edr0
+    else
+        edr3 = 0         
       
 
         
