@@ -3,15 +3,16 @@ import datetime
 import machinarie
 from pubnub.pnconfiguration import PNConfiguration
 from pubnub.pubnub import PubNub
-
 #Stream data
 #pnconfig = PNConfiguration()
 #pnconfig.publish_key = "pub-c-b4c2e4df-fb98-4907-85f7-8e6392a93e48"
 #pnconfig.subscribe_key = "sub-c-05449d3a-b73e-11e7-a84a-1e64a053e7fc"
 #pnconfig.ssl = False
 #pubnub = PubNub(pnconfig)
-
 limit = 3
+#Instruciones de correccion de recorrido.
+softleft = 6
+softright = 7
 #Ciclo repetido
 print("Wall-i actualmente se encuentra esperando su instruccion")
 instruccion = raw_input("Presion ""y"" y luego enter para empezar\n ")
@@ -64,6 +65,21 @@ while instruccion == 'y':
             #print(d)
             with open ("d0.csv", "a") as pos:
                 pos.write("%s\n" % (d))
+
+            flag_sensor_dist= flag_sensor_dist()
+            if flag_sensor_dist = 6:
+                while flag_sensor = 6:
+                    wr_i2c (softleft)
+                    if flag_sensor_dist()!= 6:
+                        break
+            if flag_sensor_dist = 7:
+                while flag_sensor = 7:
+                    wr_i2c (softleft)
+                    if flag_sensor_dist()!= 7:
+                        break
+            else 
+                print("Aun no me desvio")
+
             machinarie.region0Bounds(d,reg0)
 
         elif reg1 <= limit:
@@ -74,6 +90,21 @@ while instruccion == 'y':
             print(d)
             with open ("d1.csv", "a") as pos:
                 pos.write("%s\n" % (d))
+
+            flag_sensor_dist= flag_sensor_dist()
+            if flag_sensor_dist = 6:
+                while flag_sensor = 6:
+                    wr_i2c (softleft)
+                    if flag_sensor_dist()!= 6:
+                        break
+            if flag_sensor_dist = 7:
+                while flag_sensor = 7:
+                    wr_i2c (softleft)
+                    if flag_sensor_dist()!= 7:
+                        break
+            else 
+                print("Aun no me desvio")        
+
             machinarie.region1Bounds(d,reg1)
         
         elif reg2 <= limit:
@@ -84,6 +115,21 @@ while instruccion == 'y':
             print(d)
             with open ("d2.csv", "a") as pos:
                 pos.write("%s\n" % (d))
+
+            flag_sensor_dist= flag_sensor_dist()
+            if flag_sensor_dist = 6:
+                while flag_sensor = 6:
+                    wr_i2c (softleft)
+                    if flag_sensor_dist()!= 6:
+                        break
+            if flag_sensor_dist = 7:
+                while flag_sensor = 7:
+                    wr_i2c (softleft)
+                    if flag_sensor_dist()!= 7:
+                        break
+            else 
+                print("Aun no me desvio") 
+
             machinarie.region2Bounds(d,reg2)
         
         elif reg3 <= limit:
@@ -94,6 +140,21 @@ while instruccion == 'y':
             print(d)
             with open ("d3.csv", "a") as pos:
                 pos.write("%s\n" % (d))
+
+            flag_sensor_dist= flag_sensor_dist()
+            if flag_sensor_dist = 6:
+                while flag_sensor = 6:
+                    wr_i2c (softleft)
+                    if flag_sensor_dist()!= 6:
+                        break
+            if flag_sensor_dist = 7:
+                while flag_sensor = 7:
+                    wr_i2c (softleft)
+                    if flag_sensor_dist()!= 7:
+                        break
+            else 
+                print("Aun no me desvio")            
+
             machinarie.region3Bounds(d,reg3)
         else
             print("No se donde estoy")
