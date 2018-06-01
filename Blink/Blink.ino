@@ -162,9 +162,9 @@ for (int pin = 0; pin<5; pin++){
     digitalWrite(14,pin14[pin]);   // turn the LED on (HIGH is the voltage level)
     digitalWrite(6,pin6[pin]);   // turn the LED on (HIGH is the voltage level)
     digitalWrite(15,pin15[pin]);   // turn the LED on (HIGH is the voltage level)
-    delay(10);
+    delay(1);
     digitalWrite(pincolum[pin],0);
-    delay(10);
+    delay(1);
     digitalWrite(pincolum[pin],1);
   
   }}
