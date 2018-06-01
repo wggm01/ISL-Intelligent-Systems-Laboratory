@@ -11,10 +11,9 @@ dt2=19
 #seteo de pines del gpio
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(clk1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.setup(dt1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(dt1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)   #ENCODER
 GPIO.setup(clk2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(dt2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-
 derecha1 = 0
 izquierda1 = 0
 derecha2 = 0
@@ -35,7 +34,7 @@ from smbus2 import SMBus
 from smbus2 import SMBusWrapper
 #from vincenty import vincenty
 #Variables y Esclavos
-slaveAddress2 = 0x40
+slaveAddress2 = 0x40                    #LIBRERIAS, ESCLAVOS Y INSTRUCCIONES
 slaveAddress1 = 0x50
 sensorAdress = 0x60
 bus = SMBus(1)
@@ -439,7 +438,11 @@ def enco_check_reg3():
     else
         edr3 = 0         
       
-
+def flag_sensor_dist():
+    if bus.read_byte(slave_dist_sensor)= 6:
+        return 6
+    elif bus.read_byte(slave_dist_sensor)= 7:
+        return 7
         
 
 
