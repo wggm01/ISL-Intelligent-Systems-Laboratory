@@ -4,10 +4,11 @@ from openpyxl import load_workbook
 
 wb= load_workbook('vuelta4.xlsx')
 sheet= wb['Hoja1']
-i=1
+i=2
 while True:
     latitud= sheet.cell(row=i, column=1).value
     longitud= sheet.cell(row=i, column=2).value
+    print(type(latitud))
     print(latitud,longitud)
     i +=1
     if i ==156:
