@@ -95,7 +95,7 @@ def Data():
         if  gps_sentences_fields[6] == "W":
             longitud = -longitud
         now = datetime.datetime.now()
-    else
+    else:
         print("Aun no se recibe informacion viable del gps")
         with open ("conescapan.csv", "a") as pos:
             pos.write("%s, %s, %s\n" % ( latitud, longitud,now))
@@ -378,7 +378,7 @@ def enco_check_reg0():
     if (derecha1 > count) or (derecha2 > count):
         edr0 = 1
         return edr0
-    else
+    else:
         edr0 = 0
          
 
@@ -399,7 +399,7 @@ def enco_check_reg1():
     if (derecha1 > count) or (derecha2 > count):
         edr1 = 1
         return edr0
-    else
+    else:
         edr1 = 0
 #--------------------------      
 def enco_check_reg2():
@@ -417,7 +417,7 @@ def enco_check_reg2():
     if (derecha1 > count) or (derecha2 > count):
         edr2 = 1
         return edr0
-    else
+    else:
         edr2 = 0
 #--------------------------
 def enco_check_reg3():
@@ -435,13 +435,13 @@ def enco_check_reg3():
     if (derecha1 > count) or (derecha2 > count):
         edr3 = 1
         return edr0
-    else
+    else:
         edr3 = 0         
       
 def flag_sensor_dist():
-    if bus.read_byte(slave_dist_sensor)= 6:
+    if bus.read_byte(slave_dist_sensor)==6:
         return 6
-    elif bus.read_byte(slave_dist_sensor)= 7:
+    elif bus.read_byte(slave_dist_sensor)== 7:
         return 7
         
 
