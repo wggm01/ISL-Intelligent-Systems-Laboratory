@@ -364,7 +364,12 @@ def check_3drp (latitud,longitud,latv3,lonv3):
 
 #------------------------
 def enco_check_reg0(d):
-    count = 294 # distancia de region en ticks
+    i=0
+    for n in range (0,i+1)
+	count_R=d
+        break
+
+    count = (91*count_R)/31 # distancia de region en ticks
     CS1 = GPIO.input(clk1)
     DTS1 = GPIO.input(dt1)
     CS2 = GPIO.input(clk2)
