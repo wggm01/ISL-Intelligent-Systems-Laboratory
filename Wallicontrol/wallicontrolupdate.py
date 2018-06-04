@@ -8,7 +8,7 @@ import machinarie
 #import smbus
 region2=0
 checkD2 = 0
-wb= load_workbook('vuelta4.xlsx')
+wb= load_workbook('cdc/pcm/vuelta4.xlsx')
 sheet= wb['Hoja1']
 i=1
 #Lectura del puerto serial
