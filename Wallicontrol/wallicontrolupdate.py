@@ -1,4 +1,6 @@
-
+import csv
+import openpyxl
+from openpyxl import load_workbook
 import serial
 import sys #no utilizada aun
 import time
@@ -6,6 +8,9 @@ import machinarie
 #import smbus
 region2=0
 checkD2 = 0
+wb= load_workbook('vuelta4.xlsx')
+sheet= wb['Hoja1']
+i=1
 #Lectura del puerto serial
 
 #gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
@@ -35,39 +40,37 @@ while instruccion == 'y':
     #velo=machinarie.veloWalli()
     #if velo != None:
      #   print ("La velocidad de Wall-i es de :",velo/1000,"m/s")
-    data = machinarie.Data()
-    if data!= None :
-        latitud,longitud = data
-        if region==1:
-            d=machinarie.distReg1(latitud,longitud)
-            #d=machinarie.distReg1_v(latitud,longitud)
-            print("Wall-i esta a:",d," m De su objetivo")
-            machinarie.region1Bounds(d)
+    #data = machinarie.Data()
+    #if data!= None :
+        #latitud,longitud = data
+    latitud= sheet.cell(row=i, column=1).value
+    longitud= sheet.cell(row=i, column=2).value
+    i +=1
+    if region==1:
+        d=machinarie.distReg0(latitud,longitud)
+        #d=machinarie.distReg1_v(latitud,longitud)
+        print("Wall-i esta a:",d," m De su objetivo")
+        #machinarie.region0Bounds(d,0)
            
-        if region == 2:
-            d=machinarie.distReg2(latitud,longitud)
-            #d=machinarie.distReg2_v(latitud,longitud)
-            print("Wall-i esta a:",d,"m De su objetivo")
+    if region == 2:
+        d=machinarie.distReg1(latitud,longitud)
+        #d=machinarie.distReg2_v(latitud,longitud)
+        print("Wall-i esta a:",d,"m De su objetivo")
 
-            min1=200
-            max1=2
-            min3=2
-            if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-                bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
-                bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
-                print("Wall-i acutalmente se esta moviendo")
+        min1=200
+        max1=2
+        min3=2
+    if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
+        bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
+        bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
+        print("Wall-i acutalmente se esta moviendo")
                 
 
-            if d <= min3:#Establece cuando curvara
-                print("Wall-i actualmente esta curvando")
-                bus.write_byte(slaveAddress2, Stop)#Mandar un comando hacia MotorDerecho
-                bus.write_byte(slaveAddress1, Stop)#Mandar un comando hacia MotorIzquierdo
-
-            machinarie.region2Bounds(d)
-            while checkD == 1:
-               machinarie.secCorrec()
-               if machinarie.secCorrec()== 2:
-                   checkD2=2
-                   break;
+    if d <= min3:#Establece cuando curvara
+        print("Wall-i actualmente esta curvando")
+        bus.write_byte(slaveAddress2, Stop)#Mandar un comando hacia MotorDerecho
+        bus.write_byte(slaveAddress1, Stop)#Mandar un comando hacia MotorIzquierdo
+        #machinarie.region2Bounds(d,0)
+        time.sleep(5)
             
 
