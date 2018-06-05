@@ -11,7 +11,13 @@ from smbus2 import SMBusWrapper
 bus = SMBus(1)
 region2=0
 checkD2 = 0
-
+slaveAddress2 = 0x40                    #LIBRERIAS, ESCLAVOS Y INSTRUCCIONES
+slaveAddress1 = 0x50
+Forward=1
+Backward =2
+Turn= 4
+TurnLeftEje = 7
+Stop = 5
 #wb= load_workbook('cdc/pcm/vuelta4.xlsx')
 
 wb= load_workbook('vuelta1.xlsx')
