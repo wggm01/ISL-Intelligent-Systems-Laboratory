@@ -88,7 +88,7 @@ while instruccion == 'y':
         time.sleep(0.1)
         bus.write_byte(slaveAddress2, Turn)#Mandar un comando hacia MotorDerecho
         bus.write_byte(slaveAddress1, Turn)#Mandar un comando hacia MotorIzquierdo
-
+        time.sleep(5)
     time.sleep(1)
 
             
