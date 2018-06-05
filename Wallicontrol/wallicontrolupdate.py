@@ -47,8 +47,8 @@ while instruccion == 'y':
     #data = machinarie.Data()
     #if data!= None :
         #latitud,longitud = data
-    latituds= sheet.cell(row=i, column=1).value
-    longituds= sheet.cell(row=i, column=2).value
+    latitud= sheet.cell(row=i, column=1).value
+    longitud= sheet.cell(row=i, column=2).value
    
     i +=1
     if region==1:
