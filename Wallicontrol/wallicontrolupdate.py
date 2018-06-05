@@ -14,7 +14,7 @@ checkD2 = 0
 wb= load_workbook('vuelta1.xlsx')
 
 sheet= wb['Hoja1']
-i=1
+i=2
 #Lectura del puerto serial
 
 #gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
@@ -49,8 +49,7 @@ while instruccion == 'y':
         #latitud,longitud = data
     latituds= sheet.cell(row=i, column=1).value
     longituds= sheet.cell(row=i, column=2).value
-    latitud= float(latituds)
-    longitud= float(longituds)
+   
     i +=1
     if region==1:
         d=machinarie.distReg0(latitud,longitud)
