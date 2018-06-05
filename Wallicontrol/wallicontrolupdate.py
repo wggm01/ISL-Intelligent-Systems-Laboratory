@@ -85,7 +85,9 @@ while instruccion == 'y':
         bus.write_byte(slaveAddress2, Stop)#Mandar un comando hacia MotorDerecho
         bus.write_byte(slaveAddress1, Stop)#Mandar un comando hacia MotorIzquierdo
         #machinarie.region2Bounds(d,0)
-        time.sleep(5)
+        time.sleep(0.1)
+        bus.write_byte(slaveAddress2, Turn)#Mandar un comando hacia MotorDerecho
+        bus.write_byte(slaveAddress1, Turn)#Mandar un comando hacia MotorIzquierdo
 
     time.sleep(1)
 
