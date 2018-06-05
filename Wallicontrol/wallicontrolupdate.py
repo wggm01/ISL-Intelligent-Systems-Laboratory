@@ -62,9 +62,9 @@ while instruccion == 'y':
         #d=machinarie.distReg2_v(latitud,longitud)
         print("Wall-i esta a:",d,"m De su objetivo")
 
-        min1=200
-        max1=2
-        min3=2
+    min1=200
+    max1=2
+    min3=2
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
         bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
         bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
