@@ -5,7 +5,10 @@ import serial
 import sys #no utilizada aun
 import time
 import machinarie
-#import smbus
+import smbus2
+from smbus2 import SMBus
+from smbus2 import SMBusWrapper
+bus = SMBus(1)
 region2=0
 checkD2 = 0
 
