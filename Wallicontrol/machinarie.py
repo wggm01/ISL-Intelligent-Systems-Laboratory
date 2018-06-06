@@ -362,9 +362,13 @@ def check_3drp (latitud,longitud,latv3,lonv3):
   
     return drp[3]
 
+i=0
+j=0
+k=0
+l=0	
 #------------------------
 def enco_check_reg0(d):
-    i=0
+    
     for n in range (0,i+1)
 	count_R=d
         break
@@ -384,13 +388,18 @@ def enco_check_reg0(d):
         edr0 = 1
         return edr0
     else:
-        edr0 = 0
+        return edr0 = 0
          
 
      
 #--------------------------
 def enco_check_reg1(d):
-    count = 294 # distancia de region en ticks
+    
+    for n in range (0,j+1)
+	count_R=d
+        break
+
+    count = (91*count_R)/31 # distancia de region en ticks
     CS1 = GPIO.input(clk1)
     DTS1 = GPIO.input(dt1)
     CS2 = GPIO.input(clk2)
@@ -403,12 +412,18 @@ def enco_check_reg1(d):
             derecha2 += 1
     if (derecha1 > count) or (derecha2 > count):
         edr1 = 1
-        return edr0
+        return edr1
     else:
-        edr1 = 0
-#--------------------------      
+        return edr1 = 0
+         
+#--------------------------
 def enco_check_reg2(d):
-    count = 294 # distancia de region en ticks
+    
+    for n in range (0,k+1)
+	count_R=d
+        break
+
+    count = (91*count_R)/31 # distancia de region en ticks
     CS1 = GPIO.input(clk1)
     DTS1 = GPIO.input(dt1)
     CS2 = GPIO.input(clk2)
@@ -421,12 +436,17 @@ def enco_check_reg2(d):
             derecha2 += 1
     if (derecha1 > count) or (derecha2 > count):
         edr2 = 1
-        return edr0
+        return edr2
     else:
-        edr2 = 0
-#--------------------------
+        return edr2 = 0
+		
 def enco_check_reg3(d):
-    count = 294 # distancia de region en ticks
+    
+    for n in range (0,l+1)
+	count_R=d
+        break
+
+    count = (91*count_R)/31 # distancia de region en ticks
     CS1 = GPIO.input(clk1)
     DTS1 = GPIO.input(dt1)
     CS2 = GPIO.input(clk2)
@@ -439,9 +459,10 @@ def enco_check_reg3(d):
             derecha2 += 1
     if (derecha1 > count) or (derecha2 > count):
         edr3 = 1
-        return edr0
+        return edr3
     else:
-        edr3 = 0         
+        return edr3 = 0
+            
       
 def flag_sensor_dist():
     if bus.read_byte(slave_dist_sensor)==8:
