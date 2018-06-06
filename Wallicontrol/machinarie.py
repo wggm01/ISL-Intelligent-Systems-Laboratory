@@ -173,7 +173,7 @@ def region0Bounds(d,reg0):
     min1=200 #colocar
     max1=2
     min2=3
-    ed0 = enco_check_reg0()
+    ed0 = enco_check_reg0(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
        # wr_i2c(Forward)
         print("Wall-i acutalmente se esta moviendo reg0")
@@ -190,7 +190,7 @@ def region1Bounds(d,reg1):
     min1=200 #colocar
     max1=2
     min3=3
-    ed1 = enco_check_reg1()
+    ed1 = enco_check_reg1(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
         wr_i2c(Forward)
         print("Wall-i acutalmente se esta moviendoreg1")
@@ -204,7 +204,7 @@ def region2Bounds(d,reg2):
     min1=200 #colocar
     max1=2
     min2=3
-    ed2 = enco_check_reg2()
+    ed2 = enco_check_reg2(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
         wr_i2c(Forward)
         print("Wall-i acutalmente se esta moviendoreg2")
@@ -220,7 +220,7 @@ def region3Bounds(d,reg3):
     min1=200 #colocar
     max1=2
     min3=3
-    ed3 = enco_check_reg3()
+    ed3 = enco_check_reg3(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
         wr_i2c(Forward)
         print("Wall-i acutalmente se esta moviendoreg3")
@@ -363,7 +363,7 @@ def check_3drp (latitud,longitud,latv3,lonv3):
     return drp[3]
 
 #------------------------
-def enco_check_reg0():
+def enco_check_reg0(d):
     count = 294 # distancia de region en ticks
     CS1 = GPIO.input(clk1)
     DTS1 = GPIO.input(dt1)
@@ -384,7 +384,7 @@ def enco_check_reg0():
 
      
 #--------------------------
-def enco_check_reg1():
+def enco_check_reg1(d):
     count = 294 # distancia de region en ticks
     CS1 = GPIO.input(clk1)
     DTS1 = GPIO.input(dt1)
@@ -402,7 +402,7 @@ def enco_check_reg1():
     else:
         edr1 = 0
 #--------------------------      
-def enco_check_reg2():
+def enco_check_reg2(d):
     count = 294 # distancia de region en ticks
     CS1 = GPIO.input(clk1)
     DTS1 = GPIO.input(dt1)
@@ -420,7 +420,7 @@ def enco_check_reg2():
     else:
         edr2 = 0
 #--------------------------
-def enco_check_reg3():
+def enco_check_reg3(d):
     count = 294 # distancia de region en ticks
     CS1 = GPIO.input(clk1)
     DTS1 = GPIO.input(dt1)
