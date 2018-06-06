@@ -67,18 +67,18 @@ while instruccion == 'y':
                 pos.write("%s\n" % (d))
 
             flag_sensor_dist= flag_sensor_dist()
-            if flag_sensor_dist = 6:
-                while flag_sensor = 6:
+            if flag_sensor_dist == 8:
+                while flag_sensor == 8:
                     wr_i2c (softleft)
-                    if flag_sensor_dist()!= 6:
+                    if flag_sensor_dist() == 1:
                         break
-            if flag_sensor_dist = 7:
-                while flag_sensor = 7:
+            elif flag_sensor_dist == 9:
+                while flag_sensor == 9:
                     wr_i2c (softleft)
-                    if flag_sensor_dist()!= 7:
+                    if flag_sensor_dist() == 1:
                         break
-            else 
-                print("Aun no me desvio")
+            else: 
+                print("Aún no me desvio")
 
             machinarie.region0Bounds(d,reg0)
 
@@ -92,18 +92,18 @@ while instruccion == 'y':
                 pos.write("%s\n" % (d))
 
             flag_sensor_dist= flag_sensor_dist()
-            if flag_sensor_dist = 6:
-                while flag_sensor = 6:
+            if flag_sensor_dist == 8:
+                while flag_sensor == 8:
                     wr_i2c (softleft)
-                    if flag_sensor_dist()!= 6:
+                    if flag_sensor_dist() == 1:
                         break
-            if flag_sensor_dist = 7:
-                while flag_sensor = 7:
+            elif flag_sensor_dist == 9:
+                while flag_sensor == 9:
                     wr_i2c (softleft)
-                    if flag_sensor_dist()!= 7:
+                    if flag_sensor_dist() == 1:
                         break
-            else 
-                print("Aun no me desvio")        
+            else: 
+                print("Aún no me desvio")        
 
             machinarie.region1Bounds(d,reg1)
         
@@ -117,18 +117,18 @@ while instruccion == 'y':
                 pos.write("%s\n" % (d))
 
             flag_sensor_dist= flag_sensor_dist()
-            if flag_sensor_dist = 6:
-                while flag_sensor = 6:
+            if flag_sensor_dist == 8:
+                while flag_sensor == 8:
                     wr_i2c (softleft)
-                    if flag_sensor_dist()!= 6:
+                    if flag_sensor_dist() == 1:
                         break
-            if flag_sensor_dist = 7:
-                while flag_sensor = 7:
+            elif flag_sensor_dist == 9:
+                while flag_sensor == 9:
                     wr_i2c (softleft)
-                    if flag_sensor_dist()!= 7:
+                    if flag_sensor_dist() == 1:
                         break
-            else 
-                print("Aun no me desvio") 
+            else: 
+                print("Aún no me desvio")
 
             machinarie.region2Bounds(d,reg2)
         
@@ -142,18 +142,18 @@ while instruccion == 'y':
                 pos.write("%s\n" % (d))
 
             flag_sensor_dist= flag_sensor_dist()
-            if flag_sensor_dist = 6:
-                while flag_sensor = 6:
+            if flag_sensor_dist == 8:
+                while flag_sensor == 8:
                     wr_i2c (softleft)
-                    if flag_sensor_dist()!= 6:
+                    if flag_sensor_dist() == 1:
                         break
-            if flag_sensor_dist = 7:
-                while flag_sensor = 7:
+            elif flag_sensor_dist == 9:
+                while flag_sensor == 9:
                     wr_i2c (softleft)
-                    if flag_sensor_dist()!= 7:
+                    if flag_sensor_dist() == 1:
                         break
-            else 
-                print("Aun no me desvio")            
+            else: 
+                print("Aún no me desvio")           
 
             machinarie.region3Bounds(d,reg3)
         else
