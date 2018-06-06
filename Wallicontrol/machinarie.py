@@ -439,11 +439,14 @@ def enco_check_reg3():
         edr3 = 0         
       
 def flag_sensor_dist():
-    if bus.read_byte(slave_dist_sensor)==6:
-        return 6
-    elif bus.read_byte(slave_dist_sensor)== 7:
-        return 7
-        
+    if bus.read_byte(slave_dist_sensor)==8:
+        return 8
+    elif bus.read_byte(slave_dist_sensor)== 9:
+        return 9
+
+    else:
+        return 1
+    
 
 
 
