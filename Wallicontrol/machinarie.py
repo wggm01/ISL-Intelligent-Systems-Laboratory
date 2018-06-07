@@ -95,7 +95,7 @@ def Data():
         if  gps_sentences_fields[6] == "W":
             longitud = -longitud
         now = datetime.datetime.now()
-    else
+    else:
         print("Aun no se recibe informacion viable del gps")
         with open ("conescapan.csv", "a") as pos:
             pos.write("%s, %s, %s\n" % ( latitud, longitud,now))
@@ -173,7 +173,7 @@ def region0Bounds(d,reg0):
     min1=200 #colocar
     max1=2
     min2=3
-    ed0 = enco_check_reg0()
+    ed0 = enco_check_reg0(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
        # wr_i2c(Forward)
         print("Wall-i acutalmente se esta moviendo reg0")
@@ -190,7 +190,7 @@ def region1Bounds(d,reg1):
     min1=200 #colocar
     max1=2
     min3=3
-    ed1 = enco_check_reg1()
+    ed1 = enco_check_reg1(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
         wr_i2c(Forward)
         print("Wall-i acutalmente se esta moviendoreg1")
@@ -204,7 +204,7 @@ def region2Bounds(d,reg2):
     min1=200 #colocar
     max1=2
     min2=3
-    ed2 = enco_check_reg2()
+    ed2 = enco_check_reg2(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
         wr_i2c(Forward)
         print("Wall-i acutalmente se esta moviendoreg2")
@@ -220,7 +220,7 @@ def region3Bounds(d,reg3):
     min1=200 #colocar
     max1=2
     min3=3
-    ed3 = enco_check_reg3()
+    ed3 = enco_check_reg3(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
         wr_i2c(Forward)
         print("Wall-i acutalmente se esta moviendoreg3")
@@ -362,9 +362,18 @@ def check_3drp (latitud,longitud,latv3,lonv3):
   
     return drp[3]
 
+i=0
+j=0
+k=0
+l=0	
 #------------------------
-def enco_check_reg0():
-    count = 294 # distancia de region en ticks
+def enco_check_reg0(d):
+    
+    for n in range (0,i+1)
+	count_R=d
+        break
+
+    count = (91*count_R)/31 # distancia de region en ticks
     CS1 = GPIO.input(clk1)
     DTS1 = GPIO.input(dt1)
     CS2 = GPIO.input(clk2)
@@ -378,14 +387,19 @@ def enco_check_reg0():
     if (derecha1 > count) or (derecha2 > count):
         edr0 = 1
         return edr0
-    else
-        edr0 = 0
+    else:
+        return edr0 = 0
          
 
      
 #--------------------------
-def enco_check_reg1():
-    count = 294 # distancia de region en ticks
+def enco_check_reg1(d):
+    
+    for n in range (0,j+1)
+	count_R=d
+        break
+
+    count = (91*count_R)/31 # distancia de region en ticks
     CS1 = GPIO.input(clk1)
     DTS1 = GPIO.input(dt1)
     CS2 = GPIO.input(clk2)
@@ -398,12 +412,18 @@ def enco_check_reg1():
             derecha2 += 1
     if (derecha1 > count) or (derecha2 > count):
         edr1 = 1
-        return edr0
-    else
-        edr1 = 0
-#--------------------------      
-def enco_check_reg2():
-    count = 294 # distancia de region en ticks
+        return edr1
+    else:
+        return edr1 = 0
+         
+#--------------------------
+def enco_check_reg2(d):
+    
+    for n in range (0,k+1)
+	count_R=d
+        break
+
+    count = (91*count_R)/31 # distancia de region en ticks
     CS1 = GPIO.input(clk1)
     DTS1 = GPIO.input(dt1)
     CS2 = GPIO.input(clk2)
@@ -416,12 +436,17 @@ def enco_check_reg2():
             derecha2 += 1
     if (derecha1 > count) or (derecha2 > count):
         edr2 = 1
-        return edr0
-    else
-        edr2 = 0
-#--------------------------
-def enco_check_reg3():
-    count = 294 # distancia de region en ticks
+        return edr2
+    else:
+        return edr2 = 0
+		
+def enco_check_reg3(d):
+    
+    for n in range (0,l+1)
+	count_R=d
+        break
+
+    count = (91*count_R)/31 # distancia de region en ticks
     CS1 = GPIO.input(clk1)
     DTS1 = GPIO.input(dt1)
     CS2 = GPIO.input(clk2)
@@ -434,16 +459,20 @@ def enco_check_reg3():
             derecha2 += 1
     if (derecha1 > count) or (derecha2 > count):
         edr3 = 1
-        return edr0
-    else
-        edr3 = 0         
+        return edr3
+    else:
+        return edr3 = 0
+            
       
 def flag_sensor_dist():
-    if bus.read_byte(slave_dist_sensor)= 6:
-        return 6
-    elif bus.read_byte(slave_dist_sensor)= 7:
-        return 7
-        
+    if bus.read_byte(slave_dist_sensor)==8:
+        return 8
+    elif bus.read_byte(slave_dist_sensor)== 9:
+        return 9
+
+    else:
+        return 1
+    
 
 
 

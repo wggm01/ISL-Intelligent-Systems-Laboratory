@@ -1,3 +1,7 @@
+import time
+import csv
+import openpyxl
+from openpyxl import load_workbook
 import pubnub
 import datetime
 import machinarie
@@ -11,20 +15,28 @@ from pubnub.pubnub import PubNub
 #pubnub = PubNub(pnconfig)
 limit = 3
 #Instruciones de correccion de recorrido.
-softleft = 6
-softright = 7
+softleft = 8
+softright = 9
+
+wb= load_workbook('vuelta1.xlsx')
+sheet= wb['Hoja1']
+i=2
+
 #Ciclo repetido
 print("Wall-i actualmente se encuentra esperando su instruccion")
 instruccion = raw_input("Presion ""y"" y luego enter para empezar\n ")
 while instruccion == 'y':
 
-    data = machinarie.Data()
-    if data!= None :
+    #data = machinarie.Data()
+    #if data!= None :
         global latitud
         global longitud
-        latitud,longitud = data   #Revision de posicion acual sin procesarself.
-        #envelope = pubnub.publish().channel("map2-channel").message({
-        #'lat': float(latitud),'lng': float(longitud)}).sync()
+        #latitud,longitud = data   #Revision de posicion acual sin procesarself.
+		latitud= sheet.cell(row=i, column=1).value
+		longitud= sheet.cell(row=i, column=2).value
+		i +=1
+        envelope = pubnub.publish().channel("map2-channel").message({
+        'lat': float(latitud),'lng': float(longitud)}).sync()
     
         virtual_0 = machinarie.virtual_pos0(latitud,longitud)
         global latv0
@@ -158,3 +170,4 @@ while instruccion == 'y':
             machinarie.region3Bounds(d,reg3)
         else
             print("No se donde estoy")
+		time.sleep(1)
