@@ -8,11 +8,11 @@ import machinarie
 from pubnub.pnconfiguration import PNConfiguration
 from pubnub.pubnub import PubNub
 #Stream data
-#pnconfig = PNConfiguration()
-#pnconfig.publish_key = "pub-c-b4c2e4df-fb98-4907-85f7-8e6392a93e48"
-#pnconfig.subscribe_key = "sub-c-05449d3a-b73e-11e7-a84a-1e64a053e7fc"
-#pnconfig.ssl = False
-#pubnub = PubNub(pnconfig)
+pnconfig = PNConfiguration()
+pnconfig.publish_key = "pub-c-b4c2e4df-fb98-4907-85f7-8e6392a93e48"
+pnconfig.subscribe_key = "sub-c-05449d3a-b73e-11e7-a84a-1e64a053e7fc"
+pnconfig.ssl = False
+pubnub = PubNub(pnconfig)
 limit = 3
 #Instruciones de correccion de recorrido.
 softleft = 8
@@ -69,105 +69,5 @@ while instruccion == 'y':
         with open ("drp.csv", "a") as pos:
             pos.write("%s, %s, %s, %s\n" % ( reg0,reg1,reg2,reg3))
     
-        if  reg0 <= limit:
-            #codigo
-            #virtual = machinarie.virtual_pos0()
-            #latv0,lonv0= virtual
-            d=machinarie.distReg0(latv0,lonv0)
-            #print(d)
-            with open ("d0.csv", "a") as pos:
-                pos.write("%s\n" % (d))
-
-            flag_sensor_dist= flag_sensor_dist()
-            if flag_sensor_dist == 8:
-                while flag_sensor == 8:
-                    wr_i2c (softleft)
-                    if flag_sensor_dist() == 1:
-                        break
-            elif flag_sensor_dist == 9:
-                while flag_sensor == 9:
-                    wr_i2c (softleft)
-                    if flag_sensor_dist() == 1:
-                        break
-            else: 
-                print("Aún no me desvio")
-
-            machinarie.region0Bounds(d,reg0)
-
-        elif reg1 <= limit:
-            #codigo
-            #virtual = machinarie.virtual_pos1()
-            #latv,longv= virtual
-            d=machinarie.distReg1(latv1,lonv1)
-            print(d)
-            with open ("d1.csv", "a") as pos:
-                pos.write("%s\n" % (d))
-
-            flag_sensor_dist= flag_sensor_dist()
-            if flag_sensor_dist == 8:
-                while flag_sensor == 8:
-                    wr_i2c (softleft)
-                    if flag_sensor_dist() == 1:
-                        break
-            elif flag_sensor_dist == 9:
-                while flag_sensor == 9:
-                    wr_i2c (softleft)
-                    if flag_sensor_dist() == 1:
-                        break
-            else: 
-                print("Aún no me desvio")        
-
-            machinarie.region1Bounds(d,reg1)
-        
-        elif reg2 <= limit:
-            #codigo
-            #virtual = machinarie.virtual_pos2()
-            #latv,longv= virtual
-            d=machinarie.distReg2(latv2,lonv2)
-            print(d)
-            with open ("d2.csv", "a") as pos:
-                pos.write("%s\n" % (d))
-
-            flag_sensor_dist= flag_sensor_dist()
-            if flag_sensor_dist == 8:
-                while flag_sensor == 8:
-                    wr_i2c (softleft)
-                    if flag_sensor_dist() == 1:
-                        break
-            elif flag_sensor_dist == 9:
-                while flag_sensor == 9:
-                    wr_i2c (softleft)
-                    if flag_sensor_dist() == 1:
-                        break
-            else: 
-                print("Aún no me desvio")
-
-            machinarie.region2Bounds(d,reg2)
-        
-        elif reg3 <= limit:
-            #codigo
-            #virtual = machinarie.virtual_pos3()
-            #latv,longv= virtual
-            d=machinarie.distReg3(latv3,lonv3)
-            print(d)
-            with open ("d3.csv", "a") as pos:
-                pos.write("%s\n" % (d))
-
-            flag_sensor_dist= flag_sensor_dist()
-            if flag_sensor_dist == 8:
-                while flag_sensor == 8:
-                    wr_i2c (softleft)
-                    if flag_sensor_dist() == 1:
-                        break
-            elif flag_sensor_dist == 9:
-                while flag_sensor == 9:
-                    wr_i2c (softleft)
-                    if flag_sensor_dist() == 1:
-                        break
-            else: 
-                print("Aún no me desvio")           
-
-            machinarie.region3Bounds(d,reg3)
-        else
-            print("No se donde estoy")
+        #ESTE CODIGO ES SOLO PARA VERIFICAR LA CORRECCION DEL ERROR
 		time.sleep(1)
