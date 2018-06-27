@@ -95,10 +95,11 @@ def Data():
         if  gps_sentences_fields[6] == "W":
             longitud = -longitud
         now = datetime.datetime.now()
+		with open ("conescapan.csv", "a") as pos:
+            pos.write("%s, %s, %s\n" % ( latitud, longitud,now))word
     else:
         print("Aun no se recibe informacion viable del gps")
-        with open ("conescapan.csv", "a") as pos:
-            pos.write("%s, %s, %s\n" % ( latitud, longitud,now))
+        
     #else:
      #   print("Esperando senal de aprobacion por parte del gps")
         return latitud,longitud
