@@ -1,0 +1,843 @@
+ (routes 
+  (resolution mm 100000)
+  (parser
+  )
+  (parser
+  )
+  (structure_out
+   (layer TOP (type signal)
+   )
+   (layer I1 (type signal)
+   )
+   (layer I2 (type signal)
+   )
+   (layer I3 (type signal)
+   )
+   (layer I4 (type signal)
+   )
+   (layer I5 (type signal)
+   )
+   (layer I6 (type signal)
+   )
+   (layer I7 (type signal)
+   )
+   (layer I8 (type signal)
+   )
+   (layer I9 (type signal)
+   )
+   (layer I10 (type signal)
+   )
+   (layer I11 (type signal)
+   )
+   (layer I12 (type signal)
+   )
+   (layer I13 (type signal)
+   )
+   (layer I14 (type signal)
+   )
+   (layer BOT (type signal)
+   )
+  )
+  (library_out
+  (padstack $VIA#0_SIGNAL
+   (shape (circ TOP 76200 0 0))
+   (shape (circ I1 76200 0 0))
+   (shape (circ I2 76200 0 0))
+   (shape (circ I3 76200 0 0))
+   (shape (circ I4 76200 0 0))
+   (shape (circ I5 76200 0 0))
+   (shape (circ I6 76200 0 0))
+   (shape (circ I7 76200 0 0))
+   (shape (circ I8 76200 0 0))
+   (shape (circ I9 76200 0 0))
+   (shape (circ I10 76200 0 0))
+   (shape (circ I11 76200 0 0))
+   (shape (circ I12 76200 0 0))
+   (shape (circ I13 76200 0 0))
+   (shape (circ I14 76200 0 0))
+   (shape (circ BOT 76200 0 0))
+  )
+  (padstack $VIA#0_POWER
+   (shape (circ TOP 76200 0 0))
+   (shape (circ I1 76200 0 0))
+   (shape (circ I2 76200 0 0))
+   (shape (circ I3 76200 0 0))
+   (shape (circ I4 76200 0 0))
+   (shape (circ I5 76200 0 0))
+   (shape (circ I6 76200 0 0))
+   (shape (circ I7 76200 0 0))
+   (shape (circ I8 76200 0 0))
+   (shape (circ I9 76200 0 0))
+   (shape (circ I10 76200 0 0))
+   (shape (circ I11 76200 0 0))
+   (shape (circ I12 76200 0 0))
+   (shape (circ I13 76200 0 0))
+   (shape (circ I14 76200 0 0))
+   (shape (circ BOT 76200 0 0))
+  )
+  )
+  (network_out
+   (Net #00000 
+   (rule
+   )
+   (wire (path BOT 25400  4500000 -4218000 3750000 -4218000 3750000 -4600000)
+    (connect (terminal pin MDER-0) (terminal pin MDERGPIO3-0))
+   )
+   )
+   (Net #00001 
+   (rule
+   )
+   (wire (path BOT 25400  4500000 -4472000 3947277 -4472000 3947277 -4800000
+     3750000 -4800000)
+    (connect (terminal pin MDER-1) (terminal pin MDERGPIO3-1))
+   )
+   )
+   (Net #00002 
+   (rule
+   )
+   (wire (path BOT 25400  4500000 -4726000 4318000 -4726000 4318000 -5000000
+     3750000 -5000000)
+    (connect (terminal pin MDER-2) (terminal pin MDERGPIO3-2))
+   )
+   )
+   (Net #00004 
+   (rule
+   )
+   (wire (path BOT 25400  4500000 -5234000 4381500 -5234000 4381500 -5400000
+     3750000 -5400000)
+    (connect (terminal pin MDER-4) (terminal pin MDERGPIO3-4))
+   )
+   )
+   (Net #00005 
+   (rule
+   )
+   (wire (path BOT 25400  4500000 -5488000 4318000 -5488000 4318000 -5600000
+     3750000 -5600000)
+    (connect (terminal pin MDER-5) (terminal pin MDERGPIO3-5))
+   )
+   )
+   (Net #00006 
+   (rule
+   )
+   (wire (path BOT 25400  4500000 -5742000 4254500 -5742000 4254500 -5800000
+     3750000 -5800000)
+    (connect (terminal pin MDER-6) (terminal pin MDERGPIO3-6))
+   )
+   )
+   (Net #00007 
+   (rule
+   )
+   (wire (path BOT 25400  4500000 -5996000 4254500 -5996000 4254500 -6000000
+     3750000 -6000000)
+    (connect (terminal pin MDER-7) (terminal pin MDERGPIO3-7))
+   )
+   )
+   (Net #00008 
+   (rule
+   )
+   (wire (path BOT 25400  4500000 -6250000 4318000 -6250000 4318000 -6200000
+     3750000 -6200000)
+    (connect (terminal pin MDER-8) (terminal pin MDERGPIO3-8))
+   )
+   )
+   (Net #00009 
+   (rule
+   )
+   (wire (path BOT 25400  4500000 -6504000 4381500 -6504000 4381500 -6400000
+     3750000 -6400000)
+    (connect (terminal pin MDER-9) (terminal pin MDERGPIO3-9))
+   )
+   )
+   (Net #00010 
+   (rule
+   )
+   (wire (path BOT 25400  4500000 -6758000 4315074 -6758000 4315074 -6600000
+     3750000 -6600000)
+    (connect (terminal pin MDER-10) (terminal pin MDERGPIO3-10))
+   )
+   )
+   (Net #00011 
+   (rule
+   )
+   (wire (path BOT 25400  4500000 -7012000 4191000 -7012000 4191000 -6800000
+     3750000 -6800000)
+    (connect (terminal pin MDER-11) (terminal pin MDERGPIO3-11))
+   )
+   )
+   (Net #00012 
+   (rule
+   )
+   (wire (path BOT 25400  4500000 -7266000 4060931 -7266000 4060931 -7000000
+     3750000 -7000000)
+    (connect (terminal pin MDER-12) (terminal pin MDERGPIO3-12))
+   )
+   )
+   (Net #00013 
+   (rule
+   )
+   (wire (path BOT 25400  4500000 -7520000 3873500 -7520000 3873500 -7200000
+     3750000 -7200000)
+    (connect (terminal pin MDER-13) (terminal pin MDERGPIO3-13))
+   )
+   )
+   (Net #00014 
+   (rule
+   )
+   (wire (path BOT 25400  4500000 -7774000 3750000 -7774000 3750000 -7400000)
+    (connect (terminal pin MDER-14) (terminal pin MDERGPIO3-14))
+   )
+   )
+   (Net #00015 
+   (rule
+   )
+   (wire (path BOT 25400  6021620 -4726000 5778500 -4726000 5778500 -5107000
+     6159500 -5107000 6159500 -5080000 6286500 -5080000 6286500 -4800000
+     7000000 -4800000)
+    (connect (terminal pin MDER-27) (terminal pin MDERGPIO-1))
+   )
+   )
+   (Net #00020 
+   (rule
+   )
+   (wire (path BOT 25400  6021620 -6250000 6540500 -6250000 6540500 -6350000
+     6750000 -6350000)
+    (connect (terminal pin MDER-21) (terminal pin MDERGPIO2-0))
+   )
+   )
+   (Net #00021 
+   (rule
+   )
+   (wire (path BOT 25400  6021620 -6504000 6413500 -6504000 6413500 -6550000
+     6750000 -6550000)
+    (connect (terminal pin MDER-20) (terminal pin MDERGPIO2-1))
+   )
+   )
+   (Net #00022 
+   (rule
+   )
+   (wire (path BOT 25400  6021620 -6758000 6286500 -6758000 6286500 -6750000
+     6750000 -6750000)
+    (connect (terminal pin MDER-19) (terminal pin MDERGPIO2-2))
+   )
+   )
+   (Net #00023 
+   (rule
+   )
+   (wire (path BOT 25400  6021620 -7012000 6413500 -7012000 6413500 -6950000
+     6750000 -6950000)
+    (connect (terminal pin MDER-18) (terminal pin MDERGPIO2-3))
+   )
+   )
+   (Net #00024 
+   (rule
+   )
+   (wire (path BOT 25400  6021620 -7520000 6331947 -7520000 6331947 -7350000
+     6750000 -7350000)
+    (connect (terminal pin MDER-16) (terminal pin MDERGPIO2-5))
+   )
+   )
+   (Net #00025 
+   (rule
+   )
+   (wire (path BOT 25400  6021620 -7774000 6286500 -7774000 6286500 -8001000
+     6750000 -8001000 6750000 -7550000)
+    (connect (terminal pin MDER-15) (terminal pin MDERGPIO2-6))
+   )
+   )
+   (Net #00026 
+   (rule
+   )
+   (wire (path BOT 25400  6021620 -7266000 6267522 -7266000 6267522 -7150000
+     6750000 -7150000)
+    (connect (terminal pin MDER-17) (terminal pin MDERGPIO2-4))
+   )
+   )
+   (Net #00027 
+   (rule
+   )
+   (wire (path BOT 25400  6021620 -5488000 6644681 -5488000 6644681 -5400000
+     7000000 -5400000)
+    (connect (terminal pin MDER-24) (terminal pin MDERGPIO-4))
+   )
+   )
+   (Net #00028 
+   (rule
+   )
+   (wire (path BOT 25400  6021620 -5234000 6497522 -5234000 6497522 -5200000
+     7000000 -5200000)
+    (connect (terminal pin MDER-25) (terminal pin MDERGPIO-3))
+   )
+   )
+   (Net #00029 
+   (rule
+   )
+   (wire (path BOT 25400  10021620 -7774000 10500000 -7774000 10500000 -7250000)
+    (connect (terminal pin MIZQ-0) (terminal pin MIZGPIO3-14))
+   )
+   )
+   (Net #00030 
+   (rule
+   )
+   (wire (path BOT 25400  10021620 -7520000 10223500 -7520000 10223500 -7050000
+     10500000 -7050000)
+    (connect (terminal pin MIZQ-1) (terminal pin MIZGPIO3-13))
+   )
+   )
+   (Net #00031 
+   (rule
+   )
+   (wire (path BOT 25400  10021620 -7266000 10160000 -7266000 10160000 -6850000
+     10500000 -6850000)
+    (connect (terminal pin MIZQ-2) (terminal pin MIZGPIO3-12))
+   )
+   )
+   (Net #00033 
+   (rule
+   )
+   (wire (path BOT 25400  10021620 -6758000 10287000 -6758000 10287000 -6450000
+     10500000 -6450000)
+    (connect (terminal pin MIZQ-4) (terminal pin MIZGPIO3-10))
+   )
+   )
+   (Net #00034 
+   (rule
+   )
+   (wire (path BOT 25400  10021620 -6504000 10223500 -6504000 10223500 -6250000
+     10500000 -6250000)
+    (connect (terminal pin MIZQ-5) (terminal pin MIZGPIO3-9))
+   )
+   )
+   (Net #00035 
+   (rule
+   )
+   (wire (path BOT 25400  10021620 -6250000 10160000 -6250000 10160000 -6050000
+     10500000 -6050000)
+    (connect (terminal pin MIZQ-6) (terminal pin MIZGPIO3-8))
+   )
+   )
+   (Net #00036 
+   (rule
+   )
+   (wire (path BOT 25400  10021620 -5996000 10160000 -5996000 10160000 -5850000
+     10500000 -5850000)
+    (connect (terminal pin MIZQ-7) (terminal pin MIZGPIO3-7))
+   )
+   )
+   (Net #00037 
+   (rule
+   )
+   (wire (path BOT 25400  10021620 -5742000 10160000 -5742000 10160000 -5650000
+     10500000 -5650000)
+    (connect (terminal pin MIZQ-8) (terminal pin MIZGPIO3-6))
+   )
+   )
+   (Net #00038 
+   (rule
+   )
+   (wire (path BOT 25400  10021620 -5488000 10160000 -5488000 10160000 -5450000
+     10500000 -5450000)
+    (connect (terminal pin MIZQ-9) (terminal pin MIZGPIO3-5))
+   )
+   )
+   (Net #00039 
+   (rule
+   )
+   (wire (path BOT 25400  10021620 -5234000 10160000 -5234000 10160000 -5250000
+     10500000 -5250000)
+    (connect (terminal pin MIZQ-10) (terminal pin MIZGPIO3-4))
+   )
+   )
+   (Net #00040 
+   (rule
+   )
+   (wire (path BOT 25400  10021620 -4980000 10160000 -4980000 10160000 -5050000
+     10500000 -5050000)
+    (connect (terminal pin MIZQ-11) (terminal pin MIZGPIO3-3))
+   )
+   )
+   (Net #00041 
+   (rule
+   )
+   (wire (path BOT 25400  10021620 -4726000 10287000 -4726000 10287000 -4850000
+     10500000 -4850000)
+    (connect (terminal pin MIZQ-12) (terminal pin MIZGPIO3-2))
+   )
+   )
+   (Net #00042 
+   (rule
+   )
+   (wire (path BOT 25400  10021620 -4472000 10225445 -4472000 10225445 -4650000
+     10500000 -4650000)
+    (connect (terminal pin MIZQ-13) (terminal pin MIZGPIO3-1))
+   )
+   )
+   (Net #00043 
+   (rule
+   )
+   (wire (path BOT 25400  10021620 -4218000 10287000 -4218000 10287000 -4064000
+     10500000 -4064000 10500000 -4450000)
+    (connect (terminal pin MIZQ-14) (terminal pin MIZGPIO3-0))
+   )
+   )
+   (Net #00044 
+   (rule
+   )
+   (wire (path BOT 25400  8500000 -7266000 8318500 -7266000 8318500 -7200000
+     7750000 -7200000)
+    (connect (terminal pin MIZQ-27) (terminal pin MIZGPIO2-3))
+   )
+   )
+   (Net #00049 
+   (rule
+   )
+   (wire (path BOT 25400  8500000 -5742000 8001000 -5742000 8001000 -5500000
+     7750000 -5500000)
+    (connect (terminal pin MIZQ-21) (terminal pin MIZGPIO-6))
+   )
+   )
+   (Net #00050 
+   (rule
+   )
+   (wire (path BOT 25400  8500000 -5488000 8142122 -5488000 8142122 -5300000
+     7750000 -5300000)
+    (connect (terminal pin MIZQ-20) (terminal pin MIZGPIO-5))
+   )
+   )
+   (Net #00051 
+   (rule
+   )
+   (wire (path BOT 25400  8500000 -5234000 8255000 -5234000 8255000 -5100000
+     7750000 -5100000)
+    (connect (terminal pin MIZQ-19) (terminal pin MIZGPIO-4))
+   )
+   )
+   (Net #00052 
+   (rule
+   )
+   (wire (path BOT 25400  8500000 -4980000 8161018 -4980000 8161018 -4900000
+     7750000 -4900000)
+    (connect (terminal pin MIZQ-18) (terminal pin MIZGPIO-3))
+   )
+   )
+   (Net #00053 
+   (rule
+   )
+   (wire (path BOT 25400  8500000 -4472000 8208238 -4472000 8208238 -4500000
+     7750000 -4500000)
+    (connect (terminal pin MIZQ-16) (terminal pin MIZGPIO-1))
+   )
+   )
+   (Net #00054 
+   (rule
+   )
+   (wire (path BOT 25400  8500000 -4218000 8255000 -4218000 8255000 -4064000
+     7750000 -4064000 7750000 -4300000)
+    (connect (terminal pin MIZQ-15) (terminal pin MIZGPIO-0))
+   )
+   )
+   (Net #00055 
+   (rule
+   )
+   (wire (path BOT 25400  8500000 -4726000 8098551 -4726000 8098551 -4700000
+     7750000 -4700000)
+    (connect (terminal pin MIZQ-17) (terminal pin MIZGPIO-2))
+   )
+   )
+   (Net #00056 
+   (rule
+   )
+   (wire (path BOT 25400  8500000 -6504000 8164430 -6504000 8164430 -6600000
+     7750000 -6600000)
+    (connect (terminal pin MIZQ-24) (terminal pin MIZGPIO2-0))
+   )
+   )
+   (Net #00057 
+   (rule
+   )
+   (wire (path BOT 25400  8500000 -6758000 8219424 -6758000 8219424 -6800000
+     7750000 -6800000)
+    (connect (terminal pin MIZQ-25) (terminal pin MIZGPIO2-1))
+   )
+   )
+   (Net #00076 
+   (rule
+   )
+   (wire (path BOT 25400  3500000 -9500000 3500000 -9997377 6754000 -9997377
+     6754000 -10500000)
+    (connect (terminal pin C2-0) (terminal pin PRIMARYINPUTCUTOFF-1))
+   )
+   (wire (path BOT 25400  3254000 -8750000 3254000 -9080500 3500000 -9080500
+     3500000 -9500000)
+    (connect (terminal pin "PRIMARY SOURCE"-2) (terminal pin C2-0))
+   )
+   )
+   (Net #00089 
+   (rule
+   )
+   (wire (path BOT 25400  11500000 -5000000 11500000 -4826000 10985500 -4826000
+     10985500 -7429500 11758000 -7429500 11758000 -7750000)
+    (connect (terminal pin RV1-2) (terminal pin U1-2))
+   )
+   )
+   (Net #00090 
+   (rule
+   )
+   (wire (path BOT 25400  15016000 -6500000 15176500 -6500000 15176500 -4064000
+     12500000 -4064000 12500000 -5250000)
+    (connect (terminal pin R1-1) (terminal pin D1-1))
+   )
+   (wire (path BOT 25400  11504000 -7750000 11504000 -7620000 10858500 -7620000
+     10858500 -4762500 12136678 -4762500 12136678 -5250000 12500000 -5250000)
+    (connect (terminal pin U1-1) (terminal pin D1-1))
+   )
+   )
+   (Net #00091 
+   (rule
+   )
+   (wire (path BOT 25400  11750000 -6500000 11750000 -6794500 11758000 -6794500
+     11758000 -6988000)
+    (connect (terminal pin U2-0) (terminal pin U1-5))
+   )
+   )
+   (Net #00095 
+   (rule
+   )
+   (wire (path BOT 25400  12004000 -6500000 12004000 -6350000 13635142 -6350000
+     13635142 -6731000 14160500 -6731000 14160500 -6223000 11620500 -6223000
+     11620500 -5588000 12750000 -5588000 12750000 -4500000)
+    (connect (terminal pin U2-1) (terminal pin U3-0))
+   )
+   (wire (path BOT 25400  12750000 -4500000 12750000 -4250000 14250000 -4250000)
+    (connect (terminal pin U3-0) (terminal pin C3-0))
+   )
+   )
+   (Net #00098 
+   (rule
+   )
+   (wire (path BOT 25400  13004000 -4500000 13004000 -4762500 13144500 -4762500
+     13144500 -5000000 14000000 -5000000)
+    (connect (terminal pin U3-1) (terminal pin R2-0))
+   )
+   )
+   (Net #00099 
+   (rule
+   )
+   (wire (path BOT 25400  12750000 -3738000 11747500 -3738000 11747500 -3500000
+     11450000 -3500000)
+    (connect (terminal pin U3-5) (terminal pin "RPIO GPIO"-0))
+   )
+   )
+   (Net #00100 
+   (rule
+   )
+   (wire (path BOT 25400  13258000 -3738000 13258000 -3492500 13144500 -3492500
+     13144500 -3302000 11050000 -3302000 11050000 -3500000)
+    (connect (terminal pin U3-3) (terminal pin "RPIO GPIO"-2))
+   )
+   )
+   (Net 12VIN 
+   (rule
+   )
+   (wire (path BOT 25400  1258000 -8500000 2476500 -8500000 2476500 -8750000
+     2746000 -8750000)
+    (connect (terminal pin 12VINPUT-1) (terminal pin "PRIMARY SOURCE"-0))
+   )
+   )
+   (Net 12VINPUT 
+   (rule
+   )
+   (wire (path BOT 25400  11557000 -6286500 13716000 -6286500 13716000 -6500000
+     14000000 -6500000)
+    (connect (terminal wire) (terminal pin R1-0))
+   )
+   (wire (path BOT 25400  11557000 -6286500 11557000 -6350000 11504000 -6350000
+     11504000 -6988000)
+    (connect (terminal wire) (terminal pin U1-6))
+   )
+   (wire (path BOT 25400  11557000 -6286500 11557000 -5427626 11754000 -5427626
+     11754000 -5000000)
+    (connect (terminal wire) (terminal pin RV1-1))
+   )
+   )
+   (Net GND 
+   (rule
+   )
+   (wire (path BOT 63499  8774000 -9250000 14668500 -9250000 14668500 -6731000)
+    (connect (terminal pin J2-3) (terminal wire))
+   )
+   (wire (path BOT 63499  3550000 -3000000 1250000 -3000000 1250000 -4950000)
+    (connect (terminal pin "RPI COMMUNICATION"-2) (terminal pin GND-0))
+   )
+   (wire (path BOT 63499  4826000 -4472000 4826000 -2730500 3550000 -2730500
+     3550000 -3000000)
+    (connect (terminal wire) (terminal pin "RPI COMMUNICATION"-2))
+   )
+   (wire (path BOT 63499  9779000 -6985000 9779000 -7937500 12012000 -7937500
+     12012000 -7750000)
+    (connect (terminal wire) (terminal pin U1-3))
+   )
+   (wire (path BOT 63499  12001500 -7175500 11112500 -7175500 11112500 -5559571
+     11246000 -5559571 11246000 -5000000)
+    (connect (terminal wire) (terminal pin RV1-0))
+   )
+   (wire (path BOT 63499  9779000 -6985000 9779000 -3937000 15430500 -3937000
+     15430500 -6731000 14668500 -6731000)
+    (connect (terminal wire) (terminal wire))
+   )
+   (wire (path BOT 63499  12012000 -6988000 13274000 -6988000 13274000 -6500000)
+    (connect (terminal pin U1-4) (terminal pin U2-6))
+   )
+   (wire (path BOT 63499  3754000 -9500000 6024000 -9500000 6024000 -9250000)
+    (connect (terminal pin C2-1) (terminal pin J1-3))
+   )
+   (wire (path BOT 63499  8500000 -7520000 8774000 -7520000 8774000 -9250000)
+    (connect (terminal pin MIZQ-28) (terminal pin J2-3))
+   )
+   (wire (path BOT 63499  15016000 -5000000 14504000 -5000000 14504000 -4250000)
+    (connect (terminal pin R2-1) (terminal pin C3-1))
+   )
+   (wire (path BOT 63499  3000000 -8750000 3000000 -9500000 2504000 -9500000)
+    (connect (terminal pin "PRIMARY SOURCE"-1) (terminal pin C1-1))
+   )
+   (wire (path BOT 63499  4500000 -4980000 4826000 -4980000 4826000 -4472000)
+    (connect (terminal pin MDER-3) (terminal wire))
+   )
+   (wire (path BOT 63499  1270000 -8255000 750000 -8255000 750000 -8500000)
+    (connect (terminal wire) (terminal pin 12VINPUT-0))
+   )
+   (wire (path BOT 63499  7750000 -7400000 7937500 -7400000 7937500 -7520000
+     8500000 -7520000)
+    (connect (terminal pin MIZGPIO2-4) (terminal pin MIZQ-28))
+   )
+   (wire (path BOT 63499  14668500 -5207000 15016000 -5207000 15016000 -5000000)
+    (connect (terminal wire) (terminal pin R2-1))
+   )
+   (wire (path BOT 63499  13516000 -5250000 14224000 -5250000 14224000 -5207000
+     14668500 -5207000)
+    (connect (terminal pin D1-0) (terminal wire))
+   )
+   (wire (path BOT 63499  3746500 -8572500 7366000 -8572500 7366000 -7400000
+     7750000 -7400000)
+    (connect (terminal wire) (terminal pin MIZGPIO2-4))
+   )
+   (wire (path BOT 63499  3746500 -8572500 3754000 -8572500 3754000 -9500000)
+    (connect (terminal wire) (terminal pin C2-1))
+   )
+   (wire (path BOT 63499  1270000 -8255000 1270000 -7374056 1250000 -7374056
+     1250000 -6550000)
+    (connect (terminal wire) (terminal pin GND-8))
+   )
+   (wire (path BOT 63499  3048000 -8572500 3048000 -8750000 3000000 -8750000)
+    (connect (terminal wire) (terminal pin "PRIMARY SOURCE"-1))
+   )
+   (wire (path BOT 63499  9779000 -6985000 10021620 -6985000 10021620 -7012000)
+    (connect (terminal wire) (terminal pin MIZQ-3))
+   )
+   (wire (path BOT 63499  12012000 -7750000 12012000 -7366000 12001500 -7366000
+     12001500 -7175500)
+    (connect (terminal pin U1-3) (terminal wire))
+   )
+   (wire (path BOT 63499  12001500 -7175500 12001500 -6988000 12012000 -6988000)
+    (connect (terminal wire) (terminal pin U1-4))
+   )
+   (wire (path BOT 63499  1270000 -8255000 3048000 -8255000)
+    (connect (terminal wire) (terminal wire))
+   )
+   (wire (path BOT 63499  4826000 -4472000 6021620 -4472000)
+    (connect (terminal wire) (terminal pin MDER-28))
+   )
+   (wire (path BOT 63499  1250000 -6350000 1250000 -6550000)
+    (connect (terminal pin GND-7) (terminal pin GND-8))
+   )
+   (wire (path BOT 63499  1250000 -6150000 1250000 -6350000)
+    (connect (terminal pin GND-6) (terminal pin GND-7))
+   )
+   (wire (path BOT 63499  1250000 -5150000 1250000 -5350000)
+    (connect (terminal pin GND-1) (terminal pin GND-2))
+   )
+   (wire (path BOT 63499  1250000 -4950000 1250000 -5150000)
+    (connect (terminal pin GND-0) (terminal pin GND-1))
+   )
+   (wire (path BOT 63499  1250000 -5750000 1250000 -5950000)
+    (connect (terminal pin GND-4) (terminal pin GND-5))
+   )
+   (wire (path BOT 63499  1250000 -5950000 1250000 -6150000)
+    (connect (terminal pin GND-5) (terminal pin GND-6))
+   )
+   (wire (path BOT 63499  1250000 -5550000 1250000 -5750000)
+    (connect (terminal pin GND-3) (terminal pin GND-4))
+   )
+   (wire (path BOT 63499  1250000 -5350000 1250000 -5550000)
+    (connect (terminal pin GND-2) (terminal pin GND-3))
+   )
+   (wire (path BOT 63499  14668500 -5207000 14668500 -6731000)
+    (connect (terminal wire) (terminal wire))
+   )
+   (wire (path BOT 63499  3048000 -8572500 3746500 -8572500)
+    (connect (terminal wire) (terminal wire))
+   )
+   (wire (path BOT 63499  3048000 -8572500 3048000 -8255000)
+    (connect (terminal wire) (terminal wire))
+   )
+   )
+   (Net SCLX 
+   (rule
+   )
+   (wire (path BOT 25400  6021620 -5742000 4787373 -5742000 4787373 -7937500
+     2750000 -7937500 2750000 -6600000)
+    (connect (terminal pin MDER-23) (terminal pin SCLOUTS-8))
+   )
+   (wire (path BOT 25400  2750000 -5000000 2750000 -4762500 2991321 -4762500
+     2991321 -4127500 4127500 -4127500 4127500 -2857500 3750000 -2857500
+     3750000 -3000000)
+    (connect (terminal pin SCLOUTS-0) (terminal pin "RPI COMMUNICATION"-1))
+   )
+   (wire (path BOT 25400  6021620 -5742000 6286500 -5742000 6286500 -5869000
+     8636000 -5869000 8636000 -6250000 8500000 -6250000)
+    (connect (terminal pin MDER-23) (terminal pin MIZQ-23))
+   )
+   (wire (path BOT 25400  2750000 -5000000 2750000 -4500000 2016000 -4500000)
+    (connect (terminal pin SCLOUTS-0) (terminal pin PSCL-1))
+   )
+   (wire (path BOT 25400  2750000 -5200000 2750000 -5000000)
+    (connect (terminal pin SCLOUTS-1) (terminal pin SCLOUTS-0))
+   )
+   (wire (path BOT 25400  2750000 -5600000 2750000 -5400000)
+    (connect (terminal pin SCLOUTS-3) (terminal pin SCLOUTS-2))
+   )
+   (wire (path BOT 25400  2750000 -6400000 2750000 -6200000)
+    (connect (terminal pin SCLOUTS-7) (terminal pin SCLOUTS-6))
+   )
+   (wire (path BOT 25400  2750000 -6200000 2750000 -6000000)
+    (connect (terminal pin SCLOUTS-6) (terminal pin SCLOUTS-5))
+   )
+   (wire (path BOT 25400  2750000 -6000000 2750000 -5800000)
+    (connect (terminal pin SCLOUTS-5) (terminal pin SCLOUTS-4))
+   )
+   (wire (path BOT 25400  2750000 -5400000 2750000 -5200000)
+    (connect (terminal pin SCLOUTS-2) (terminal pin SCLOUTS-1))
+   )
+   (wire (path BOT 25400  2750000 -6600000 2750000 -6400000)
+    (connect (terminal pin SCLOUTS-8) (terminal pin SCLOUTS-7))
+   )
+   (wire (path BOT 25400  2750000 -5800000 2750000 -5600000)
+    (connect (terminal pin SCLOUTS-4) (terminal pin SCLOUTS-3))
+   )
+   )
+   (Net SDAX 
+   (rule
+   )
+   (wire (path BOT 25400  6021620 -5996000 5408786 -5996000 5408786 -8001000
+     2000000 -8001000 2000000 -6550000)
+    (connect (terminal pin MDER-22) (terminal pin SDAOUTS-8))
+   )
+   (wire (path BOT 25400  2016000 -4000000 3950000 -4000000 3950000 -3000000)
+    (connect (terminal pin PSDA-1) (terminal pin "RPI COMMUNICATION"-0))
+   )
+   (wire (path BOT 25400  2000000 -4950000 1778000 -4950000 1778000 -4318000
+     2016000 -4318000 2016000 -4000000)
+    (connect (terminal pin SDAOUTS-0) (terminal pin PSDA-1))
+   )
+   (wire (path BOT 25400  6021620 -5996000 8500000 -5996000)
+    (connect (terminal pin MDER-22) (terminal pin MIZQ-22))
+   )
+   (wire (path BOT 25400  2000000 -5350000 2000000 -5150000)
+    (connect (terminal pin SDAOUTS-2) (terminal pin SDAOUTS-1))
+   )
+   (wire (path BOT 25400  2000000 -6550000 2000000 -6350000)
+    (connect (terminal pin SDAOUTS-8) (terminal pin SDAOUTS-7))
+   )
+   (wire (path BOT 25400  2000000 -5950000 2000000 -5750000)
+    (connect (terminal pin SDAOUTS-5) (terminal pin SDAOUTS-4))
+   )
+   (wire (path BOT 25400  2000000 -6350000 2000000 -6150000)
+    (connect (terminal pin SDAOUTS-7) (terminal pin SDAOUTS-6))
+   )
+   (wire (path BOT 25400  2000000 -6150000 2000000 -5950000)
+    (connect (terminal pin SDAOUTS-6) (terminal pin SDAOUTS-5))
+   )
+   (wire (path BOT 25400  2000000 -5750000 2000000 -5550000)
+    (connect (terminal pin SDAOUTS-4) (terminal pin SDAOUTS-3))
+   )
+   (wire (path BOT 25400  2000000 -5550000 2000000 -5350000)
+    (connect (terminal pin SDAOUTS-3) (terminal pin SDAOUTS-2))
+   )
+   (wire (path BOT 25400  2000000 -5150000 2000000 -4950000)
+    (connect (terminal pin SDAOUTS-1) (terminal pin SDAOUTS-0))
+   )
+   )
+   (Net VCC/VDD 
+   (rule
+   )
+   (wire (path BOT 63499  6021620 -4980000 6159500 -4980000 6159500 -3810000
+     8763000 -3810000 8763000 -6858000)
+    (connect (terminal pin MDER-26) (terminal wire))
+   )
+   (wire (path BOT 63499  11750000 -5738000 11750000 -6096000 14287500 -6096000
+     14287500 -8191500 9525000 -8191500 9525000 -6858000 8763000 -6858000)
+    (connect (terminal pin U2-13) (terminal wire))
+   )
+   (wire (path BOT 63499  8763000 -6858000 8763000 -7012000 8500000 -7012000)
+    (connect (terminal wire) (terminal pin MIZQ-26))
+   )
+   )
+   (Net VIN 
+   (rule
+   )
+   (wire (path BOT 25400  750000 -6650000 750000 -7126678 444500 -7126678
+     444500 -10160000 6223000 -10160000 6223000 -10500000 6500000 -10500000)
+    (connect (terminal pin 5VOUTS-8) (terminal pin PRIMARYINPUTCUTOFF-0))
+   )
+   (wire (path BOT 25400  7239000 -8953500 8500000 -8953500 8500000 -7774000)
+    (connect (terminal wire) (terminal pin MIZQ-29))
+   )
+   (wire (path BOT 25400  6021620 -4218000 6021620 -2540000 1000000 -2540000
+     1000000 -4000000)
+    (connect (terminal pin MDER-29) (terminal pin PSDA-0))
+   )
+   (wire (path BOT 25400  6500000 -10500000 6500000 -10731500 7250000 -10731500
+     7250000 -9250000)
+    (connect (terminal pin PRIMARYINPUTCUTOFF-0) (terminal pin J2-0))
+   )
+   (wire (path BOT 25400  7239000 -9017000 4500000 -9017000 4500000 -9250000)
+    (connect (terminal wire) (terminal pin J1-0))
+   )
+   (wire (path BOT 25400  7239000 -9017000 7239000 -8953500)
+    (connect (terminal wire) (terminal wire))
+   )
+   (wire (path BOT 25400  1000000 -4500000 750000 -4500000 750000 -5050000)
+    (connect (terminal pin PSCL-0) (terminal pin 5VOUTS-0))
+   )
+   (wire (path BOT 25400  7250000 -9250000 7239000 -9250000 7239000 -9017000)
+    (connect (terminal pin J2-0) (terminal wire))
+   )
+   (wire (path BOT 25400  1000000 -4000000 1000000 -4500000)
+    (connect (terminal pin PSDA-0) (terminal pin PSCL-0))
+   )
+   (wire (path BOT 25400  750000 -6050000 750000 -6250000)
+    (connect (terminal pin 5VOUTS-5) (terminal pin 5VOUTS-6))
+   )
+   (wire (path BOT 25400  750000 -6450000 750000 -6650000)
+    (connect (terminal pin 5VOUTS-7) (terminal pin 5VOUTS-8))
+   )
+   (wire (path BOT 25400  750000 -6250000 750000 -6450000)
+    (connect (terminal pin 5VOUTS-6) (terminal pin 5VOUTS-7))
+   )
+   (wire (path BOT 25400  750000 -5850000 750000 -6050000)
+    (connect (terminal pin 5VOUTS-4) (terminal pin 5VOUTS-5))
+   )
+   (wire (path BOT 25400  750000 -5050000 750000 -5250000)
+    (connect (terminal pin 5VOUTS-0) (terminal pin 5VOUTS-1))
+   )
+   (wire (path BOT 25400  750000 -5650000 750000 -5850000)
+    (connect (terminal pin 5VOUTS-3) (terminal pin 5VOUTS-4))
+   )
+   (wire (path BOT 25400  750000 -5450000 750000 -5650000)
+    (connect (terminal pin 5VOUTS-2) (terminal pin 5VOUTS-3))
+   )
+   (wire (path BOT 25400  750000 -5250000 750000 -5450000)
+    (connect (terminal pin 5VOUTS-1) (terminal pin 5VOUTS-2))
+   )
+   )
+  )
+ )
