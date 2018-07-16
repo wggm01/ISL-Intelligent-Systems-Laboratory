@@ -18,10 +18,13 @@ void receiveEvent(int howMany) {
 
 if (Wire.available()>0) { 
   control = Wire.read();
+  
 }
+Serial.println(control);
 } 
 //MIZQ
 void loop() {
+  
   myStepper.setSpeed(150);
   switch (control){
         case 1 : 
