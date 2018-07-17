@@ -1,23 +1,30 @@
 import RPi.GPIO as GPIO
-from time import sleep
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(03, GPIO.OUT)
-pwm=GPIO.PWM(03, 50)
-pwm.start(0)
-GPIO.setwarnings(False)
+import time
 
-def SetAngle(angle):
-	duty = angle / 18 + 2
-	GPIO.output(03, True)
-	pwm.ChangeDutyCycle(duty)
-	sleep(1)
-	GPIO.output(03, False)
-	pwm.ChangeDutyCycle(0)
-	
+servoPIN = 17
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(servoPIN, GPIO.OUT)
 
-while True:
-	angle = input("") 
-    SetAngle(angle)
-	pwm.stop()
-	GPIO.cleanup()
-        time.sleep(5)
+p = GPIO.PWM(servoPIN, 50) # GPIO 17 for PWM with 50Hz
+p.start(2.5) # Initializati
+try:
+  while True:
+	p.ChangeDutyCycle(5)
+    	time.sleep(0.5)
+    	p.ChangeDutyCycle(7.5)
+    	time.sleep(0.5)
+    	p.ChangeDutyCycle(10)
+    	time.sleep(0.5)
+    	p.ChangeDutyCycle(12.5)
+    	time.sleep(0.5)
+    	p.ChangeDutyCycle(10)
+    	time.sleep(0.5)
+    	p.ChangeDutyCycle(7.5)
+    	time.sleep(0.5)
+    	p.ChangeDutyCycle(5)
+    	time.sleep(0.5)
+    	p.ChangeDutyCycle(2.5)
+    	time.sleep(0.5)
+except KeyboardInterrupt:
+  p.stop()
+  GPIO.cleanup()
