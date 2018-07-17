@@ -3,7 +3,7 @@ import time
 #RECEPCION DE PAQUETES POR UDP
 import socket, traceback
 from struct import *
-host = '192.168.0.254'
+host = '192.168.25.100'
 port = 5556
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
