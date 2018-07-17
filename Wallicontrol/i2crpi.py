@@ -9,7 +9,7 @@ def wr_i2c (value):
 	return -1
 while True:
 	instruction = input("") 
-        wr_i2c(int(instruction))
+    wr_i2c(int(instruction))
 
-        time.sleep(.1)
+    time.sleep(.1)
  
