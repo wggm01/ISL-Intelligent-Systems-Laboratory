@@ -17,8 +17,7 @@ void setup() {
 void receiveEvent(int howMany) {
 
 if (Wire.available()>0) { 
-  control = Wire.read();
-  
+  control = Wire.read();  
 }
 Serial.println(control);
 } 

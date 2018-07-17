@@ -29,25 +29,24 @@ import time
 import serial
 import csv
 import math
-import smbus2
-from smbus2 import SMBus
-from smbus2 import SMBusWrapper
+import smbus
 #from vincenty import vincenty
 #Variables y Esclavos
-slaveAddress2 = 0x40                    #LIBRERIAS, ESCLAVOS Y INSTRUCCIONES
-slaveAddress1 = 0x50
+mizq = 0x40                    #LIBRERIAS, ESCLAVOS Y INSTRUCCIONES
+mder = 0x50
 sensorAdress = 0x60
-bus = SMBus(1)
-Forward=1
-Backward =2
-Turn= 4
-TurnLeftEje = 7
-Stop = 5
-delay = 5
-limit = 2
+bus = smbus.SMBus(1)
+ins = [1,2,3,4,5,6,7,8,9,10,11,12]
+"""
+1 HACIA DELANTE,2 HACIA ATRAS,3 IZQUIERDA 90°,4 DERECHA 90°,5 IZQUIERDA ACKERMAN,
+6 DERECHA ACKERMAN,7 IZQUIERDA HACIA ATRAS ACKERMAN,8 DERECHA HACIA ATRAS ACKERMAN,
+9 IZQUIERDA SOBRE EJE,10 DERECHA SOBRE EJE,11 VELOCIDAD,12 STOP
+"""
+delay = 5 #NO CREO QUE LO USE.
+limit = 3
 #Connecion al puerto serial
 #gps = serial.Serial('COM14', 4800)
-gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
+#gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
 #ard_gyro = serial.Serial("/dev/ttyACM1", baudrate = 9600)
 #ard_ultra = serial.Serial("/dev/ttyACM", baudrate = 9600)
 
@@ -64,14 +63,13 @@ q = [0,0] # Puntos virtual trasladado
 drp = [0,0,0,0]#una para cada modelo y0,y1,y2,y3
 
 def wr_i2c (instruction):
-    with SMBusWrapper(1) as bus:
     # Write a byte to address 80, offset 0
         data = instruction  
-        bus.write_byte_data(slaveAddress1, 0, data)
-        bus.write_byte_data(slaveAddress2, 0, data)
+        bus.write_byte_data(slaveAddress1,data)
+        bus.write_byte_data(slaveAddress2,data)
 
 #Latitud(x), Longitud(y)
-def Data():
+"""def Data():
     gps_sentece = gps.readline()
     gps_sentences_fields = gps_sentece.split(",")
     #FILTRO DE LA SENTENCIA $GPRMC
@@ -103,7 +101,7 @@ def Data():
     #else:
      #   print("Esperando senal de aprobacion por parte del gps")
         return latitud,longitud
-
+"""
 #Calculo de de distancia para cada region (cambiar referencia en cada uno)
 def distReg0(latitud,longitud):
     latref =9.023175628
@@ -176,14 +174,14 @@ def region0Bounds(d,reg0):
     min2=3
     ed0 = enco_check_reg0(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-       # wr_i2c(Forward)
+        wr_i2c(int(ins[0]))
         print("Wall-i acutalmente se esta moviendo reg0")
 
     if d <= min2 and ed0 != 0:#Establece cuando curvara
         #arduino.write(Turn)#Mandar un comando hacia Arduino
-        #wr_i2c(Turn)
-        print("Wall-i actualmente esta curvandoreg0")
-        time.sleep(delay) #tiempo que demora en hacer un giro de 90 grados aprox
+        wr_i2c(int(ins[4]))
+        #print("Wall-i actualmente esta curvandoreg0")
+        #time.sleep(delay) #tiempo que demora en hacer un giro de 90 grados aprox
         #bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
         #bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
 
@@ -193,13 +191,13 @@ def region1Bounds(d,reg1):
     min3=3
     ed1 = enco_check_reg1(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-        wr_i2c(Forward)
+        wr_i2c(int(ins[0]))
         print("Wall-i acutalmente se esta moviendoreg1")
 
     if d <= min3 and ed1 != 0:#Establece cuando curvara
-        wr_i2c(Turn)
+        wr_i2c(int(ins[5]))
         print("Wall-i actualmente esta curvando reg1")
-        time.sleep(delay)
+        #time.sleep(delay)
 
 def region2Bounds(d,reg2):
     min1=200 #colocar
@@ -207,13 +205,13 @@ def region2Bounds(d,reg2):
     min2=3
     ed2 = enco_check_reg2(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-        wr_i2c(Forward)
+        wr_i2c(int(ins[5]))
         print("Wall-i acutalmente se esta moviendoreg2")
 
     if d <= min2 and ed2!= 0:#Establece cuando curvara
-        wr_i2c(Turn)
+        wr_i2c(int(ins[5]))
         print("Wall-i actualmente esta curvandoreg2")
-        time.sleep(delay) #tiempo que demora en hacer un giro de 90 grados aprox
+        #time.sleep(delay) #tiempo que demora en hacer un giro de 90 grados aprox
         #bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
         #bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
 
@@ -223,11 +221,11 @@ def region3Bounds(d,reg3):
     min3=3
     ed3 = enco_check_reg3(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-        wr_i2c(Forward)
+        wr_i2c(int(ins[0]))
         print("Wall-i acutalmente se esta moviendoreg3")
 
     if d <= min3 and ed3!= 0:#Establece cuando curvara
-        wr_i2c(Turn)
+        wr_i2c(int(ins[4]))
         print("Wall-i actualmente esta curvandoreg3")
         time.sleep(delay)
 
@@ -482,77 +480,6 @@ def flag_sensor_dist():
 
 
 """
-def Data_arduino_gyro():
-    arduino = ard_gyro.readline()
-
-    with open ("gyrodata.txt", "a") as pos:
-        pos.write("%s\n" % (arduino))
-    print(arduino)
-
-def Data_arduino_ultra():
-    arduino = ard.readline()
-    arduino_input = arduino.split(",") #Le falta trabajo
-    arduino_input[0] = s1
-    arduino_input[1] = s2
-    arduino_input[2] = s3
-    arduino_input[3] = s4
-    with open ("dataultrasonicos.csv", "a") as pos:
-        pos.write("%s, %s\n" % ( x,y))
-
-def distReg1_v(latitud,longitud):
-    input_gps= (latitud,longitud)
-    #ref = (9.04525,-79.40719)
-    ref = (9.02318033,-79.53151733)
-    d = vincenty(input_gps,ref)*1000
-    re= "Region 1"
-    with open ("logreg1_v.csv", "a") as pos:
-        pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
-    return d
-
-def distReg1_pi(latitud,longitud):
-    latref =9.02318033
-    longref = -79.53151733 #UTP
-    a=latref-latitud
-    b=longref-longitud
-    d=math.sqrt(math.pow(a,2)+math.pow(b,2))
-    return d
-
-def distReg2_v(latitud,longitud):
-        input_gps= (latitud,longitud)
-        #ref = (9.04485,-79.40695)
-        ref = (9.023149167,-79.53156583)
-        d = vincenty(input_gps,ref)*1000
-        re= "Region 2"
-        with open ("logreg2_V.csv", "a") as pos:
-            pos.write("%s, %s, %s, %s\n" % ( latitud, longitud, d, re ))
-        return d
-
-    def distReg2_pi(latitud,longitud):
-        latref2 =9.023149167
-        longref2 = -79.53156583 #UTP
-        a=latref2-latitud
-        b=longref2-longitud
-        d=math.sqrt(math.pow(a,2)+math.pow(b,2))
-        return d
-
-    def veloWalli():
-        gps_sentece = gps.readline()
-        gps_sentences_fields = gps_sentece.split(",")
-        #FILTRO DE LA SENTENCIA $GPRMC
-        if gps_sentences_fields[0] == "$GPVTG":
-            velocidad = float(gps_sentences_fields[7])
-            return velocidad
-
-    def angVariant(latitud,longitud,d): #Usar bajo su propio riesgo
-        #Distancia punto a recta
-        top = 0.69738*latitud+longitud
-        absolute= math.fabs(top)
-        bottom = math.sqrt(math.pow(0.69738,2)+ 1)
-        dpr = absolute/bottom
-        #Calculo de angulo porque se forma un triangulo rectangulo.
-        #angle = math.atan(dpr/d)
-        return drp
-
     def secCorrec ():
         if bus.read_byte(sensorAdress) == 9:
             bus.write_byte(slaveAddress2, Stop)
