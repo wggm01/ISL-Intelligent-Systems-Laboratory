@@ -18,9 +18,9 @@ void receiveEvent(int howMany) {
 
 if (Wire.available()>0) { 
   control = Wire.read();
-  
+  Serial.println(control);
 }
-Serial.println(control);
+
 } 
 //MIZQ
 void loop() {
