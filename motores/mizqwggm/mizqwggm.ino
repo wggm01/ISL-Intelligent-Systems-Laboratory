@@ -3,7 +3,7 @@
 #define mizq 0x40
 const int stepsPerRevolution = 200;  //OBTENIDO POR EXPERIMENTACION
 int control;
-int velo //velocidad
+int velo=150; //velocidad
 Stepper myStepper(stepsPerRevolution, 8, 9, 10, 11); //AJUSTAR A LOS MOTORES
 
 void setup() {
@@ -64,7 +64,7 @@ switch (control){
     Serial.println("IZQUIERDA SOBRE EJE");
     break;
   case 10 : 
-    myStepper.step(+stepsPerRevolution); //DERECHA SOBRE EJE
+    myStepper.step(stepsPerRevolution); //DERECHA SOBRE EJE
     Serial.println("DERECHA SOBRE EJE");
     break;
   case 11 : 
