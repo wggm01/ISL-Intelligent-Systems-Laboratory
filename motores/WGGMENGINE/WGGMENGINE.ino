@@ -17,9 +17,18 @@ void setup() {
 void receiveEvent(int howMany) {
 
 if (Wire.available()>0) { 
+<<<<<<< HEAD
+  control = Wire.read();
+  Serial.println(control);
+}
+
+} 
+//MIZQ
+=======
   control = Wire.read();  
 }
 Serial.println(control);} 
+>>>>>>> 2c71abad2c52eaac301ecb02bb69e736112f436e
 void loop() {
 //MOVIMIENTOS  
 switch (control){
