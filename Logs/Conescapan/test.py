@@ -18,8 +18,8 @@ limit = 3
 softleft = 8
 softright = 9
 
-wb= load_workbook('vuelta1corre.xlsx')
-sheet= wb['reg3t']
+wb= load_workbook('old/logreg19318.xlsx')
+sheet= wb['Hoja1'] #ajustar 
 i=2
 
 #Ciclo repetido
@@ -56,15 +56,15 @@ while instruccion == 'y':
         global lonv3
         latv3,lonv3= virtual_3
 
-        with open ("correccionreg3.csv", "a") as pos:
-                pos.write("%s, %s\n" % ( latv3, lonv3 ))
+        with open ("old/correccionreg0.csv", "a") as pos: #ajustar
+                pos.write("%s, %s\n" % ( latv0, lonv0 )) #ajustar
                     
         reg0 = machinarie.check_0drp(latitud,longitud,latv0,lonv0)
         reg1 = machinarie.check_1drp(latitud,longitud,latv1,lonv1)
         reg2 = machinarie.check_2drp(latitud,longitud,latv2,lonv2)
         reg3 = machinarie.check_3drp(latitud,longitud,latv3,lonv3)
         print("DRP0",reg0,"DRP1",reg1,"DRP2",reg2,"DRP3",reg3)
-        with open ("drpreg3.csv", "a") as pos:
+        with open ("old/drpreg0.csv", "a") as pos: #ajustar
                 pos.write("%s, %s, %s, %s\n" % ( reg0,reg1,reg2,reg3))
                     
                         
