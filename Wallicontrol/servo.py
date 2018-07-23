@@ -3,7 +3,7 @@ import time
 #RECEPCION DE PAQUETES POR UDP
 import socket, traceback
 from struct import *
-host = '192.168.0.247'
+host = '192.168.0.254'
 port = 5556
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -35,9 +35,9 @@ try:
     azimap_raw=azimut[0]
     azimap=int(azimap_raw)
     desireang=mapazimut(azimap,-127,77,30,180)
-    print (desireang,azimut)
-    p.ChangeDutyCycle(desireang)
-    time.sleep(0.1)
+#    print (desireang,azimut)
+    p.ChangeDutyCycle(angle(desireang))
+#    time.sleep(0.1)
 	
 except KeyboardInterrupt:
   print("Bye Bye")
