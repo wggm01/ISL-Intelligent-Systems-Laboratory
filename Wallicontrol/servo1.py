@@ -30,18 +30,18 @@ def echo_socket(ws):
                 while True:
                         message = ws.receive()
                         splitdata=message.split(",")
-                        azimut=splitdata[0]
+                        azimut=float(splitdata[0])
                         #print(message)
                         ws.send(message)
                         print>>f,message
-                        f.close()
+                        
                         azimap_raw=azimut
                         azimap=int(azimap_raw)
                         desireang=mapazimut(azimap,44,240,30,180)
-                        #print (desireang,azimut)
+                        print (desireang,azimut)
                         p.ChangeDutyCycle(angle(desireang))
                         #time.sleep(0.1)
-                
+                f.close()
         except KeyboardInterrupt:
                 print("Bye Bye")
                 p.stop()
