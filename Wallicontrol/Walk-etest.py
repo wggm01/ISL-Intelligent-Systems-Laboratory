@@ -8,19 +8,19 @@ import machinarie
 from pubnub.pnconfiguration import PNConfiguration
 from pubnub.pubnub import PubNub
 #Stream data
-#pnconfig = PNConfiguration()
-#pnconfig.publish_key = "pub-c-b4c2e4df-fb98-4907-85f7-8e6392a93e48"
-#pnconfig.subscribe_key = "sub-c-05449d3a-b73e-11e7-a84a-1e64a053e7fc"
-#pnconfig.ssl = False
-#pubnub = PubNub(pnconfig)
+pnconfig = PNConfiguration()
+pnconfig.publish_key = "pub-c-b4c2e4df-fb98-4907-85f7-8e6392a93e48"
+pnconfig.subscribe_key = "sub-c-05449d3a-b73e-11e7-a84a-1e64a053e7fc"
+pnconfig.ssl = False
+pubnub = PubNub(pnconfig)
 limit = 3
 #Instruciones de correccion de recorrido.
 softleft = 8
 softright = 9
 
-wb= load_workbook('vuelta1.xlsx')
+wb= load_workbook('data4test/vuelta1.xlsx')
 sheet= wb['Hoja1']
-i=2
+i=1
 
 #Ciclo repetido
 print("Wall-i actualmente se encuentra esperando su instruccion")
@@ -58,7 +58,7 @@ while instruccion == 'y':
         global lonv3
         latv3,lonv3= virtual_3
 
-        with open ("Virtual_pos.csv", "a") as pos:
+        with open ("Virtual_pos_all.csv", "a") as pos:
             pos.write("%s, %s, %s, %s, %s, %s, %s, %s\n" % ( latv0, lonv0, latv1, lonv1, latv2, lonv2, latv3, lonv3 ))
     
         reg0 = machinarie.check_0drp(latitud,longitud,latv0,lonv0)
@@ -66,7 +66,7 @@ while instruccion == 'y':
         reg2 = machinarie.check_2drp(latitud,longitud,latv2,lonv2)
         reg3 = machinarie.check_3drp(latitud,longitud,latv3,lonv3)
         print("DRP0",reg0,"DRP1",reg1,"DRP2",reg2,"DRP3",reg3)
-        with open ("drp.csv", "a") as pos:
+        with open ("drp_all.csv", "a") as pos:
             pos.write("%s, %s, %s, %s\n" % ( reg0,reg1,reg2,reg3))
     
         if  reg0 <= limit:
@@ -77,7 +77,7 @@ while instruccion == 'y':
             #print(d)
             with open ("d0.csv", "a") as pos:
                 pos.write("%s\n" % (d))
-
+		"""
             flag_sensor_dist= flag_sensor_dist()
             if flag_sensor_dist == 8:
                 while flag_sensor == 8:
@@ -90,7 +90,7 @@ while instruccion == 'y':
                     if flag_sensor_dist() == 1:
                         break
             else: 
-                print("Aún no me desvio")
+                print("Aún no me desvio")"""
 
             machinarie.region0Bounds(d,reg0)
 
@@ -102,7 +102,7 @@ while instruccion == 'y':
             print(d)
             with open ("d1.csv", "a") as pos:
                 pos.write("%s\n" % (d))
-
+"""
             flag_sensor_dist= flag_sensor_dist()
             if flag_sensor_dist == 8:
                 while flag_sensor == 8:
@@ -115,7 +115,7 @@ while instruccion == 'y':
                     if flag_sensor_dist() == 1:
                         break
             else: 
-                print("Aún no me desvio")        
+                print("Aún no me desvio")  """      
 
             machinarie.region1Bounds(d,reg1)
         
@@ -127,7 +127,7 @@ while instruccion == 'y':
             print(d)
             with open ("d2.csv", "a") as pos:
                 pos.write("%s\n" % (d))
-
+		"""
             flag_sensor_dist= flag_sensor_dist()
             if flag_sensor_dist == 8:
                 while flag_sensor == 8:
@@ -140,7 +140,7 @@ while instruccion == 'y':
                     if flag_sensor_dist() == 1:
                         break
             else: 
-                print("Aún no me desvio")
+                print("Aún no me desvio")"""
 
             machinarie.region2Bounds(d,reg2)
         
@@ -152,7 +152,7 @@ while instruccion == 'y':
             print(d)
             with open ("d3.csv", "a") as pos:
                 pos.write("%s\n" % (d))
-
+		"""
             flag_sensor_dist= flag_sensor_dist()
             if flag_sensor_dist == 8:
                 while flag_sensor == 8:
@@ -165,7 +165,7 @@ while instruccion == 'y':
                     if flag_sensor_dist() == 1:
                         break
             else: 
-                print("Aún no me desvio")           
+                print("Aún no me desvio") """          
 
             machinarie.region3Bounds(d,reg3)
         else
