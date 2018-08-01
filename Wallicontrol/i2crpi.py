@@ -1,12 +1,10 @@
 import smbus
-from smbus import SMBus
 import time
-mizq = 0x40
-mder = 0x50
-bus =SMBus(1)
+
+bus =smbus.SMBus(1)
 def inputd (value):
-	bus.write_byte(mder,value)
-#        bus.write_byte(mder,value)
+	bus.write_byte(0x50,value)
+        bus.write_byte(0x40,value)
 	return -1
 while True:
 	instruction = input("") 
