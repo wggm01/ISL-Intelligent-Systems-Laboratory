@@ -1,6 +1,6 @@
 #include <Stepper.h>
 #include <Wire.h>
-#define mizq 0x40
+#define mder 0x50
 const int stepsPerRevolution = 200;  //OBTENIDO POR EXPERIMENTACION
 int control;
 int velo=150; //velocidad
@@ -8,7 +8,7 @@ Stepper myStepper(stepsPerRevolution, 8, 9, 10, 11); //AJUSTAR A LOS MOTORES
 
 void setup() {
   //COMUNICACION I2C
-  Wire.begin(mizq); 
+  Wire.begin(mder); 
   Wire.onReceive(receiveEvent); 
   Serial.begin(9600);
   myStepper.setSpeed(velo);
