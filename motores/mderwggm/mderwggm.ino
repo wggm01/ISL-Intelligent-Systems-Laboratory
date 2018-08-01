@@ -4,6 +4,10 @@
 #define mizq 0x40
 const int stepsPerRevolution = 200;  //OBTENIDO POR EXPERIMENTACION
 int control;
+char controlchar [3];
+char controlchar1[2];
+String int_char;
+int step;
 int velo=150; //velocidad
 Stepper myStepper(stepsPerRevolution, 8, 9, 10, 11); //AJUSTAR A LOS MOTORES
 #include <LiquidCrystal_I2C.h>
@@ -49,6 +53,21 @@ if (Wire.available()>0) {
 }
 Serial.println(control);} 
 void loop() {
+  
+//CONTROL SOFISTICADO
+if (control>199){
+int_char=String(control);
+int_char.toCharArray(controlchar,3);
+if (controlchar[1]==0){
+  step=controlchar[2]-'0';
+  myStepper.step(step);
+  }else if (controlchar[1]!= 0)
+  controlchar1[0]=controlchar[1];
+  controlchar1[1]=controlchar[2];
+  step= atoi(controlchar1);
+  myStepper.step(step);
+}
+
 //MOVIMIENTOS  
 switch (control){
   case 1 : 
