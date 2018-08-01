@@ -32,9 +32,9 @@ while instruccion == 'y':
         global latitud
         global longitud
         #latitud,longitud = data   #Revision de posicion acual sin procesarself.
-		latitud= sheet.cell(row=i, column=1).value
-		longitud= sheet.cell(row=i, column=2).value
-		i +=1
+	latitud= sheet.cell(row=i, column=1).value
+	longitud= sheet.cell(row=i, column=2).value
+	i +=1
         envelope = pubnub.publish().channel("map2-channel").message({
         'lat': float(latitud),'lng': float(longitud)}).sync()
     
@@ -119,6 +119,6 @@ while instruccion == 'y':
        
 
             machinarie.region3Bounds(d,reg3)
-        else
+        else:
             print("No se donde estoy")
-		time.sleep(1)
+	    time.sleep(1)
