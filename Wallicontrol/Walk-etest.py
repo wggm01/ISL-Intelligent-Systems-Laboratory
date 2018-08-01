@@ -32,9 +32,9 @@ while instruccion == 'y':
         global latitud
         global longitud
         #latitud,longitud = data   #Revision de posicion acual sin procesarself.
-		latitud= sheet.cell(row=i, column=1).value
-		longitud= sheet.cell(row=i, column=2).value
-		i +=1
+	latitud= sheet.cell(row=i, column=1).value
+	longitud= sheet.cell(row=i, column=2).value
+	i +=1
         envelope = pubnub.publish().channel("map2-channel").message({
         'lat': float(latitud),'lng': float(longitud)}).sync()
     
@@ -77,8 +77,8 @@ while instruccion == 'y':
             #print(d)
             with open ("d0.csv", "a") as pos:
                 pos.write("%s\n" % (d))
-		"""
-            flag_sensor_dist= flag_sensor_dist()
+
+"""            flag_sensor_dist= flag_sensor_dist()
             if flag_sensor_dist == 8:
                 while flag_sensor == 8:
                     wr_i2c (softleft)
@@ -102,8 +102,8 @@ while instruccion == 'y':
             print(d)
             with open ("d1.csv", "a") as pos:
                 pos.write("%s\n" % (d))
-"""
-            flag_sensor_dist= flag_sensor_dist()
+
+"""            flag_sensor_dist= flag_sensor_dist()
             if flag_sensor_dist == 8:
                 while flag_sensor == 8:
                     wr_i2c (softleft)
@@ -127,8 +127,8 @@ while instruccion == 'y':
             print(d)
             with open ("d2.csv", "a") as pos:
                 pos.write("%s\n" % (d))
-		"""
-            flag_sensor_dist= flag_sensor_dist()
+
+"""            flag_sensor_dist= flag_sensor_dist()
             if flag_sensor_dist == 8:
                 while flag_sensor == 8:
                     wr_i2c (softleft)
@@ -152,8 +152,8 @@ while instruccion == 'y':
             print(d)
             with open ("d3.csv", "a") as pos:
                 pos.write("%s\n" % (d))
-		"""
-            flag_sensor_dist= flag_sensor_dist()
+		
+"""            flag_sensor_dist= flag_sensor_dist()
             if flag_sensor_dist == 8:
                 while flag_sensor == 8:
                     wr_i2c (softleft)
