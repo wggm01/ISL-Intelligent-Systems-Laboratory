@@ -365,7 +365,7 @@ def check_3drp (latitud,longitud,latv3,lonv3):
     drp[3]=d
   
     return drp[3]
-
+"""
 i=0
 j=0
 k=0
@@ -394,7 +394,7 @@ def enco_check_reg0(d):
     else:
         return edr0 = 0
          
-
+"""
      
 #--------------------------
 def enco_check_reg1(d):
