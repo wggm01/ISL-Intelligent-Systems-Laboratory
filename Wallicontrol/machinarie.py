@@ -182,7 +182,7 @@ def region0Bounds(d,reg0):
 		wr_i2c(int(ins[0]))
 		print("Wall-i acutalmente se esta moviendo reg0")
 	
-    if d <= min2 and ed0 != 0:#Establece cuando curvara
+    if d <= min2:#Establece cuando curvara
         #arduino.write(Turn)#Mandar un comando hacia Arduino
 		wr_i2c(int(ins[4]))
 		print("Wall-i actualmente esta curvandoreg0")
@@ -199,7 +199,7 @@ def region1Bounds(d,reg1):
 		wr_i2c(int(ins[0]))
 		print("Wall-i acutalmente se esta moviendoreg1")
 
-    if d <= min3 and ed1 != 0:#Establece cuando curvara
+    if d <= min3:#Establece cuando curvara
 		wr_i2c(int(ins[5]))
 		print("Wall-i actualmente esta curvando reg1")
         #time.sleep(delay)
@@ -213,7 +213,7 @@ def region2Bounds(d,reg2):
 		wr_i2c(int(ins[5]))
 		print("Wall-i acutalmente se esta moviendoreg2")
 
-    if d <= min2 and ed2!= 0:#Establece cuando curvara
+    if d <= min2:#Establece cuando curvara
 		wr_i2c(int(ins[5]))
 		print("Wall-i actualmente esta curvandoreg2")
         #time.sleep(delay) #tiempo que demora en hacer un giro de 90 grados aprox
@@ -229,7 +229,7 @@ def region3Bounds(d,reg3):
 		wr_i2c(int(ins[0]))
 		print("Wall-i acutalmente se esta moviendoreg3")
 
-    if d <= min3 and ed3!= 0:#Establece cuando curvara
+    if d <= min3:#Establece cuando curvara
 		wr_i2c(int(ins[4]))
 		print("Wall-i actualmente esta curvandoreg3")
         #time.sleep(delay)
