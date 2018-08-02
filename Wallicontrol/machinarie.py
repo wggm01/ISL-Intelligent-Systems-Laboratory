@@ -180,12 +180,12 @@ def region0Bounds(d,reg0):
     ed0 = enco_check_reg0(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta 
 		wr_i2c(int(ins[0]))
-        print("Wall-i acutalmente se esta moviendo reg0")
+		print("Wall-i acutalmente se esta moviendo reg0")
 	
     if d <= min2 and ed0 != 0:#Establece cuando curvara
         #arduino.write(Turn)#Mandar un comando hacia Arduino
-        wr_i2c(int(ins[4]))
-        #print("Wall-i actualmente esta curvandoreg0")
+		wr_i2c(int(ins[4]))
+		print("Wall-i actualmente esta curvandoreg0")
         #time.sleep(delay) #tiempo que demora en hacer un giro de 90 grados aprox
         #bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
         #bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
@@ -196,12 +196,12 @@ def region1Bounds(d,reg1):
     min3=3
     ed1 = enco_check_reg1(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-        wr_i2c(int(ins[0]))
-        print("Wall-i acutalmente se esta moviendoreg1")
+		wr_i2c(int(ins[0]))
+		print("Wall-i acutalmente se esta moviendoreg1")
 
     if d <= min3 and ed1 != 0:#Establece cuando curvara
-        wr_i2c(int(ins[5]))
-        print("Wall-i actualmente esta curvando reg1")
+		wr_i2c(int(ins[5]))
+		print("Wall-i actualmente esta curvando reg1")
         #time.sleep(delay)
 
 def region2Bounds(d,reg2):
@@ -210,12 +210,12 @@ def region2Bounds(d,reg2):
     min2=3
     ed2 = enco_check_reg2(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-        wr_i2c(int(ins[5]))
-        print("Wall-i acutalmente se esta moviendoreg2")
+		wr_i2c(int(ins[5]))
+		print("Wall-i acutalmente se esta moviendoreg2")
 
     if d <= min2 and ed2!= 0:#Establece cuando curvara
-        wr_i2c(int(ins[5]))
-        print("Wall-i actualmente esta curvandoreg2")
+		wr_i2c(int(ins[5]))
+		print("Wall-i actualmente esta curvandoreg2")
         #time.sleep(delay) #tiempo que demora en hacer un giro de 90 grados aprox
         #bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
         #bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
@@ -226,13 +226,13 @@ def region3Bounds(d,reg3):
     min3=3
     ed3 = enco_check_reg3(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-        wr_i2c(int(ins[0]))
-        print("Wall-i acutalmente se esta moviendoreg3")
+		wr_i2c(int(ins[0]))
+		print("Wall-i acutalmente se esta moviendoreg3")
 
     if d <= min3 and ed3!= 0:#Establece cuando curvara
-        wr_i2c(int(ins[4]))
-        print("Wall-i actualmente esta curvandoreg3")
-        time.sleep(delay)
+		wr_i2c(int(ins[4]))
+		print("Wall-i actualmente esta curvandoreg3")
+        #time.sleep(delay)
 
 #Traslacion de coordenadas
 def virtual_pos0 (latitud,longitud):
