@@ -179,12 +179,12 @@ def region0Bounds(d,reg0):
     min2=3
     #ed0 = enco_check_reg0(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta 
-		wr_i2c(ins[0])
+		wr_i2c(1)
 		print("Wall-i acutalmente se esta moviendo reg0")
 	
     if d <= min2:#Establece cuando curvara
         #arduino.write(Turn)#Mandar un comando hacia Arduino
-		wr_i2c(ins[4])
+		wr_i2c(3)
 		print("Wall-i actualmente esta curvandoreg0")
         #time.sleep(delay) #tiempo que demora en hacer un giro de 90 grados aprox
         #bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
