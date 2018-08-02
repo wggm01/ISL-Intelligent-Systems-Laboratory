@@ -394,7 +394,7 @@ def enco_check_reg0(d):
     else:
         return edr0 = 0
          
-"""
+
      
 #--------------------------
 def enco_check_reg1(d):
@@ -484,7 +484,7 @@ def flag_sensor_dist():
 
 
 
-"""
+
     def secCorrec ():
         if bus.read_byte(sensorAdress) == 9:
             bus.write_byte(slaveAddress2, Stop)
