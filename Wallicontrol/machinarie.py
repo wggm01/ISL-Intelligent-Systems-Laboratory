@@ -65,8 +65,8 @@ def wr_i2c (instruction):
     
 		
 	data = instruction  
-	bus.write_byte(slaveAddress1,data)
-	bus.write_byte(slaveAddress2,data)
+	bus.write_byte(mizq,data)
+	bus.write_byte(mder,data)
 		
 		
 #Latitud(x), Longitud(y) evitar coordenadas iguales
