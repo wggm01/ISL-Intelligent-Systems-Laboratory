@@ -177,7 +177,7 @@ def region0Bounds(d,reg0):
     min1=200 #colocar
     max1=2
     min2=3
-    ed0 = enco_check_reg0(d)
+    #ed0 = enco_check_reg0(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta 
 		wr_i2c(int(ins[0]))
 		print("Wall-i acutalmente se esta moviendo reg0")
@@ -194,7 +194,7 @@ def region1Bounds(d,reg1):
     min1=200 #colocar
     max1=2
     min3=3
-    ed1 = enco_check_reg1(d)
+    #ed1 = enco_check_reg1(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
 		wr_i2c(int(ins[0]))
 		print("Wall-i acutalmente se esta moviendoreg1")
@@ -208,7 +208,7 @@ def region2Bounds(d,reg2):
     min1=200 #colocar
     max1=2
     min2=3
-    ed2 = enco_check_reg2(d)
+    #ed2 = enco_check_reg2(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
 		wr_i2c(int(ins[5]))
 		print("Wall-i acutalmente se esta moviendoreg2")
@@ -224,7 +224,7 @@ def region3Bounds(d,reg3):
     min1=200 #colocar
     max1=2
     min3=3
-    ed3 = enco_check_reg3(d)
+    #ed3 = enco_check_reg3(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
 		wr_i2c(int(ins[0]))
 		print("Wall-i acutalmente se esta moviendoreg3")
