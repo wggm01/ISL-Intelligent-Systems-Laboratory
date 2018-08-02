@@ -32,9 +32,9 @@ while instruccion == 'y':
         global latitud
         global longitud
         #latitud,longitud = data   #Revision de posicion acual sin procesarself.
-	latitud= sheet.cell(row=i, column=1).value
-	longitud= sheet.cell(row=i, column=2).value
-	i +=1
+		latitud= sheet.cell(row=i, column=1).value
+		longitud= sheet.cell(row=i, column=2).value
+		i +=1
         envelope = pubnub.publish().channel("map2-channel").message({
         'lat': float(latitud),'lng': float(longitud)}).sync()
     
@@ -78,19 +78,7 @@ while instruccion == 'y':
             with open ("d0.csv", "a") as pos:
                 pos.write("%s\n" % (d))
 
-"""            flag_sensor_dist= flag_sensor_dist()
-            if flag_sensor_dist == 8:
-                while flag_sensor == 8:
-                    wr_i2c (softleft)
-                    if flag_sensor_dist() == 1:
-                        break
-            elif flag_sensor_dist == 9:
-                while flag_sensor == 9:
-                    wr_i2c (softleft)
-                    if flag_sensor_dist() == 1:
-                        break
-            else: 
-                print("Aún no me desvio")"""
+
 
             machinarie.region0Bounds(d,reg0)
 
@@ -103,19 +91,6 @@ while instruccion == 'y':
             with open ("d1.csv", "a") as pos:
                 pos.write("%s\n" % (d))
 
-"""            flag_sensor_dist= flag_sensor_dist()
-            if flag_sensor_dist == 8:
-                while flag_sensor == 8:
-                    wr_i2c (softleft)
-                    if flag_sensor_dist() == 1:
-                        break
-            elif flag_sensor_dist == 9:
-                while flag_sensor == 9:
-                    wr_i2c (softleft)
-                    if flag_sensor_dist() == 1:
-                        break
-            else: 
-                print("Aún no me desvio")  """      
 
             machinarie.region1Bounds(d,reg1)
         
@@ -128,19 +103,7 @@ while instruccion == 'y':
             with open ("d2.csv", "a") as pos:
                 pos.write("%s\n" % (d))
 
-"""            flag_sensor_dist= flag_sensor_dist()
-            if flag_sensor_dist == 8:
-                while flag_sensor == 8:
-                    wr_i2c (softleft)
-                    if flag_sensor_dist() == 1:
-                        break
-            elif flag_sensor_dist == 9:
-                while flag_sensor == 9:
-                    wr_i2c (softleft)
-                    if flag_sensor_dist() == 1:
-                        break
-            else: 
-                print("Aún no me desvio")"""
+
 
             machinarie.region2Bounds(d,reg2)
         
@@ -153,19 +116,7 @@ while instruccion == 'y':
             with open ("d3.csv", "a") as pos:
                 pos.write("%s\n" % (d))
 		
-"""            flag_sensor_dist= flag_sensor_dist()
-            if flag_sensor_dist == 8:
-                while flag_sensor == 8:
-                    wr_i2c (softleft)
-                    if flag_sensor_dist() == 1:
-                        break
-            elif flag_sensor_dist == 9:
-                while flag_sensor == 9:
-                    wr_i2c (softleft)
-                    if flag_sensor_dist() == 1:
-                        break
-            else: 
-                print("Aún no me desvio") """          
+       
 
             machinarie.region3Bounds(d,reg3)
         else
