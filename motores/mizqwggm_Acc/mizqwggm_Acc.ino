@@ -1,7 +1,7 @@
 #include <AccelStepper.h>
 #include <Wire.h>
 int control;
-int velo=150;
+int velo=800;
 
 
 AccelStepper mizq(AccelStepper::HALF4WIRE,8,9,10,11); 
@@ -12,9 +12,8 @@ void setup()
     Wire.onReceive(receiveEvent); 
     Serial.begin(9600);
     mizq.enableOutputs();
-    mizq.setMaxSpeed(200); //Corregir por experimientacion
-    mizq.setAcceleration(100.0);//Corregir por experimientacion
-    mizq.setSpeed(velo);
+    mizq.setMaxSpeed(1000);
+    mizq.setSpeed(800);
     
 }
 
@@ -22,36 +21,29 @@ void receiveEvent(int howMany) {
 
   if (Wire.available()>0) { 
   control = Wire.read();  
-    }Serial.println(control);}
+    }}
     
 void loop()
-{
-  //obtencion de cantidad pasos para que haga una solo revolución.
-   // mizq.run();
-    //Serial.println(mizq.currentPosition();)    
-    /*mizq.runToNewPosition(0);
-    mizq.runToNewPosition(90);
-    mizq.runToNewPosition(180);
-    mizq.runToNewPosition(270);
-    mizq.runToNewPosition(360);*/
+{ 
 //MOVIMIENTOS
 if (control == 1){
   //HACIA DELANTE 
     //mizq.enableOutputs();
-    mizq.run();
-    mizq.move(360);
-    control=11;
+    mizq.runSpeed();
+    //Serial.print(control);
+    //Serial.println("Hacia delante");
+    //control=11;
     
 }else if(control == 4){
   //DERECHA 90 GRADOS CW
     mizq.run();
-    mizq.move(90);
+    mizq.move(360);
  
 }else if (control == 3 || control== 13){
   //DETENER Y  IZQUIERDA 90 GRADOS
     //mizq.disableOutputs();
-    mizq.stop();
-    control=11;
+    mizq.disableOutputs();
+  
     
 }else if (control== 10){
   //DERECHA SOBRE EJE
