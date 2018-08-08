@@ -76,8 +76,8 @@ drp = [0,0,0,0]#una para cada modelo y0,y1,y2,y3
 
 #Envio de Instruciones
 def hardrst(inst):
-	bus.write_byte(mizq,data)
-	bus.write_byte(mder,data)
+	bus.write_byte(mizq,inst)
+	bus.write_byte(mder,inst)
 
 def wr_i2creg (instruction, flag):
 	if flag == 1:
@@ -215,7 +215,7 @@ def region0Bounds(d,reg0):
 		if callreg0c == 1:
 			wr_i2c(int(ins[4]),1)
 			print("Wall-i actualmente esta curvandoreg0")
-        	time.sleep(delay) #correccion de region curvara y luego avanzara para obligarlo
+        		time.sleep(delay) #correccion de region curvara y luego avanzara para obligarlo
 			callreg0c=callreg0c+1
 
 		else:
@@ -239,7 +239,7 @@ def region1Bounds(d,reg1):
 		if callreg1c == 1:
 			wr_i2c(int(ins[5]),1)
 			print("Wall-i actualmente esta curvandoreg1")
-        	time.sleep(delay) #obligando a cambio de region
+        		time.sleep(delay) #obligando a cambio de region
 			callreg1c=callreg1c+1
 		else:
 			wr_i2c(14,2) #dummy ins
@@ -261,7 +261,7 @@ def region2Bounds(d,reg2):
 		if callreg2c == 1:
 			wr_i2c(int(ins[5]),1)
 			print("Wall-i actualmente esta curvandoreg2")
-        	time.sleep(delay) #obligando a cambio de region
+        		time.sleep(delay) #obligando a cambio de region
 			callreg2c=callreg2c+1
 		else:
 			wr_i2c(14,2) #dummy ins
@@ -283,7 +283,7 @@ def region3Bounds(d,reg3):
 		if callreg3c == 1:
 			wr_i2c(int(ins[5]),1)
 			print("Wall-i actualmente esta curvandoreg2")
-        	time.sleep(delay) #obligando a cambio de region
+        		time.sleep(delay) #obligando a cambio de region
 			callreg3c=callreg3c+1
 		else:
 			wr_i2c(14,2) #dummy ins

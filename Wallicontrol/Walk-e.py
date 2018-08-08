@@ -27,7 +27,7 @@ gpsd = None #seting the global variable
 os.system('clear') #clear the terminal (optional)
 os.system('i2cdetect -y 1') #clear the terminal (optional)
 #os.system('cgps') #clear the terminal (optional)
-os.system('sudo gpsd /dev/ttyACM0 -F /var/run/gpsd.sock')
+#os.system('sudo gpsd /dev/ttyACM0 -F /var/run/gpsd.sock')
 class GpsPoller(threading.Thread):
   def __init__(self):
     threading.Thread.__init__(self)
@@ -153,7 +153,7 @@ if __name__ == '__main__':
 
 	except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
 		machinarie.hardrst(int(20))
-		print "Cerrando programa"
-		gpsp.running = False
-		gpsp.join() # wait for the thread to finish what it's doing
-	print "bye"
+		gps.running = False
+		gps.join()
+		print "Cerrando programa, bye :D"
+	
