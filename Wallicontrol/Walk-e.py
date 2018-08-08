@@ -144,7 +144,7 @@ if __name__ == '__main__':
 			else:
 				print("No se donde estoy")
 				
-    except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
+	except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
 		print "Cerrando programa"
 		gpsp.running = False
 		gpsp.join() # wait for the thread to finish what it's doing
