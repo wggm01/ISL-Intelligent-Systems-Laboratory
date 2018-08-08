@@ -15,10 +15,9 @@ void setup() {
   Wire.onReceive(receiveEvent);
   
   //STEPPER 
-  mder.enableOutputs();
-  mder.setMaxSpeed(200); //Corregir por experimientacion
-  mder.setAcceleration(100.0);//Corregir por experimientacion
-  mder.setSpeed(velo);
+ 
+  mder.setMaxSpeed(1000);
+  mder.setSpeed(800);;
   Serial.begin(9600);
   
 }
@@ -28,7 +27,7 @@ void receiveEvent(int howMany) {
 if (Wire.available()>0) { 
   control = Wire.read();  
 }
-Serial.println(control);}
+}
  
 void loop() {
   
@@ -36,15 +35,14 @@ void loop() {
 if (control == 1){
   //HACIA DELANTE 
     //mizq.enableOutputs();
-    mder.run();
-    mder.move(360);
-    control=11;
+    mder.runSpeed();
+    
     
 }else if (control == 4 || control== 13){
   //DETENER Y  IZQUIERDA 90 GRADOS
     //mizq.disableOutputs();
-    mder.stop();
-    control=11;
+     mder.disableOutputs();
+    
     
 }else if(control == 3){
   //DERECHA 90 GRADOS CW
