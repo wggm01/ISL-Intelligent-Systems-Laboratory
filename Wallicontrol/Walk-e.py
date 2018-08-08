@@ -100,7 +100,7 @@ if __name__ == '__main__':
 				with open ("d0.csv", "a") as pos:
 					pos.write("%s\n" % (d))
 
-				flag_sensor_dist= flag_sensor_dist()
+			"""	flag_sensor_dist= flag_sensor_dist()
 				if flag_sensor_dist == 8:
 					while flag_sensor == 8:
 						wr_i2c (softleft)
@@ -112,7 +112,7 @@ if __name__ == '__main__':
 						if flag_sensor_dist() == 1:
 							break
 				else: 
-					print("Aún no me desvio") 
+					print("Aun no me desvio") """
 
 				machinarie.region0Bounds(d,reg0)
 
@@ -125,7 +125,7 @@ if __name__ == '__main__':
 					with open ("d1.csv", "a") as pos:
 						pos.write("%s\n" % (d))
 
-					flag_sensor_dist= flag_sensor_dist()
+				"""	flag_sensor_dist= flag_sensor_dist()
 					if flag_sensor_dist == 8:
 						while flag_sensor == 8:
 							wr_i2c (softleft)
@@ -137,7 +137,7 @@ if __name__ == '__main__':
 							if flag_sensor_dist() == 1:
 								break
 					else: 
-						print("Aún no me desvio")         
+						print("Aún no me desvio")"""         
 
 				machinarie.region1Bounds(d,reg1)
 			
@@ -150,7 +150,7 @@ if __name__ == '__main__':
 				with open ("d2.csv", "a") as pos:
 					pos.write("%s\n" % (d))
 
-				flag_sensor_dist= flag_sensor_dist()
+			"""	flag_sensor_dist= flag_sensor_dist()
 				if flag_sensor_dist == 8:
 					while flag_sensor == 8:
 						wr_i2c (softleft)
@@ -162,7 +162,7 @@ if __name__ == '__main__':
 						if flag_sensor_dist() == 1:
 							break
 				else: 
-					print("Aún no me desvio")
+					print("Aún no me desvio") """
 
 				machinarie.region2Bounds(d,reg2)
 			
@@ -175,7 +175,7 @@ if __name__ == '__main__':
 				with open ("d3.csv", "a") as pos:
 					pos.write("%s\n" % (d))
 
-				flag_sensor_dist= flag_sensor_dist()
+			"""	flag_sensor_dist= flag_sensor_dist()
 				if flag_sensor_dist == 8:
 					while flag_sensor == 8:
 						wr_i2c (softleft)
@@ -187,12 +187,12 @@ if __name__ == '__main__':
 						if flag_sensor_dist() == 1:
 							break
 				else: 
-					print("Aún no me desvio")           
+					print("Aún no me desvio") """           
 
 				machinarie.region3Bounds(d,reg3)
 			else
 				print("No se donde estoy")
-			time.sleep(1)
+			#time.sleep(1)
     except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
 		print "Cerrando programa"
 		gpsp.running = False
