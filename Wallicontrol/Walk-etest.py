@@ -121,4 +121,4 @@ while instruccion == 'y':
             machinarie.region3Bounds(d,reg3)
         else:
             print("No se donde estoy")
-	    time.sleep(1)
+	    time.sleep(3)
