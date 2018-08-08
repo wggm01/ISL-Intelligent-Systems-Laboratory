@@ -100,99 +100,50 @@ if __name__ == '__main__':
 				with open ("d0.csv", "a") as pos:
 					pos.write("%s\n" % (d))
 
-			"""	flag_sensor_dist= flag_sensor_dist()
-				if flag_sensor_dist == 8:
-					while flag_sensor == 8:
-						wr_i2c (softleft)
-						if flag_sensor_dist() == 1:
-							break
-						elif flag_sensor_dist == 9:
-							while flag_sensor == 9:
-								wr_i2c (softleft)
-						if flag_sensor_dist() == 1:
-							break
-				else: 
-					print("Aun no me desvio") """
+
 
 				machinarie.region0Bounds(d,reg0)
 
 			elif reg1 <= limit:
-				#codigo
-				#virtual = machinarie.virtual_pos1()
-				#latv,longv= virtual
-					d=machinarie.distReg1(latv1,lonv1)
-				#print(d)
-					with open ("d1.csv", "a") as pos:
-						pos.write("%s\n" % (d))
+            #codigo
+            #virtual = machinarie.virtual_pos1()
+            #latv,longv= virtual
+				d=machinarie.distReg1(latv1,lonv1)
+				
+				with open ("d1.csv", "a") as pos:
+					pos.write("%s\n" % (d))
 
-				"""	flag_sensor_dist= flag_sensor_dist()
-					if flag_sensor_dist == 8:
-						while flag_sensor == 8:
-							wr_i2c (softleft)
-							if flag_sensor_dist() == 1:
-								break
-							elif flag_sensor_dist == 9:
-								while flag_sensor == 9:
-									wr_i2c (softleft)
-							if flag_sensor_dist() == 1:
-								break
-					else: 
-						print("Aún no me desvio")"""         
 
 				machinarie.region1Bounds(d,reg1)
-			
+        
 			elif reg2 <= limit:
-				#codigo
-				#virtual = machinarie.virtual_pos2()
-				#latv,longv= virtual
+            #codigo
+            #virtual = machinarie.virtual_pos2()
+            #latv,longv= virtual
 				d=machinarie.distReg2(latv2,lonv2)
-				print(d)
+				
 				with open ("d2.csv", "a") as pos:
 					pos.write("%s\n" % (d))
 
-			"""	flag_sensor_dist= flag_sensor_dist()
-				if flag_sensor_dist == 8:
-					while flag_sensor == 8:
-						wr_i2c (softleft)
-						if flag_sensor_dist() == 1:
-							break
-				elif flag_sensor_dist == 9:
-					while flag_sensor == 9:
-						wr_i2c (softleft)
-						if flag_sensor_dist() == 1:
-							break
-				else: 
-					print("Aún no me desvio") """
+
 
 				machinarie.region2Bounds(d,reg2)
-			
+        
 			elif reg3 <= limit:
-				#codigo
-				#virtual = machinarie.virtual_pos3()
-				#latv,longv= virtual
+            #codigo
+            #virtual = machinarie.virtual_pos3()
+            #latv,longv= virtual
 				d=machinarie.distReg3(latv3,lonv3)
-				print(d)
+            
 				with open ("d3.csv", "a") as pos:
 					pos.write("%s\n" % (d))
-
-			"""	flag_sensor_dist= flag_sensor_dist()
-				if flag_sensor_dist == 8:
-					while flag_sensor == 8:
-						wr_i2c (softleft)
-						if flag_sensor_dist() == 1:
-							break
-				elif flag_sensor_dist == 9:
-					while flag_sensor == 9:
-						wr_i2c (softleft)
-						if flag_sensor_dist() == 1:
-							break
-				else: 
-					print("Aún no me desvio") """           
+		
+       
 
 				machinarie.region3Bounds(d,reg3)
-			else
+			else:
 				print("No se donde estoy")
-			#time.sleep(1)
+				
     except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
 		print "Cerrando programa"
 		gpsp.running = False
