@@ -16,8 +16,8 @@ void setup() {
   
   //STEPPER 
  
-  mder.setMaxSpeed(1000);
-  mder.setSpeed(800);;
+  mder.setMaxSpeed(2000);
+  mder.setSpeed(1000);
   Serial.begin(9600);
   
 }
@@ -47,7 +47,7 @@ if (control == 1){
 }else if(control == 3){
   //DERECHA 90 GRADOS CW
     mder.run();
-    mder.move(90);
+    mder.move(360);
  
 }else if (control== 10){
   //DERECHA SOBRE EJE
@@ -65,8 +65,8 @@ if (control == 1){
     
 }else if (control==2){
  //HACIA ATRAS 
-  mder.run();
-  mder.move(-360);
+  mder.setPinsInverted(true,true,true,true,true);
+  mder.runSpeed();
       
 }else if (control==5){
   //IZQUIERDA ACKERMAN DISMINUYE VELOCIDAD CW

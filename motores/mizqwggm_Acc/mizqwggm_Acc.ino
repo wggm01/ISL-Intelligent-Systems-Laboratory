@@ -12,8 +12,8 @@ void setup()
     Wire.onReceive(receiveEvent); 
     Serial.begin(9600);
     mizq.enableOutputs();
-    mizq.setMaxSpeed(1000);
-    mizq.setSpeed(800);
+    mizq.setMaxSpeed(2000);
+    mizq.setSpeed(1000);
     
 }
 
@@ -37,12 +37,13 @@ if (control == 1){
 }else if(control == 4){
   //DERECHA 90 GRADOS CW
     mizq.run();
-    mizq.move(360);
+    mizq.moveTo(360);
  
 }else if (control == 3 || control== 13){
   //DETENER Y  IZQUIERDA 90 GRADOS
     //mizq.disableOutputs();
     mizq.disableOutputs();
+    
   
     
 }else if (control== 10){
@@ -62,9 +63,9 @@ if (control == 1){
     
 }else if (control==2){
  //HACIA ATRAS 
-  mizq.run();
-  mizq.move(-360);
-      
+  mizq.setPinsInverted(true,true,true,true,true);
+  mizq.runSpeed(); 
+     
 }else if (control==5){
   //IZQUIERDA ACKERMAN DISMINUYE VELOCIDAD CW
     mizq.setSpeed(velo-10);
