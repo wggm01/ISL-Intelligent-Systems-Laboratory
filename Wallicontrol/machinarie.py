@@ -38,22 +38,11 @@ mizq = 0x40                    #LIBRERIAS, ESCLAVOS Y INSTRUCCIONES
 mder = 0x50
 dist_sensoraddr = 0x60
 bus = smbus.SMBus(1)
-ins = [1,2,3,4,5,6,7,8,9,10,11,12]
+ins = [1,2,3,4,5,6,7,8,9,10,11,12,13]
 
 #banderas para regiones
-callreg0=1
-callreg1=1
-callreg2=1
-callreg3=1
-
-callreg0c=1
-callreg1c=1
-callreg2c=1
-callreg3c=1
-
-latitudpast=0.0000
-longitudpast=0.0000
-
+global callreg
+callreg = [1,1,1,1,1,1,1,1]
 delay = 5 #LO USARE.
 limit = 3
 #Connecion al puerto serial
@@ -68,33 +57,35 @@ global xa
 global ya
 global q
 global drp
+global coordntp
 p = [0,0] #Posicion dinamica
 xa = [-79.53169299,-79.53152138,-79.53177739,-79.53184155] #X1 Y X2 corresponden a abcisas del punto inicio y finalsel.
 ya = [9.023410836,9.023175628,9.022897331,9.023147334] #Y1 Y Y2 corresponden a ordenadas del punto inicio y finalsel.
 q = [0,0] # Puntos virtual trasladado
 drp = [0,0,0,0]#una para cada modelo y0,y1,y2,y3
+coordntp = [0,0]
 
 #Envio de Instruciones
 def hardrst(inst):
 	bus.write_byte(mizq,inst)
 	bus.write_byte(mder,inst)
 
-def wr_i2creg (instruction, flag):
+def wr_i2c (instruction, flag):
 	if flag == 1:
 		data = instruction
 		bus.write_byte(mizq,data)
 		bus.write_byte(mder,data)
 	else:
-		wr_i2creg.func_code = (lambda:None).func_code
+		#wr_i2c.func_code = (lambda:None).func_code
 		print("instruccion enviada")
 
 #Latitud(x), Longitud(y) evitar coordenadas iguales
 def not_repeatcoord (latitud,longitud):
-	if latitud != latitudpast and longitud != longitudpast :
+	if latitud != coordntp[0] and longitud != coordntp[1] :
 		return latitud, longitud
 	else:
-		latitudpast= latitud
-		longitudpast = longitud
+		coordntp[0]= latitud
+		coordntp[1] = longitud
 
 
 """def Data():
@@ -204,19 +195,19 @@ def region0Bounds(d,reg0):
     #ed0 = enco_check_reg0(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
 		#wr_i2c(int(ins[0]))
-		if callreg0 == 1:
-			wr_i2c(int(d),1) #envio la distancia para que el robot se mueva la convierta en pasos
+		if callreg[0] == 1:
+			wr_i2c(ins[0],1) #envio la distancia para que el robot se mueva la convierta en pasos
 			print("Wall-i acutalmente se esta moviendo reg0")
-			callreg0=callreg0+1
+			callreg[0]=callreg[0]+1
 		else:
 			wr_i2c(14,2)
 
     if d <= min2:#Establece cuando curvara
-		if callreg0c == 1:
-			wr_i2c(int(ins[4]),1)
+		if callreg[1] == 1:
+			wr_i2c(ins[2],1)
 			print("Wall-i actualmente esta curvandoreg0")
         		time.sleep(delay) #correccion de region curvara y luego avanzara para obligarlo
-			callreg0c=callreg0c+1
+			callreg[1]=callreg[1]+1
 
 		else:
 			wr_i2c(14,2) #dummy ins
@@ -227,20 +218,20 @@ def region1Bounds(d,reg1):
     min3=3
     #ed1 = enco_check_reg1(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-		if callreg1 == 1:
-			wr_i2c(int(d),1) #envio la distancia para que el robot se mueva la convierta en pasos
+		if callreg[2] == 1:
+			wr_i2c(ins[0],1) #envio la distancia para que el robot se mueva la convierta en pasos
 			print("Wall-i acutalmente se esta moviendo reg1")
-			callreg1=callreg1+1
+			callreg[2]=callreg[2]+1
 		else:
 			wr_i2c(14,2)
 
     if d <= min3:#Establece cuando curvara
 
-		if callreg1c == 1:
-			wr_i2c(int(ins[5]),1)
+		if callreg[3] == 1:
+			wr_i2c(ins[2],1)
 			print("Wall-i actualmente esta curvandoreg1")
         		time.sleep(delay) #obligando a cambio de region
-			callreg1c=callreg1c+1
+			callreg[3]=callreg[3]+1
 		else:
 			wr_i2c(14,2) #dummy ins
 
@@ -250,19 +241,19 @@ def region2Bounds(d,reg2):
     min2=3
     #ed2 = enco_check_reg2(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-		if callreg2 == 1:
-			wr_i2c(int(d),1) #envio la distancia para que el robot se mueva la convierta en pasos
+		if callreg[4] == 1:
+			wr_i2c(ins[0],1) #envio la distancia para que el robot se mueva la convierta en pasos
 			print("Wall-i acutalmente se esta moviendo reg2")
-			callreg2=callreg2+1
+			callreg[4]=callreg[4]+1
 		else:
 			wr_i2c(14,2)
 
     if d <= min2:#Establece cuando curvara
-		if callreg2c == 1:
-			wr_i2c(int(ins[5]),1)
+		if callreg[5] == 1:
+			wr_i2c(ins[0],1)
 			print("Wall-i actualmente esta curvandoreg2")
         		time.sleep(delay) #obligando a cambio de region
-			callreg2c=callreg2c+1
+			callreg[5]=callreg[5]+1
 		else:
 			wr_i2c(14,2) #dummy ins
 
@@ -272,19 +263,19 @@ def region3Bounds(d,reg3):
     min3=3
     #ed3 = enco_check_reg3(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-		if callreg3 == 1:
-			wr_i2c(int(d),1) #envio la distancia para que el robot se mueva la convierta en pasos
+		if callreg[6] == 1:
+			wr_i2c(ins[0],1) #envio la distancia para que el robot se mueva la convierta en pasos
 			print("Wall-i acutalmente se esta moviendo reg3")
-			callreg3=callreg3+1
+			callreg[6]=callreg[6]+1
 		else:
 			wr_i2c(14,2)
 
     if d <= min3:#Establece cuando curvara
-		if callreg3c == 1:
-			wr_i2c(int(ins[5]),1)
-			print("Wall-i actualmente esta curvandoreg2")
+		if callreg[7] == 1:
+			wr_i2c(ins[4],1)
+			print("Wall-i actualmente esta curvandoreg3")
         		time.sleep(delay) #obligando a cambio de region
-			callreg3c=callreg3c+1
+			callreg[7]=callreg[7]+1
 		else:
 			wr_i2c(14,2) #dummy ins
         #time.sleep(delay)
@@ -343,7 +334,7 @@ def virtual_pos3 (latitud,longitud):
     p[0]=longitud#x
     p[1]=latitud
     #Calculo de pendientes:
-    m1 =(ya[1]-ya[3])/(xa[1]-xa[3])
+    m1 =(ya[0]-ya[3])/(xa[0]-xa[3])
     m2 = -1/m1
     #calculo de interseccion de ambas rectas,esto me da la lat,long (virtual)
     x = (m1*xa[3]-ya[3]+p[1]-m2*p[0])/(m1-m2)

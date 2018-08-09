@@ -29,35 +29,38 @@ while instruccion == 'y':
 
     #data = machinarie.Data()
     #if data!= None :
-        global latitud
-        global longitud
+        #global latitud
+        #global longitud
         #latitud,longitud = data   #Revision de posicion acual sin procesarself.
-	    latitud_raw= sheet.cell(row=i, column=1).value
-	    longitud_raw= sheet.cell(row=i, column=2).value
-	    i +=1
+        latitud_raw= sheet.cell(row=i, column=1).value
+        longitud_raw= sheet.cell(row=i, column=2).value
+	
+        i +=1
+	
+
         envelope = pubnub.publish().channel("map2-channel").message({
-        'lat': float(latitud),'lng': float(longitud)}).sync()
+        'lat': float(latitud_raw),'lng': float(longitud_raw)}).sync()
         nrp = machinarie.not_repeatcoord(latitud_raw,longitud_raw)
         if nrp != None:
             latitud,longitud = nrp
         virtual_0 = machinarie.virtual_pos0(latitud,longitud)
-        global latv0
-        global lonv0
+        #global latv0
+        #global lonv0
         latv0,lonv0= virtual_0
 
         virtual_1 = machinarie.virtual_pos1(latitud,longitud)
-        global latv1
-        global lonv1
+        #global latv1
+        #global lonv1
         latv1,lonv1= virtual_1
 
         virtual_2 = machinarie.virtual_pos2(latitud,longitud)
-        global latv2
-        global lonv2
+        #global latv2
+        #global lonv2
         latv2,lonv2= virtual_2
 
         virtual_3 = machinarie.virtual_pos3(latitud,longitud)
-        global latv3
-        global lonv3
+        #global latv3
+        #global lonv3
         latv3,lonv3= virtual_3
 
         #with open ("Virtual_pos_all.csv", "a") as pos:
@@ -89,7 +92,7 @@ while instruccion == 'y':
             #virtual = machinarie.virtual_pos1()
             #latv,longv= virtual
             d=machinarie.distReg1(latv1,lonv1)
-            print(d)
+            #print(d)
             with open ("d1.csv", "a") as pos:
                 pos.write("%s\n" % (d))
 
@@ -101,7 +104,7 @@ while instruccion == 'y':
             #virtual = machinarie.virtual_pos2()
             #latv,longv= virtual
             d=machinarie.distReg2(latv2,lonv2)
-            print(d)
+            #print(d)
             with open ("d2.csv", "a") as pos:
                 pos.write("%s\n" % (d))
 
@@ -114,7 +117,7 @@ while instruccion == 'y':
             #virtual = machinarie.virtual_pos3()
             #latv,longv= virtual
             d=machinarie.distReg3(latv3,lonv3)
-            print(d)
+            #print(d)
             with open ("d3.csv", "a") as pos:
                 pos.write("%s\n" % (d))
 
@@ -123,4 +126,6 @@ while instruccion == 'y':
             machinarie.region3Bounds(d,reg3)
         else:
             print("No se donde estoy")
-	    time.sleep(3)
+	    #time.sleep(3)
+	    machinarie.hardrst(int(13))
+	time.sleep(2)
