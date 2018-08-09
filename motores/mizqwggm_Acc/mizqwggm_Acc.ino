@@ -1,7 +1,8 @@
 #include <AccelStepper.h>
 #include <Wire.h>
 int control;
-int velo=800;
+int velo;
+
 
 
 AccelStepper mizq(AccelStepper::HALF4WIRE,8,9,10,11); 
@@ -11,33 +12,36 @@ void setup()
     Wire.begin(0x40); 
     Wire.onReceive(receiveEvent); 
     Serial.begin(9600);
-    mizq.enableOutputs();
-    mizq.setMaxSpeed(2000);
-    mizq.setSpeed(1000);
-    
+    mizq.setMaxSpeed(1000);
+    mizq.setAcceleration(800);
 }
 
 void receiveEvent(int howMany) {
 
   if (Wire.available()>0) { 
-  control = Wire.read();  
-    }}
+  control = Wire.read(); }}
     
 void loop()
 { 
+  mizq.setCurrentPosition(0);
 //MOVIMIENTOS
 if (control == 1){
-  //HACIA DELANTE 
-    //mizq.enableOutputs();
-    mizq.runSpeed();
+  //HACIA DELANTE
+    
+    //mizq.runSpeedToPosition();
+    mizq.runToNewPosition(1700); 
+    mizq.moveTo(1700);
+    if(mizq.currentPosition()== 1700){mizq.disableOutputs();}
     //Serial.print(control);
     //Serial.println("Hacia delante");
-    //control=11;
+    control=11;
     
 }else if(control == 4){
   //DERECHA 90 GRADOS CW
     mizq.run();
-    mizq.moveTo(360);
+    mizq.runToNewPosition(1700);
+    if(mizq.currentPosition()== 1700){mizq.disableOutputs();}
+    control=11;
  
 }else if (control == 3 || control== 13){
   //DETENER Y  IZQUIERDA 90 GRADOS
@@ -50,8 +54,9 @@ if (control == 1){
   //DERECHA SOBRE EJE
     //mizq.enableOutputs();
     mizq.run();
-    mizq.move(90);  
-    control=11;
+    mizq.runToNewPosition(1700);
+    if(mizq.currentPosition()== 1700){mizq.disableOutputs();}  
+    //control=11;
     
   
 }else if(control==9){
@@ -63,8 +68,10 @@ if (control == 1){
     
 }else if (control==2){
  //HACIA ATRAS 
-  mizq.setPinsInverted(true,true,true,true,true);
-  mizq.runSpeed(); 
+  mizq.run();
+  mizq.runToNewPosition(-1700);
+  if(mizq.currentPosition()== -1700){mizq.disableOutputs();}
+  control=11; 
      
 }else if (control==5){
   //IZQUIERDA ACKERMAN DISMINUYE VELOCIDAD CW

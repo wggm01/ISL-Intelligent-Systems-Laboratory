@@ -16,8 +16,8 @@ void setup() {
   
   //STEPPER 
  
-  mder.setMaxSpeed(2000);
-  mder.setSpeed(1000);
+  mder.setMaxSpeed(1000);
+  mder.setAcceleration(800);
   Serial.begin(9600);
   
 }
@@ -30,13 +30,16 @@ if (Wire.available()>0) {
 }
  
 void loop() {
-  
+
+mder.setCurrentPosition(0);
 //MOVIMIENTOS  
 if (control == 1){
   //HACIA DELANTE 
     //mizq.enableOutputs();
-    mder.runSpeed();
-    
+    mder.run();
+    mder.runToNewPosition(1700);
+    if(mder.currentPosition()== 1700){mder.disableOutputs();}
+    control=11;
     
 }else if (control == 4 || control== 13){
   //DETENER Y  IZQUIERDA 90 GRADOS
@@ -47,8 +50,10 @@ if (control == 1){
 }else if(control == 3){
   //DERECHA 90 GRADOS CW
     mder.run();
-    mder.move(360);
- 
+    mder.runToNewPosition(1700);
+    if(mder.currentPosition()== 1700){mder.disableOutputs();}
+    control=11;
+    
 }else if (control== 10){
   //DERECHA SOBRE EJE
     //mizq.enableOutputs();
@@ -65,9 +70,11 @@ if (control == 1){
     
 }else if (control==2){
  //HACIA ATRAS 
-  mder.setPinsInverted(true,true,true,true,true);
-  mder.runSpeed();
-      
+  mder.run();
+  mder.runToNewPosition(-1700);
+  if(mder.currentPosition()== -1700){mder.disableOutputs();} 
+  control=11; 
+    
 }else if (control==5){
   //IZQUIERDA ACKERMAN DISMINUYE VELOCIDAD CW
     mder.setSpeed(velo+10);
