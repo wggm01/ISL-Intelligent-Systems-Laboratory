@@ -204,7 +204,7 @@ def region0Bounds(d,reg0):
 
     if d <= min2:#Establece cuando curvara
 		if callreg[1] == 1:
-			wr_i2c(ins[2],1)
+			wr_i2c(ins[3],1)
 			print("Wall-i actualmente esta curvandoreg0")
         		time.sleep(delay) #correccion de region curvara y luego avanzara para obligarlo
 			callreg[1]=callreg[1]+1
@@ -228,7 +228,7 @@ def region1Bounds(d,reg1):
     if d <= min3:#Establece cuando curvara
 
 		if callreg[3] == 1:
-			wr_i2c(ins[2],1)
+			wr_i2c(ins[3],1)
 			print("Wall-i actualmente esta curvandoreg1")
         		time.sleep(delay) #obligando a cambio de region
 			callreg[3]=callreg[3]+1
@@ -242,7 +242,7 @@ def region2Bounds(d,reg2):
     #ed2 = enco_check_reg2(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
 		if callreg[4] == 1:
-			wr_i2c(ins[0],1) #envio la distancia para que el robot se mueva la convierta en pasos
+			wr_i2c(ins[8],1) #envio la distancia para que el robot se mueva la convierta en pasos
 			print("Wall-i acutalmente se esta moviendo reg2")
 			callreg[4]=callreg[4]+1
 		else:
@@ -250,7 +250,7 @@ def region2Bounds(d,reg2):
 
     if d <= min2:#Establece cuando curvara
 		if callreg[5] == 1:
-			wr_i2c(ins[0],1)
+			wr_i2c(ins[8],1)
 			print("Wall-i actualmente esta curvandoreg2")
         		time.sleep(delay) #obligando a cambio de region
 			callreg[5]=callreg[5]+1
