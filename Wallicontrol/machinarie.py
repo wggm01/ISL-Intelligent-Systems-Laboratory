@@ -41,8 +41,20 @@ bus = smbus.SMBus(1)
 ins = [1,2,3,4,5,6,7,8,9,10,11,12,13]
 
 #banderas para regiones
+
+callreg0=1
+callreg1=1
+callreg2=1
+callreg3=1
+
+callreg0c=1
+callreg1c=1
+callreg2c=1
+callreg3c=1
+
 global callreg
 callreg = [1,1,1,1,1,1,1,1]
+
 delay = 5 #LO USARE.
 limit = 3
 #Connecion al puerto serial
@@ -65,6 +77,9 @@ q = [0,0] # Puntos virtual trasladado
 drp = [0,0,0,0]#una para cada modelo y0,y1,y2,y3
 coordntp = [0,0]
 
+
+
+
 #Envio de Instruciones
 def hardrst(inst):
 	bus.write_byte(mizq,inst)
@@ -80,7 +95,12 @@ def wr_i2c (instruction, flag):
 		print("instruccion enviada")
 
 #Latitud(x), Longitud(y) evitar coordenadas iguales
+
+
+
 def not_repeatcoord (latitud,longitud):
+
+
 	if latitud != coordntp[0] and longitud != coordntp[1] :
 		return latitud, longitud
 	else:

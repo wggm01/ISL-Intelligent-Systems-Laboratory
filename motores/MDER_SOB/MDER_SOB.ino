@@ -133,10 +133,23 @@ void receiveEvent(int howMany) {
 if (Wire.available()==1) { // loop through all but the last
   control = Wire.read();
 }
+<<<<<<< HEAD
+}
+
+
+ 
+/*---------------------------------------------------------------------------------*/
+//Logica de movimiento
+void loop() {
+ /* if (Serial.available()>0) { // loop through all but the last
+  control = Serial.read();
+}/*
+=======
 } 
 /*---------------------------------------------------------------------------------*/
 //Logica de movimiento
 void loop() {
+>>>>>>> 9b8bb25644dd8846a22744bdc7c725f2f6e7b81a
 /*---------------------------------------------------------------------------------*/
 while(control == 1){
       aPin = 8; //INA 8
@@ -234,7 +247,11 @@ for (int i=0; i<400;){
       aPin = 11; //INC 11
       bPin = 9; //IND 9
       aPrimePin = 10; //INB 10
+<<<<<<< HEAD
+      bPrimePin = 8; //INA 8
+=======
       bPrimePin = 8; //INA 8 
+>>>>>>> 9b8bb25644dd8846a22744bdc7c725f2f6e7b81a
       Mov_Mder ();
       i = i+1;
   }}
@@ -252,4 +269,8 @@ for (int i=0; i<400;){
  
 /*---------------------------------------------------------------------------------*/
 }
+<<<<<<< HEAD
 //Fin de la logica de movimiento                                                      
+=======
+//Fin de la logica de movimiento                                                      
+>>>>>>> 9b8bb25644dd8846a22744bdc7c725f2f6e7b81a
