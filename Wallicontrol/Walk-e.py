@@ -61,6 +61,13 @@ if __name__ == '__main__':
 			global longitud
 			latitud_raw= gpsd.fix.latitude
 			longitud_raw= gpsd.fix.longitude
+			time= datetime.datetime.now()
+			
+			with open ("raw_coords.csv", "a") as pos:
+                                pos.write("%s, %s, %s \n" % ( latitud_raw, longitud_raw,time ))
+
+			machinarie.get_data_gyro()
+			machinarie.get_data_ultra()
 
 			nrp = machinarie.not_repeatcoord(latitud_raw,longitud_raw)
 			if nrp != None:

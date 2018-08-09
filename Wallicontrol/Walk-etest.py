@@ -36,7 +36,9 @@ while instruccion == 'y':
         longitud_raw= sheet.cell(row=i, column=2).value
 	
         i +=1
-	
+
+	machinarie.get_data_ultra()
+	machinarie.get_data_gyro()	
 
         envelope = pubnub.publish().channel("map2-channel").message({
         'lat': float(latitud_raw),'lng': float(longitud_raw)}).sync()

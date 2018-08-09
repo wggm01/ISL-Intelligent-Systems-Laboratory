@@ -48,8 +48,8 @@ limit = 3
 #Connecion al puerto serial
 #gps = serial.Serial('COM14', 4800)
 #gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
-#ard_gyro = serial.Serial("/dev/ttyACM1", baudrate = 9600)
-#ard_ultra = serial.Serial("/dev/ttyACM", baudrate = 9600)
+ard_gyro = serial.Serial("/dev/ttyACM1", baudrate = 9600)
+ard_ultra = serial.Serial("/dev/ttyACM", baudrate = 9600)
 
 #Vectores como variables globales incializdas en 0 para luego ser modi.
 global p
@@ -87,6 +87,17 @@ def not_repeatcoord (latitud,longitud):
 		coordntp[0]= latitud
 		coordntp[1] = longitud
 
+def get_data_gyro :
+	ard_gyro_data= ard_gyro.readline()
+	time= datetime.datetime.now()
+	with open ("gyrodata.csv", "a") as pos:
+            pos.write("%s, %s \n" % ( ard_gyro_data,time))
+
+def get_data_ultra :
+        ard_ultra_data= ard_ultra.readline()
+        time= datetime.datetime.now()
+        with open ("gyrodata.csv", "a") as pos:
+            pos.write("%s, %s \n" % ( ard_ultra_data,time))
 
 """def Data():
     gps_sentece = gps.readline()
