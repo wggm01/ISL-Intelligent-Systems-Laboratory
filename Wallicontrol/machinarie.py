@@ -4,10 +4,12 @@ global clk1
 global dt1
 global clk2
 global dt2
+
 clk1=5
 dt1=13
 clk2=6
 dt2=19
+
 #seteo de pines del gpio
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(clk1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
@@ -30,7 +32,7 @@ import serial
 import csv
 import math
 import smbus
-#from vincenty import vincenty
+
 #Variables y Esclavos
 mizq = 0x40                    #LIBRERIAS, ESCLAVOS Y INSTRUCCIONES
 mder = 0x50
@@ -38,6 +40,7 @@ dist_sensoraddr = 0x60
 bus = smbus.SMBus(1)
 ins = [1,2,3,4,5,6,7,8,9,10,11,12]
 
+#banderas para regiones
 callreg0=1
 callreg1=1
 callreg2=1
@@ -48,7 +51,10 @@ callreg1c=1
 callreg2c=1
 callreg3c=1
 
-delay = 5 #NO CREO QUE LO USE.
+latitudpast=0.0000
+longitudpast=0.0000
+
+delay = 5 #LO USARE.
 limit = 3
 #Connecion al puerto serial
 #gps = serial.Serial('COM14', 4800)
@@ -57,7 +63,6 @@ limit = 3
 #ard_ultra = serial.Serial("/dev/ttyACM", baudrate = 9600)
 
 #Vectores como variables globales incializdas en 0 para luego ser modi.
-
 global p
 global xa
 global ya
@@ -69,6 +74,8 @@ ya = [9.023410836,9.023175628,9.022897331,9.023147334] #Y1 Y Y2 corresponden a o
 q = [0,0] # Puntos virtual trasladado
 drp = [0,0,0,0]#una para cada modelo y0,y1,y2,y3
 
+#Envio de Instruciones
+
 def wr_i2creg (instruction, flag):
 	if flag == 1:
 		data = instruction
@@ -79,6 +86,12 @@ def wr_i2creg (instruction, flag):
 		print("instruccion enviada")
 
 #Latitud(x), Longitud(y) evitar coordenadas iguales
+def not_repeatcoord (latitud,longitud):
+	if latitud != latitudpast and longitud != longitudpast :
+		return latitud, longitud
+	else:
+		latitudpast= latitud
+		longitudpast = longitud
 
 
 """def Data():
@@ -205,8 +218,6 @@ def region0Bounds(d,reg0):
 		else:
 			wr_i2c(14,2) #dummy ins
 
-
-
 def region1Bounds(d,reg1):
     min1=200 #colocar
     max1=2
@@ -230,7 +241,6 @@ def region1Bounds(d,reg1):
 		else:
 			wr_i2c(14,2) #dummy ins
 
-
 def region2Bounds(d,reg2):
     min1=200 #colocar
     max1=2
@@ -252,7 +262,7 @@ def region2Bounds(d,reg2):
 			callreg2c=callreg2c+1
 		else:
 			wr_i2c(14,2) #dummy ins
-        
+
 def region3Bounds(d,reg3):
     min1=200 #colocar
     max1=2
@@ -407,18 +417,11 @@ def check_3drp (latitud,longitud,latv3,lonv3):
     drp[3]=d
 
     return drp[3]
+
 """
-i=0
-j=0
-k=0
-l=0
 #------------------------
 def enco_check_reg0(d):
-
-    for n in range (0,i+1)
 	count_R=d
-        break
-
     count = (91*count_R)/31 # distancia de region en ticks
     CS1 = GPIO.input(clk1)
     DTS1 = GPIO.input(dt1)
@@ -436,14 +439,12 @@ def enco_check_reg0(d):
     else:
         return edr0 = 0
 
-
+	enco_check_reg0.func_code = (lambda:None).func_code
 
 #--------------------------
 def enco_check_reg1(d):
 
-    for n in range (0,j+1)
 	count_R=d
-        break
 
     count = (91*count_R)/31 # distancia de region en ticks
     CS1 = GPIO.input(clk1)
@@ -461,13 +462,11 @@ def enco_check_reg1(d):
         return edr1
     else:
         return edr1 = 0
-
+	enco_check_reg1.func_code = (lambda:None).func_code
 #--------------------------
 def enco_check_reg2(d):
 
-    for n in range (0,k+1)
 	count_R=d
-        break
 
     count = (91*count_R)/31 # distancia de region en ticks
     CS1 = GPIO.input(clk1)
@@ -485,12 +484,11 @@ def enco_check_reg2(d):
         return edr2
     else:
         return edr2 = 0
+	enco_check_reg2.func_code = (lambda:None).func_code
 
 def enco_check_reg3(d):
 
-    for n in range (0,l+1)
 	count_R=d
-        break
 
     count = (91*count_R)/31 # distancia de region en ticks
     CS1 = GPIO.input(clk1)
@@ -508,14 +506,13 @@ def enco_check_reg3(d):
         return edr3
     else:
         return edr3 = 0
-
+	enco_check_reg3.func_code = (lambda:None).func_code
 
 def flag_sensor_dist():
     if bus.read_byte(slave_dist_sensor)==8:
         return 8
     elif bus.read_byte(slave_dist_sensor)== 9:
         return 9
-
     else:
         return 1
 

@@ -30,8 +30,14 @@ if (Wire.available()>0) {
 }
  
 void loop() {
-
 mder.setCurrentPosition(0);
+if (control>14){
+  int steps =  (control*1700)/0.31;
+  mder.run();
+  mder.runToNewPosition(steps);
+  if(mder.currentPosition()== steps){mder.disableOutputs();}
+  control=11;
+  }
 //MOVIMIENTOS  
 if (control == 1){
   //HACIA DELANTE 
@@ -85,10 +91,10 @@ if (control == 1){
         
 }else if (control == 6){
   //DERECHA ACKERMAN AUMENTA VELOCIDAD CW
-    mder.setSpeed(velo-10);
-    mder.runSpeed();
-    mder.move(360);
-    //mizq.enableOutputs();
+    mder.setMaxSpeed(1000);
+    mder.setAcceleration(900);
+    mder.runToNewPosition(6800);
+    if(mder.currentPosition()== 6800){mder.disableOutputs();} 
     control=11;
    
 }else if (control==7){

@@ -32,12 +32,14 @@ while instruccion == 'y':
         global latitud
         global longitud
         #latitud,longitud = data   #Revision de posicion acual sin procesarself.
-	    latitud= sheet.cell(row=i, column=1).value
-	    longitud= sheet.cell(row=i, column=2).value
+	    latitud_raw= sheet.cell(row=i, column=1).value
+	    longitud_raw= sheet.cell(row=i, column=2).value
 	    i +=1
         envelope = pubnub.publish().channel("map2-channel").message({
         'lat': float(latitud),'lng': float(longitud)}).sync()
-
+        nrp = machinarie.not_repeatcoord(latitud_raw,longitud_raw)
+        if nrp != None:
+            latitud,longitud = nrp
         virtual_0 = machinarie.virtual_pos0(latitud,longitud)
         global latv0
         global lonv0

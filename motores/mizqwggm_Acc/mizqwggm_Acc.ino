@@ -24,6 +24,14 @@ void receiveEvent(int howMany) {
 void loop()
 { 
   mizq.setCurrentPosition(0);
+  
+  if (control>14){
+  int steps =  (control*1700)/0.31;
+  mizq.run();
+  mizq.runToNewPosition(steps);
+  if(mizq.currentPosition()== steps){mizq.disableOutputs();}
+  control=11;
+  }
 //MOVIMIENTOS
 if (control == 1){
   //HACIA DELANTE
@@ -83,12 +91,13 @@ if (control == 1){
     
     
 }else if (control == 6){
-  //DERECHA ACKERMAN AUMENTA VELOCIDAD CW
-    mizq.setSpeed(velo+10);
-    mizq.runSpeed();
-    mizq.move(360);
-    //mizq.enableOutputs();
+  //DERECHA ACKERMAN DISMINUYE VELOCIDAD CW
+    mizq.setMaxSpeed(1000);
+    mizq.setAcceleration(800);
+    mizq.runToNewPosition(6800);
+    if(mizq.currentPosition()== 6800){mizq.disableOutputs();} 
     control=11;
+ 
     
   
 }else if (control==7){
