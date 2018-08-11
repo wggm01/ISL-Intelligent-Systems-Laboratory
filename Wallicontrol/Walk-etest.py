@@ -37,38 +37,38 @@ while instruccion == 'y':
 	i +=1
         envelope = pubnub.publish().channel("map2-channel").message({
         'lat': float(latitud),'lng': float(longitud)}).sync()
-    
+
         virtual_0 = machinarie.virtual_pos0(latitud,longitud)
         global latv0
         global lonv0
         latv0,lonv0= virtual_0
-        
+
         virtual_1 = machinarie.virtual_pos1(latitud,longitud)
         global latv1
         global lonv1
         latv1,lonv1= virtual_1
-    
+
         virtual_2 = machinarie.virtual_pos2(latitud,longitud)
         global latv2
         global lonv2
         latv2,lonv2= virtual_2
-    
+
         virtual_3 = machinarie.virtual_pos3(latitud,longitud)
         global latv3
         global lonv3
         latv3,lonv3= virtual_3
 
-        with open ("Virtual_pos_all.csv", "a") as pos:
-            pos.write("%s, %s, %s, %s, %s, %s, %s, %s\n" % ( latv0, lonv0, latv1, lonv1, latv2, lonv2, latv3, lonv3 ))
-    
+        #with open ("Virtual_pos_all.csv", "a") as pos:
+        #    pos.write("%s, %s, %s, %s, %s, %s, %s, %s\n" % ( latv0, lonv0, latv1, lonv1, latv2, lonv2, latv3, lonv3 ))
+
         reg0 = machinarie.check_0drp(latitud,longitud,latv0,lonv0)
         reg1 = machinarie.check_1drp(latitud,longitud,latv1,lonv1)
         reg2 = machinarie.check_2drp(latitud,longitud,latv2,lonv2)
         reg3 = machinarie.check_3drp(latitud,longitud,latv3,lonv3)
         print("DRP0",reg0,"DRP1",reg1,"DRP2",reg2,"DRP3",reg3)
-        with open ("drp_all.csv", "a") as pos:
-            pos.write("%s, %s, %s, %s\n" % ( reg0,reg1,reg2,reg3))
-    
+        #with open ("drp_all.csv", "a") as pos:
+        #    pos.write("%s, %s, %s, %s\n" % ( reg0,reg1,reg2,reg3))
+
         if  reg0 <= limit:
             #codigo
             #virtual = machinarie.virtual_pos0()
@@ -93,7 +93,7 @@ while instruccion == 'y':
 
 
             machinarie.region1Bounds(d,reg1)
-        
+
         elif reg2 <= limit:
             #codigo
             #virtual = machinarie.virtual_pos2()
@@ -106,7 +106,7 @@ while instruccion == 'y':
 
 
             machinarie.region2Bounds(d,reg2)
-        
+
         elif reg3 <= limit:
             #codigo
             #virtual = machinarie.virtual_pos3()
@@ -115,8 +115,8 @@ while instruccion == 'y':
             print(d)
             with open ("d3.csv", "a") as pos:
                 pos.write("%s\n" % (d))
-		
-       
+
+
 
             machinarie.region3Bounds(d,reg3)
         else:
