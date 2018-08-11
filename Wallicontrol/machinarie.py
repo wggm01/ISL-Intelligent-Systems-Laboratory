@@ -34,9 +34,19 @@ import smbus
 #Variables y Esclavos
 mizq = 0x40                    #LIBRERIAS, ESCLAVOS Y INSTRUCCIONES
 mder = 0x50
-sensorAdress = 0x60
+dist_sensoraddr = 0x60
 bus = smbus.SMBus(1)
 ins = [1,2,3,4,5,6,7,8,9,10,11,12]
+
+callreg0=1
+callreg1=1
+callreg2=1
+callreg3=1
+
+callreg0c=1
+callreg1c=1
+callreg2c=1
+callreg3c=1
 
 delay = 5 #NO CREO QUE LO USE.
 limit = 3
@@ -59,21 +69,18 @@ ya = [9.023410836,9.023175628,9.022897331,9.023147334] #Y1 Y Y2 corresponden a o
 q = [0,0] # Puntos virtual trasladado
 drp = [0,0,0,0]#una para cada modelo y0,y1,y2,y3
 
+def wr_i2creg (instruction, flag):
+	if flag == 1:
+		data = instruction
+		bus.write_byte(mizq,data)
+		bus.write_byte(mder,data)
+	else:
+		wr_i2creg.func_code = (lambda:None).func_code
+		print("instruccion enviada")
 
-	
-def wr_i2c (instruction):
-    
-		
-	data = instruction  
-	bus.write_byte(mizq,data)
-	bus.write_byte(mder,data)
-		
-		
 #Latitud(x), Longitud(y) evitar coordenadas iguales
 
-	
-	
-	
+
 """def Data():
     gps_sentece = gps.readline()
     gps_sentences_fields = gps_sentece.split(",")
@@ -102,7 +109,7 @@ def wr_i2c (instruction):
             pos.write("%s, %s, %s\n" % ( latitud, longitud,now))word
     else:
         print("Aun no se recibe informacion viable del gps")
-        
+
     #else:
      #   print("Esperando senal de aprobacion por parte del gps")
         return latitud,longitud
@@ -177,18 +184,28 @@ def region0Bounds(d,reg0):
     min1=200 #colocar
     max1=2
     min2=3
+
     #ed0 = enco_check_reg0(d)
-    if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta 
-		wr_i2c(int(ins[0]))
-		print("Wall-i acutalmente se esta moviendo reg0")
-	
+    if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
+		#wr_i2c(int(ins[0]))
+		if callreg0 == 1:
+			wr_i2c(int(d),1) #envio la distancia para que el robot se mueva la convierta en pasos
+			print("Wall-i acutalmente se esta moviendo reg0")
+			callreg0=callreg0+1
+		else:
+			wr_i2c(14,2)
+
     if d <= min2:#Establece cuando curvara
-        #arduino.write(Turn)#Mandar un comando hacia Arduino
-		wr_i2c(int(ins[4]))
-		print("Wall-i actualmente esta curvandoreg0")
-        #time.sleep(delay) #tiempo que demora en hacer un giro de 90 grados aprox
-        #bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
-        #bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
+		if callreg0c == 1:
+			wr_i2c(int(ins[4]),1)
+			print("Wall-i actualmente esta curvandoreg0")
+        	time.sleep(delay) #correccion de region curvara y luego avanzara para obligarlo
+			callreg0c=callreg0c+1
+
+		else:
+			wr_i2c(14,2) #dummy ins
+
+
 
 def region1Bounds(d,reg1):
     min1=200 #colocar
@@ -196,13 +213,23 @@ def region1Bounds(d,reg1):
     min3=3
     #ed1 = enco_check_reg1(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-		wr_i2c(int(ins[0]))
-		print("Wall-i acutalmente se esta moviendoreg1")
+		if callreg1 == 1:
+			wr_i2c(int(d),1) #envio la distancia para que el robot se mueva la convierta en pasos
+			print("Wall-i acutalmente se esta moviendo reg1")
+			callreg1=callreg1+1
+		else:
+			wr_i2c(14,2)
 
     if d <= min3:#Establece cuando curvara
-		wr_i2c(int(ins[5]))
-		print("Wall-i actualmente esta curvando reg1")
-        #time.sleep(delay)
+
+		if callreg1c == 1:
+			wr_i2c(int(ins[5]),1)
+			print("Wall-i actualmente esta curvandoreg1")
+        	time.sleep(delay) #obligando a cambio de region
+			callreg1c=callreg1c+1
+		else:
+			wr_i2c(14,2) #dummy ins
+
 
 def region2Bounds(d,reg2):
     min1=200 #colocar
@@ -210,35 +237,50 @@ def region2Bounds(d,reg2):
     min2=3
     #ed2 = enco_check_reg2(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-		wr_i2c(int(ins[5]))
-		print("Wall-i acutalmente se esta moviendoreg2")
+		if callreg2 == 1:
+			wr_i2c(int(d),1) #envio la distancia para que el robot se mueva la convierta en pasos
+			print("Wall-i acutalmente se esta moviendo reg2")
+			callreg2=callreg2+1
+		else:
+			wr_i2c(14,2)
 
     if d <= min2:#Establece cuando curvara
-		wr_i2c(int(ins[5]))
-		print("Wall-i actualmente esta curvandoreg2")
-        #time.sleep(delay) #tiempo que demora en hacer un giro de 90 grados aprox
-        #bus.write_byte(slaveAddress2, Forward)#Mandar un comando hacia MotorDerecho
-        #bus.write_byte(slaveAddress1, Forward)#Mandar un comando hacia MotorIzquierdo
-
+		if callreg2c == 1:
+			wr_i2c(int(ins[5]),1)
+			print("Wall-i actualmente esta curvandoreg2")
+        	time.sleep(delay) #obligando a cambio de region
+			callreg2c=callreg2c+1
+		else:
+			wr_i2c(14,2) #dummy ins
+        
 def region3Bounds(d,reg3):
     min1=200 #colocar
     max1=2
     min3=3
     #ed3 = enco_check_reg3(d)
     if d < min1 and d >= max1: #Establece hasta donde se movera en linea recta
-		wr_i2c(int(ins[0]))
-		print("Wall-i acutalmente se esta moviendoreg3")
+		if callreg3 == 1:
+			wr_i2c(int(d),1) #envio la distancia para que el robot se mueva la convierta en pasos
+			print("Wall-i acutalmente se esta moviendo reg3")
+			callreg3=callreg3+1
+		else:
+			wr_i2c(14,2)
 
     if d <= min3:#Establece cuando curvara
-		wr_i2c(int(ins[4]))
-		print("Wall-i actualmente esta curvandoreg3")
+		if callreg3c == 1:
+			wr_i2c(int(ins[5]),1)
+			print("Wall-i actualmente esta curvandoreg2")
+        	time.sleep(delay) #obligando a cambio de region
+			callreg3c=callreg3c+1
+		else:
+			wr_i2c(14,2) #dummy ins
         #time.sleep(delay)
 
 #Traslacion de coordenadas
 def virtual_pos0 (latitud,longitud):
     p[0]=longitud#x
     p[1]=latitud
-    
+
     #Calculo de pendientes:
     m1 =(ya[1]-ya[0])/(xa[1]-xa[0])
     m2 = -1/m1
@@ -315,7 +357,7 @@ def check_0drp (latitud,longitud,latref,longref):
     d_raw = float((radius*c)*1000)
     d = int(d_raw)
     drp[0]= d
-    
+
     return drp[0]
 
 def check_1drp (latitud,longitud,latv1,lonv1):
@@ -331,7 +373,7 @@ def check_1drp (latitud,longitud,latv1,lonv1):
     d_raw = float((radius*c)*1000)
     d = int(d_raw)
     drp[1]=d
-    
+
     return drp[1]
 
 def check_2drp (latitud,longitud,latv2,lonv2):
@@ -347,7 +389,7 @@ def check_2drp (latitud,longitud,latv2,lonv2):
     d_raw = float((radius*c)*1000)
     d = int(d_raw)
     drp[2]=d
-    
+
     return drp[2]
 
 def check_3drp (latitud,longitud,latv3,lonv3):
@@ -363,16 +405,16 @@ def check_3drp (latitud,longitud,latv3,lonv3):
     d_raw = float((radius*c)*1000)
     d = int(d_raw)
     drp[3]=d
-  
+
     return drp[3]
 """
 i=0
 j=0
 k=0
-l=0	
+l=0
 #------------------------
 def enco_check_reg0(d):
-    
+
     for n in range (0,i+1)
 	count_R=d
         break
@@ -393,12 +435,12 @@ def enco_check_reg0(d):
         return edr0
     else:
         return edr0 = 0
-         
 
-     
+
+
 #--------------------------
 def enco_check_reg1(d):
-    
+
     for n in range (0,j+1)
 	count_R=d
         break
@@ -419,10 +461,10 @@ def enco_check_reg1(d):
         return edr1
     else:
         return edr1 = 0
-         
+
 #--------------------------
 def enco_check_reg2(d):
-    
+
     for n in range (0,k+1)
 	count_R=d
         break
@@ -443,9 +485,9 @@ def enco_check_reg2(d):
         return edr2
     else:
         return edr2 = 0
-		
+
 def enco_check_reg3(d):
-    
+
     for n in range (0,l+1)
 	count_R=d
         break
@@ -466,8 +508,8 @@ def enco_check_reg3(d):
         return edr3
     else:
         return edr3 = 0
-            
-      
+
+
 def flag_sensor_dist():
     if bus.read_byte(slave_dist_sensor)==8:
         return 8
@@ -476,9 +518,9 @@ def flag_sensor_dist():
 
     else:
         return 1
-		
 
-    
+
+
 
 
 
