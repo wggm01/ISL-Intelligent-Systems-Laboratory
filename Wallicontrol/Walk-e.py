@@ -152,7 +152,7 @@ if __name__ == '__main__':
 				print("No se donde estoy")
 
 	except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
-        machinarie.hardrst(int(20))
+		machinarie.hardrst(int(20))
 		print "Cerrando programa"
 		gpsp.running = False
 		gpsp.join() # wait for the thread to finish what it's doing
