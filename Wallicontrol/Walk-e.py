@@ -62,9 +62,9 @@ if __name__ == '__main__':
 			latitud_raw= gpsd.fix.latitude
 			longitud_raw= gpsd.fix.longitude
 
-            nrp = machinarie.not_repeatcoord(latitud_raw,longitud_raw)
-            if nrp != None:
-                latitud,longitud = nrp
+			nrp = machinarie.not_repeatcoord(latitud_raw,longitud_raw)
+			if nrp != None:
+				latitud,longitud = nrp
 
 			virtual_0 = machinarie.virtual_pos0(latitud,longitud)
 			global latv0

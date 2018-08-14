@@ -2,7 +2,7 @@
 #include <Wire.h>
 int control;
 int velo;
-#define hardrst 7;
+#define hardrst 7
 
 
 AccelStepper mizq(AccelStepper::HALF4WIRE,8,9,10,11);
@@ -47,7 +47,7 @@ if (control == 1){
     mizq.moveTo(1700);
     if(mizq.currentPosition()== 1700){mizq.disableOutputs();}
     //Serial.print(control);
-    //Serial.println("Hacia delante");
+    
     control=11;
 
 }else if(control == 4){
@@ -128,8 +128,10 @@ if (control == 1){
 
 }else if (control==20){
   //HARD RESET
+ 
   delay(3000);
   digitalWrite(hardrst,LOW);
+  
 
 }
 

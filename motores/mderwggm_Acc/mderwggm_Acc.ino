@@ -2,7 +2,7 @@
 #include <Wire.h>
 int control;
 int velo=150; //velocidad
-#define hardrst 7;
+#define hardrst 7
 
 AccelStepper mder(AccelStepper::HALF4WIRE,8,9,10,11);
 
@@ -118,6 +118,7 @@ if (control == 1){
   //HARD RESET
   delay(3000);
   digitalWrite(hardrst,LOW);
+ 
 
 }
 
