@@ -45,7 +45,7 @@ if __name__ == '__main__':
 	gpsp = GpsPoller() # create the thread
 	try:
 		gpsp.start()
-		print("Wall-i actualmente se encuentra esperando su instruccion")
+		print("Revise todo antes de comenzar")
 		instruccion = raw_input("Presion ""y"" y luego enter para empezar\n ")
 		while instruccion == 'y':
 
@@ -152,6 +152,7 @@ if __name__ == '__main__':
 				print("No se donde estoy")
 
 	except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
+        machinarie.hardrst(int(20))
 		print "Cerrando programa"
 		gpsp.running = False
 		gpsp.join() # wait for the thread to finish what it's doing

@@ -75,6 +75,9 @@ q = [0,0] # Puntos virtual trasladado
 drp = [0,0,0,0]#una para cada modelo y0,y1,y2,y3
 
 #Envio de Instruciones
+def hardrst(inst):
+	bus.write_byte(mizq,data)
+	bus.write_byte(mder,data)
 
 def wr_i2creg (instruction, flag):
 	if flag == 1:
