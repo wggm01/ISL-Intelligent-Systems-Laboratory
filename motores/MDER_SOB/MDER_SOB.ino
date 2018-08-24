@@ -234,7 +234,7 @@ for (int i=0; i<400;){
       aPin = 11; //INC 11
       bPin = 9; //IND 9
       aPrimePin = 10; //INB 10
-      bPrimePin = 8; //INA 8
+      bPrimePin = 8; //INA 8 
       Mov_Mder ();
       i = i+1;
   }}

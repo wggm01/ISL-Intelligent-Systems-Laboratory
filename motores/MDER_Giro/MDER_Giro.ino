@@ -5,6 +5,7 @@
 //5-Detener
 #include <Wire.h>
 #define SLAVE_ADDRESS 0x40 //Direccion i2c del motor derecho
+#define hardrst 7
 /*---------------------------------------------------------------------------------*/
 int control;
 int delay1;
@@ -20,7 +21,12 @@ int bPrimePin; //INC 5
 void setup() {
 /*---------------------------------------------------------------------------------*/
   Wire.begin(SLAVE_ADDRESS); // join i2c bus with address 0x40
- Wire.onReceive(receiveEvent); // register event
+  Wire.onReceive(receiveEvent); // register event
+
+    //hard reset
+    digitalWrite(hardrst,HIGH);
+    pinMode(hardrst,OUTPUT); //conectar pin7 a pin res
+
 /*---------------------------------------------------------------------------------*/
   Serial.begin(9600);//inutil
   pinMode(LED_BUILTIN,OUTPUT);
@@ -132,83 +138,40 @@ void receiveEvent(int howMany) {
 
 if (Wire.available()==1) { // loop through all but the last
   control = Wire.read();
+  //Serial.println(control);
 }
 } 
 /*---------------------------------------------------------------------------------*/
 //Logica de movimiento
 void loop() {
+  //control=10;
 /*---------------------------------------------------------------------------------*/
-while(control == 1 || control == 9){
+if(control == 1 || control == 9){
+      for(;;){
       aPin = 8; //INA 8
       bPin = 10; //INB 10
       aPrimePin = 9; //IND 9
       bPrimePin= 11; //INC 11
       delay1= 1000;
       Mov_Mder ();
-      //digitalWrite(LED_BUILTIN,HIGH);
-      //delay(1000);
-      //digitalWrite(LED_BUILTIN,LOW); //Hacia alfrente
-      //delay(1000);
-      /*digitalWrite(LED_BUILTIN,HIGH);
-      delay(1000);
-      digitalWrite(LED_BUILTIN,LOW); //Hacia alfrente
-      delay(1000);*/
-      if(control==2){break;}
-     else if(control==3){break;}
-     else if(control==4){break;}
-     else if(control==5){break;}
-     else if(control==6){break;}
-     else if(control==7){break;}
-     else if(control==8){break;}
-     else if(control==9){break;}
-     else if(control==10){break;}}
+      Serial.println(control);
+      if(control!=1){break;}
+      if(control!=9){break;}}
+     }
 /*---------------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------*/
 if(control == 2){
-b=2;
-  for(int a =0; a<2;){ 
+  for(;;){ 
       aPin = 11; //INC 11
       bPin = 9; //IND 9
       aPrimePin = 10; //INB 10
       bPrimePin = 8; //INA 8
- 
-    switch (b){
-        case 1 : control = 1;
-        break;
-        case 2 : 
-        delay1= 1000;
-        Mov_Mder ();
-        b= control;
-        break;
-        case 3 : control = 3;
-        break;
-        case 4 : control = 4; 
-        break;
-        case 5 : control = 5;
-        break;
-        case 6 : control = 6;
-        break;
-        case 7 : control = 7;
-        break;
-        case 8: control = 8;
-        break;
-        case 9 : control = 9;
-        break;
-        default : control = 10;
-        break;
-     a = a+1;
+      delay1= 1000;
+      Serial.println(control);
+      Mov_Mder ();
+      if(control!=2){break;}  
       }
- 
-      //digitalWrite(LED_BUILTIN,HIGH);
-      //delay(500);
-      //digitalWrite(LED_BUILTIN,LOW); //Hacia atras
-      //delay(500);
-      /*digitalWrite(LED_BUILTIN,HIGH);
-      delay(500);
-      digitalWrite(LED_BUILTIN,LOW); //Hacia atras
-      delay(500);*/
-     
-  }}
+  }
 /*---------------------------------------------------------------------------------*/
    if(control == 3){
 for (int i=0; i<400;){
@@ -217,65 +180,70 @@ for (int i=0; i<400;){
       aPrimePin = 9; //IND 9
       bPrimePin = 11; //INC 11
       delay1= 1000;
-    Mov_Mder ();
-    //digitalWrite(LED_BUILTIN,HIGH);
-    //delay(250);
-    //digitalWrite(LED_BUILTIN,LOW);//Dobla hacia la izquierda
-    //delay(250);
-    /*digitalWrite(LED_BUILTIN,HIGH);
-    delay(250);
-    digitalWrite(LED_BUILTIN,LOW);//Dobla hacia la izquierda
-    delay(250);*/
-    i = i+1;
-
-  }control = 10;}
+      Mov_Mder ();
+      i = i+1;
+      Serial.println(i);
+      Serial.println(control);
+      if (i==399){Stop_Mder();control=10; break;}}}
 /*---------------------------------------------------------------------------------*/
    if(control == 4){
-      delay1= 1000;
       Stop_Mder(); //Doblar hacia la Derecha
-      control = 5;
+      Serial.println(control);
+      control = 10;
+      
  }
 /*---------------------------------------------------------------------------------*/
   else if(control == 5){
-      Stop_Mder(); //Doblar hacia la izquierda
+      Stop_Mder(); //Detener
+      Serial.println(control);
       control = 10;
  }
 /*---------------------------------------------------------------------------------*/
  else if (control == 6){
-  for (int i=0; i<2;){
+  for (;;){
       aPin = 11; //INC 11
       bPin = 9; //IND 9
       aPrimePin = 10; //INB 10
       bPrimePin = 8; //INA 8
       delay1= 1000;
       Mov_Mder ();
-      i = i+1;
+      Serial.println(control);
+      if(control != 6){break;}
   }}
 /*---------------------------------------------------------------------------------*/
  else if (control == 7){
-   for (int i=0; i<2;){
+   for (;;){
       aPin = 8; //INA 8
       bPin = 10; //INB 10
       aPrimePin = 9; //IND 9
       bPrimePin = 11; //INC 11
       delay1= 1000;
-    Mov_Mder ();
-    i = i+1;
+      Mov_Mder ();
+      Serial.println(control);
+      if(control != 7){break;}
     }
  }
  
 /*---------------------------------------------------------------------------------*/
  else if (control == 8){
-     for ( int a =0; a<2;){
+     for (;;){
       aPin = 8; //INA 8
       bPin = 10; //INB 10
       aPrimePin = 9; //IND 9
       bPrimePin= 11; //INC 11
       delay1= 900;
       Mov_Mder ();
-      a = a+1;
+      Serial.println(control);
+      if(control != 9){break;}
      }
- }
+ }else if (control==20){
+  //HARD RESET
+ Serial.println(control);
+  delay(3000);
+  digitalWrite(hardrst,LOW);
+  
+
+}
 
 
  

@@ -247,7 +247,7 @@ for (int i=0; i<400;){  // 210 para una vuelta de rueda
     delay(100);
     digitalWrite(LED_BUILTIN,LOW);//Dobla hacia la derecha
     delay(100);*/
-} control =8; }
+} control = 8; }
 /*---------------------------------------------------------------------------------*/
  else if(control == 5){
       Stop_Mizq(); //Doblar hacia la izquierda
