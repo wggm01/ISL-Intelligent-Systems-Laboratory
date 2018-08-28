@@ -24,6 +24,18 @@ izquierda2 = 0
 CLS1 = GPIO.input(clk1)
 CLS2 = GPIO.input(clk2)
 
+#pines para el control de nivel de bateria.
+def  battery_level:
+	insig=40 #gpio21
+	ctrlsig=38 #gpio20
+	GPIO.setup(insig, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+	GPIO.setup(ctrlsig, GPIO.OUT, pull_up_down=GPIO.PUD_DOWN)
+	insignal = GPIO.input(insig)
+	control = GPIO.output(control)
+	if(insignal != 0):
+		control= 1
+	else:
+		control = 0
 
 #Inicializacion de librerias
 import datetime
@@ -76,9 +88,6 @@ ya = [9.023410836,9.023175628,9.022897331,9.023147334] #Y1 Y Y2 corresponden a o
 q = [0,0] # Puntos virtual trasladado
 drp = [0,0,0,0]#una para cada modelo y0,y1,y2,y3
 coordntp = [0,0]
-
-
-
 
 #Envio de Instruciones
 def hardrst(inst):
