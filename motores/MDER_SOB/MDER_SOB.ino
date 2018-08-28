@@ -133,10 +133,16 @@ void receiveEvent(int howMany) {
 if (Wire.available()==1) { // loop through all but the last
   control = Wire.read();
 }
-} 
+}
+
+
+ 
 /*---------------------------------------------------------------------------------*/
 //Logica de movimiento
 void loop() {
+ /* if (Serial.available()>0) { // loop through all but the last
+  control = Serial.read();
+}/*
 /*---------------------------------------------------------------------------------*/
 while(control == 1){
       aPin = 8; //INA 8

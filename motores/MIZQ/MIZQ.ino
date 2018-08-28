@@ -7,7 +7,7 @@
 #define SLAVE_ADDRESS 0x50 //Direccion i2c del motor izquierda
 /*---------------------------------------------------------------------------------*/
 int control;
-int delay2 =1;
+int delay2 =4;
 /*---------------------------------------------------------------------------------*/
 //MotorIzquierdo
 int aPinm2; //INA 8
@@ -31,7 +31,7 @@ void setup() {
   pinMode(bPrimePinm2, OUTPUT);
 /*---------------------------------------------------------------------------------*/
 //bobinas en cero logico
-  digitalWrite(aPinm2,      LOW);
+  digitalWrite(aPinm2,     LOW);
   digitalWrite(bPinm2,      LOW);
   digitalWrite(aPrimePinm2, LOW);
   digitalWrite(bPrimePinm2, LOW);
@@ -131,44 +131,35 @@ void Mov_Mizq (){
 /*---------------------------------------------------------------------------------*/
 //Logica de movimiento
 void loop() {
+  
+  delay(100);
+ if (Serial.available()>0) { // loop through all but the last
+  control = Serial.read();
+  }
+
+  
 /*---------------------------------------------------------------------------------*/
-while(control == 1){
+if(control == 1){
+     for (;;){
       aPinm2 = 8; //INA 8
-      bPinm2 = 10; //INB 10
-      aPrimePinm2 = 9; //IND 9
+      bPinm2 = 9; //INB 10
+      aPrimePinm2 = 10; //IND 9
       bPrimePinm2 = 11; //INC 11
       Mov_Mizq ();
-      //digitalWrite(LED_BUILTIN,HIGH);
-      //delay(1000);
-      //digitalWrite(LED_BUILTIN,LOW); //Hacia alfrente
-      //delay(1000);
-      /*digitalWrite(LED_BUILTIN,HIGH);
-      delay(1000);
-      digitalWrite(LED_BUILTIN,LOW); //Hacia alfrente
-      delay(1000);*/
-      if(control==2){break;}
-      if(control==3){break;}
-      if(control==4){break;}
-      if(control==5){break;}}
+      Serial.println("hacia delante");
+      if(control!=1){break;}}}
 /*---------------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------*/
 if(control == 2){
-  for(int i=0; i<400;){
+  for(;;){
       aPinm2 = 11; //INC 11
       bPinm2 = 9; //IND 9
       aPrimePinm2 = 10; //INB 10
       bPrimePinm2 = 8; //INA 8
       Mov_Mizq ();
-      //digitalWrite(LED_BUILTIN,HIGH);
-      //delay(500);
-      //digitalWrite(LED_BUILTIN,LOW); //Hacia atras
-      //delay(500);
-      /*digitalWrite(LED_BUILTIN,HIGH);
-      delay(500);
-      digitalWrite(LED_BUILTIN,LOW); //Hacia atras
-      delay(500);*/
-      i=i+1;
-    }control =6;}
+      if(control!=2){break;}
+      Serial.println("hacia delante");
+    }}
 /*---------------------------------------------------------------------------------*/
     if(control == 3){
       Stop_Mizq(); //Doblar hacia la izquierda

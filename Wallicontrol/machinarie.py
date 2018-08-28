@@ -51,8 +51,8 @@ callreg1c=1
 callreg2c=1
 callreg3c=1
 
-latitudpast=0.0000
-longitudpast=0.0000
+#latitudpast=0.0000
+#longitudpast=0.0000
 
 delay = 5 #LO USARE.
 limit = 3
@@ -68,12 +68,13 @@ global xa
 global ya
 global q
 global drp
+global coordntp
 p = [0,0] #Posicion dinamica
 xa = [-79.53169299,-79.53152138,-79.53177739,-79.53184155] #X1 Y X2 corresponden a abcisas del punto inicio y finalsel.
 ya = [9.023410836,9.023175628,9.022897331,9.023147334] #Y1 Y Y2 corresponden a ordenadas del punto inicio y finalsel.
 q = [0,0] # Puntos virtual trasladado
 drp = [0,0,0,0]#una para cada modelo y0,y1,y2,y3
-
+coordntp = [0,0]
 #Envio de Instruciones
 def hardrst(inst):
 	bus.write_byte(mizq,inst)
@@ -89,12 +90,17 @@ def wr_i2creg (instruction, flag):
 		print("instruccion enviada")
 
 #Latitud(x), Longitud(y) evitar coordenadas iguales
+
+
+
 def not_repeatcoord (latitud,longitud):
-	if latitud != latitudpast and longitud != longitudpast :
+	
+	
+	if latitud != coordntp[0] and longitud != coordntp[1] :
 		return latitud, longitud
 	else:
-		latitudpast= latitud
-		longitudpast = longitud
+		coordntp[0]= latitud
+		coordntp[1] = longitud
 
 
 """def Data():
