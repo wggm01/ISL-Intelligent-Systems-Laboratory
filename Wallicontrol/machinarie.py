@@ -116,7 +116,7 @@ def get_data_gyro :
 def get_data_ultra :
         ard_ultra_data= ard_ultra.readline()
         time= datetime.datetime.now()
-        with open ("gyrodata.csv", "a") as pos:
+        with open ("ultradata.csv", "a") as pos:
             pos.write("%s, %s \n" % ( ard_ultra_data,time))
 
 """def Data():
