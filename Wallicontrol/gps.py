@@ -4,17 +4,16 @@ import machinarie
 import datetime
 
 while(True):
-
-	if machinarie.check_gps == 1:
+	
+	
+	check=1		
+		
+	if check == 1:
 		data = machinarie.Data()
 		if data!= None :
 			latitud,longitud = data   #Revision de posicion acual sin procesarself.Data de gps sin tratar
 			latitud_raw= latitud
 			longitud_raw= longitud
-			time= datetime.datetime.now()
-
-			with open ("raw_coords.csv", "a") as pos:
-				pos.write("%s, %s, %s \n" % ( latitud_raw, longitud_raw,time ))
 
         		nrp = machinarie.not_repeatcoord(latitud_raw,longitud_raw) #EVITA LA REPETICION DE COORDENADAS
         		if nrp != None:
@@ -43,7 +42,7 @@ while(True):
                 		reg2 = machinarie.check_2drp(latitud,longitud,latv2,lonv2)
                 		reg3 = machinarie.check_3drp(latitud,longitud,latv3,lonv3)
 
-                		print("DRP0",reg0,"DRP1",reg1,"DRP2",reg2,"DRP3",reg3)
+                		#print("DRP0",reg0,"DRP1",reg1,"DRP2",reg2,"DRP3",reg3)
 
                 		with open ("drp.csv", "a") as pos:
                         		pos.write("%s, %s, %s, %s\n" % ( reg0,reg1,reg2,reg3))

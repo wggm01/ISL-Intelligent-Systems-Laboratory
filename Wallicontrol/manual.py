@@ -10,14 +10,14 @@
 
 import os
 
-from multiprocessing import tool
+from multiprocessing import Pool
 
 os.system('clear')
 os.system('i2cdetect -y 1')
-processes =('ultra.py','imu.py','batt.py')
+processes =('gps.py','ultra.py','imu.py','batt.py')
 
 def run_process(process):
         os.system('sudo python {}'.format(process))
 
-pool = Pool(processes=3)
+pool = Pool(processes=4)
 pool.map(run_process,processes)

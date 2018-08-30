@@ -10,7 +10,7 @@
 
 import os
 
-from multiprocessing import tool
+from multiprocessing import Pool
 
 os.system('clear')
 os.system('i2cdetect -y 1')
