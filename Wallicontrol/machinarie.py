@@ -27,16 +27,7 @@ CLS2 = GPIO.input(clk2)
 
 #pines para el control de nivel de bateria.
 def  battery_level():
-	insig=40 #gpio21
-	ctrlsig=38 #gpio20
-	GPIO.setup(insig, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-	GPIO.setup(ctrlsig, GPIO.OUT, pull_up_down=GPIO.PUD_DOWN)
-	insignal = GPIO.input(insig)
-	control = GPIO.output(control)
-	if(insignal != 0):
-		control= 1
-	else:
-		control = 0
+	
 
 #Inicializacion de librerias
 import datetime
@@ -72,11 +63,6 @@ delay = 1 #LO USARE.
 limit = 9
 #Connecion al puerto serial
 #gps = serial.Serial('COM14', 4800)
-
-#gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
-#ard_gyro = serial.Serial("/dev/ttyACM1", baudrate = 9600)
-#ard_ultra = serial.Serial("/dev/ttyACM2", baudrate = 9600)
-
 
 gps = serial.Serial("/dev/ttyACM2", baudrate = 4800)
 ard_gyro = serial.Serial("/dev/ttyACM1", baudrate = 9600)
@@ -142,8 +128,7 @@ def check_gps():
 	gps_sentences_fields = gps_sentece.split(",")
 	if gps_sentences_fields[0]=="$GPRMC" and gps_sentences_fields[2] == "A":
         	return 1
-    	else:
-		return 0
+    	
 
 
 def Data():
