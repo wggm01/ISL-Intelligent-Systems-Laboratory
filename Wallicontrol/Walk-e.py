@@ -37,7 +37,7 @@ try:
         data = machinarie.Data()
 
         if data!= None :
-            latitud,longitud = data   #Revision de posicion acual sin procesarself.
+        	latitud,longitud = data   #Revision de posicion acual sin procesarself.
 
         #envelope = pubnub.publish().channel("map2-channel").message({
         #'lat': float(latitud),'lng': float(longitud)}).sync()
@@ -50,14 +50,14 @@ try:
 		time= datetime.datetime.now()
 
 		with open ("raw_coords.csv", "a") as pos:
-            pos.write("%s, %s, %s \n" % ( latitud_raw, longitud_raw,time ))
+            		pos.write("%s, %s, %s \n" % ( latitud_raw, longitud_raw,time ))
 
-		machinarie.get_data_gyro()
-		machinarie.get_data_ultra()
+	#machinarie.get_data_gyro()
+	#machinarie.get_data_ultra()
 
-		nrp = machinarie.not_repeatcoord(latitud_raw,longitud_raw) #EVITA LA REPETICION DE COORDENADAS
-		      if nrp != None:
-                  latitud,longitud = nrp
+	nrp = machinarie.not_repeatcoord(latitud_raw,longitud_raw) #EVITA LA REPETICION DE COORDENADAS
+	if nrp != None:
+        	latitud,longitud = nrp
 
 		virtual_0 = machinarie.virtual_pos0(latitud,longitud)
 		global latv0
@@ -78,19 +78,9 @@ try:
 		global latv3
 		global lonv3
 		latv3,lonv3= virtual_3
-
-
-			if  reg0 <= limit:
-            
-				d=machinarie.distReg0(latv0,lonv0)
-				print(d)
-           
-				with open ("d0.csv", "a") as pos:
-					pos.write("%s\n" % (d))
-=======
 		with open ("Virtual_pos.csv", "a") as pos:
-            pos.write("%s, %s, %s, %s, %s, %s, %s, %s\n" % ( latv0, lonv0, latv1, lonv1, latv2, lonv2, latv3, lonv3 ))
->>>>>>> 38a1d9cb125c9822503c702990817c9f7e672bbf
+            		pos.write("%s, %s, %s, %s, %s, %s, %s, %s\n" % ( latv0, lonv0, latv1, lonv1, latv2, lonv2, latv3, lonv3))
+         
 
 		reg0 = machinarie.check_0drp(latitud,longitud,latv0,lonv0)
 		reg1 = machinarie.check_1drp(latitud,longitud,latv1,lonv1)
@@ -100,69 +90,42 @@ try:
 		print("DRP0",reg0,"DRP1",reg1,"DRP2",reg2,"DRP3",reg3)
 
 		with open ("drp.csv", "a") as pos:
-            pos.write("%s, %s, %s, %s\n" % ( reg0,reg1,reg2,reg3))
+            		pos.write("%s, %s, %s, %s\n" % ( reg0,reg1,reg2,reg3))
 
-<<<<<<< HEAD
-			elif reg1 <= limit:
-            #codigo
-            #virtual = machinarie.virtual_pos1()
-            #latv,longv= virtual
-				d=machinarie.distReg1(latv1,lonv1)
-				print(d)
-=======
-		if  reg0 <= limit:
-            d=machinarie.distReg0(latv0,lonv0)
-            with open ("d0.csv", "a") as pos:
-                pos.write("%s\n" % (d))
->>>>>>> 38a1d9cb125c9822503c702990817c9f7e672bbf
+	if  reg0 <= limit:
+        	d=machinarie.distReg0(latv0,lonv0)
+        	with open ("d0.csv", "a") as pos:
+                	pos.write("%s\n" % (d))
 
-            machinarie.region0Bounds(d,reg0)
+        	machinarie.region0Bounds(d,reg0)
 
-		elif reg1 <= limit:
-            d=machinarie.distReg1(latv1,lonv1)
+	elif reg1 <= limit:
+        	d=machinarie.distReg1(latv1,lonv1)
 
-			with open ("d1.csv", "a") as pos:
-                pos.write("%s\n" % (d))
+		with open ("d1.csv", "a") as pos:
+                	pos.write("%s\n" %  (d))
 
-<<<<<<< HEAD
-			elif reg2 <= limit:
-            #codigo
-            #virtual = machinarie.virtual_pos2()
-            #latv,longv= virtual
-				d=machinarie.distReg2(latv2,lonv2)
-				print(d)
-=======
-            machinarie.region1Bounds(d,reg1)
->>>>>>> 38a1d9cb125c9822503c702990817c9f7e672bbf
+	elif reg2 <= limit:
+        	d=machinarie.distReg2(latv2,lonv2)
 
-		elif reg2 <= limit:
-            d=machinarie.distReg2(latv2,lonv2)
+        	with open ("d2.csv", "a") as pos:
+                	pos.write("%s\n" % (d))
 
-            with open ("d2.csv", "a") as pos:
-                pos.write("%s\n" % (d))
+        	machinarie.region2Bounds(d,reg2)
 
-            machinarie.region2Bounds(d,reg2)
+		
+	elif reg3 <= limit:
+            
+		d=machinarie.distReg3(latv3,lonv3)
+		print(d)
 
-		elif reg3 <= limit:
+        	with open ("d3.csv", "a") as pos:
+                	pos.write("%s\n" % (d))
 
-<<<<<<< HEAD
-			elif reg3 <= limit:
-            #codigo
-            #virtual = machinarie.virtual_pos3()
-            #latv,longv= virtual
-				d=machinarie.distReg3(latv3,lonv3)
-				print(d)
-=======
-            d=machinarie.distReg3(latv3,lonv3)
->>>>>>> 38a1d9cb125c9822503c702990817c9f7e672bbf
-
-            with open ("d3.csv", "a") as pos:
-                pos.write("%s\n" % (d))
-
-            machinarie.region3Bounds(d,reg3)
+            	machinarie.region3Bounds(d,reg3)
 
 		else:
-            print("No se donde estoy")
+            		print("No se donde estoy")
 
 except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
     machinarie.hardrst(int(20))

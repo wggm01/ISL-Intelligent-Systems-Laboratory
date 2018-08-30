@@ -98,8 +98,8 @@ def hardrst(inst):
 def wr_i2c (instruction, flag):
 	if flag == 1:
 		data = instruction
-		bus.write_byte(mizq,data)
-		bus.write_byte(mder,data)
+		#bus.write_byte(mizq,data)
+		#bus.write_byte(mder,data)
 	else:
 		#wr_i2c.func_code = (lambda:None).func_code
 		print("instruccion enviada")
@@ -162,7 +162,7 @@ def Data():
         if  gps_sentences_fields[6] == "W":
             longitud = -longitud
         now = datetime.datetime.now()
-		with open ("conescapan.csv", "a") as pos:
+	with open ("conescapan.csv", "a") as pos:
             pos.write("%s, %s, %s\n" % ( latitud, longitud,now))word
    
         return latitud,longitud
