@@ -1,3 +1,4 @@
+import machinarie
 import smbus
 import time
 
@@ -10,7 +11,8 @@ while True:
 	instruction = input("") 
 	inputd(int(instruction))
 	time.sleep(.1)
-
+        machinarie.get_data_gyro()
+        machinarie.get_data_ultra()
 
 	
  

@@ -25,7 +25,8 @@ softright = 7
 gpsd = None #seting the global variable
 
 os.system('clear') #clear the terminal (optional)
-os.system('i2cdetect -y 1') #clear the terminal (optional)
+os.system('i2cdetect -y 1')
+#os.system('sudo cat /dev/ttyACM0') #clear the terminal (optional)
 #os.system('cgps') #clear the terminal (optional)
 #os.system('sudo gpsd /dev/ttyACM0 -F /var/run/gpsd.sock')
 class GpsPoller(threading.Thread):
@@ -110,6 +111,7 @@ if __name__ == '__main__':
             #virtual = machinarie.virtual_pos0()
             #latv0,lonv0= virtual
 				d=machinarie.distReg0(latv0,lonv0)
+				print(d)
             #print(d)
 				with open ("d0.csv", "a") as pos:
 					pos.write("%s\n" % (d))
@@ -123,6 +125,7 @@ if __name__ == '__main__':
             #virtual = machinarie.virtual_pos1()
             #latv,longv= virtual
 				d=machinarie.distReg1(latv1,lonv1)
+				print(d)
 
 				with open ("d1.csv", "a") as pos:
 					pos.write("%s\n" % (d))
@@ -135,6 +138,7 @@ if __name__ == '__main__':
             #virtual = machinarie.virtual_pos2()
             #latv,longv= virtual
 				d=machinarie.distReg2(latv2,lonv2)
+				print(d)
 
 				with open ("d2.csv", "a") as pos:
 					pos.write("%s\n" % (d))
@@ -148,6 +152,7 @@ if __name__ == '__main__':
             #virtual = machinarie.virtual_pos3()
             #latv,longv= virtual
 				d=machinarie.distReg3(latv3,lonv3)
+				print(d)
 
 				with open ("d3.csv", "a") as pos:
 					pos.write("%s\n" % (d))

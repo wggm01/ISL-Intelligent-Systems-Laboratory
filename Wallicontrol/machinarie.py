@@ -1,3 +1,4 @@
+
 #Librerias de gpio
 from RPi import GPIO
 global clk1
@@ -56,12 +57,12 @@ global callreg
 callreg = [1,1,1,1,1,1,1,1]
 
 delay = 5 #LO USARE.
-limit = 3
+limit = 9
 #Connecion al puerto serial
 #gps = serial.Serial('COM14', 4800)
 #gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
-ard_gyro = serial.Serial("/dev/ttyACM1", baudrate = 9600)
-ard_ultra = serial.Serial("/dev/ttyACM", baudrate = 9600)
+ard_gyro = serial.Serial("/dev/ttyACM2", baudrate = 9600)
+ard_ultra = serial.Serial("/dev/ttyACM1", baudrate = 9600)
 
 #Vectores como variables globales incializdas en 0 para luego ser modi.
 global p
@@ -107,13 +108,13 @@ def not_repeatcoord (latitud,longitud):
 		coordntp[0]= latitud
 		coordntp[1] = longitud
 
-def get_data_gyro :
+def get_data_gyro() :
 	ard_gyro_data= ard_gyro.readline()
 	time= datetime.datetime.now()
 	with open ("gyrodata.csv", "a") as pos:
             pos.write("%s, %s \n" % ( ard_gyro_data,time))
 
-def get_data_ultra :
+def get_data_ultra() :
         ard_ultra_data= ard_ultra.readline()
         time= datetime.datetime.now()
         with open ("ultradata.csv", "a") as pos:
