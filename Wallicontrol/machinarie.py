@@ -129,7 +129,16 @@ def get_data_ultra() :
         with open ("ultradata.csv", "a") as pos:
             pos.write("%s, %s \n" % ( ard_ultra_data,time))
 
-"""def Data():
+def check_gps():
+    gps_sentence = gps.readline()
+    gps_sentences_fields = gps_sentece.split(",")
+    if gps_sentences_fields[0]=="$GPRMC" and gps_sentences_fields[2] == "A":
+        return 1
+    else:
+	return 0
+
+	 
+def Data():
     gps_sentece = gps.readline()
     gps_sentences_fields = gps_sentece.split(",")
     #FILTRO DE LA SENTENCIA $GPRMC
@@ -155,13 +164,9 @@ def get_data_ultra() :
         now = datetime.datetime.now()
 		with open ("conescapan.csv", "a") as pos:
             pos.write("%s, %s, %s\n" % ( latitud, longitud,now))word
-    else:
-        print("Aun no se recibe informacion viable del gps")
-
-    #else:
-     #   print("Esperando senal de aprobacion por parte del gps")
+   
         return latitud,longitud
-"""
+
 #Calculo de de distancia para cada region (cambiar referencia en cada uno)
 def distReg0(latitud,longitud):
     latref =9.023175628

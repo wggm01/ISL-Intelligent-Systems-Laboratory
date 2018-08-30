@@ -79,14 +79,12 @@ try:
 		global lonv3
 		latv3,lonv3= virtual_3
 
-<<<<<<< HEAD
+
 			if  reg0 <= limit:
-            #codigo
-            #virtual = machinarie.virtual_pos0()
-            #latv0,lonv0= virtual
+            
 				d=machinarie.distReg0(latv0,lonv0)
 				print(d)
-            #print(d)
+           
 				with open ("d0.csv", "a") as pos:
 					pos.write("%s\n" % (d))
 =======
