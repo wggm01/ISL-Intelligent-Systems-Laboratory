@@ -30,8 +30,10 @@ os.system('i2cdetect -y 1')
 #os.system('sudo gpsd /dev/ttyACM0 -F /var/run/gpsd.sock')
 try:
 
-    print("El Programa empezara al recibir la confirmacion por parte del gps")
-
+    
+    while machinarie.gps_check() != 1:
+	print("Esperando confirmacion por parte del gps")
+			
     while machinarie.gps_check() == 1:
 
         data = machinarie.Data()
@@ -124,8 +126,8 @@ try:
 
             	machinarie.region3Bounds(d,reg3)
 
-		else:
-            		print("No se donde estoy")
+	else:
+        	print("No se donde estoy")
 
 except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
     machinarie.hardrst(int(20))

@@ -26,7 +26,7 @@ CLS1 = GPIO.input(clk1)
 CLS2 = GPIO.input(clk2)
 
 #pines para el control de nivel de bateria.
-def  battery_level:
+def  battery_level():
 	insig=40 #gpio21
 	ctrlsig=38 #gpio20
 	GPIO.setup(insig, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
@@ -72,9 +72,9 @@ delay = 5 #LO USARE.
 limit = 9
 #Connecion al puerto serial
 #gps = serial.Serial('COM14', 4800)
-#gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
-ard_gyro = serial.Serial("/dev/ttyACM2", baudrate = 9600)
-ard_ultra = serial.Serial("/dev/ttyACM1", baudrate = 9600)
+gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
+#ard_gyro = serial.Serial("/dev/ttyACM2", baudrate = 9600)
+#ard_ultra = serial.Serial("/dev/ttyACM1", baudrate = 9600)
 
 #Vectores como variables globales incializdas en 0 para luego ser modi.
 global p
@@ -163,7 +163,7 @@ def Data():
             longitud = -longitud
         now = datetime.datetime.now()
 	with open ("conescapan.csv", "a") as pos:
-            pos.write("%s, %s, %s\n" % ( latitud, longitud,now))word
+            pos.write("%s, %s, %s\n" % ( latitud, longitud,now))
    
         return latitud,longitud
 
