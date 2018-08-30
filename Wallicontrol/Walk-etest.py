@@ -37,8 +37,8 @@ while instruccion == 'y':
 	
         i +=1
 
-	machinarie.get_data_ultra()
-	machinarie.get_data_gyro()	
+	#machinarie.get_data_ultra()
+	#machinarie.get_data_gyro()	
 
         envelope = pubnub.publish().channel("map2-channel").message({
         'lat': float(latitud_raw),'lng': float(longitud_raw)}).sync()
@@ -130,4 +130,4 @@ while instruccion == 'y':
             print("No se donde estoy")
 	    #time.sleep(3)
 	    machinarie.hardrst(int(13))
-	time.sleep(2)
+	time.sleep(.5)
