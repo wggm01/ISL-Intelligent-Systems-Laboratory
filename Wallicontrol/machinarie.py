@@ -72,7 +72,8 @@ delay = 5 #LO USARE.
 limit = 9
 #Connecion al puerto serial
 #gps = serial.Serial('COM14', 4800)
-#gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
+
+gps = serial.Serial("/dev/ttyACM0", baudrate = 4800)
 ard_gyro = serial.Serial("/dev/ttyACM2", baudrate = 9600)
 ard_ultra = serial.Serial("/dev/ttyACM1", baudrate = 9600)
 
@@ -83,6 +84,7 @@ global ya
 global q
 global drp
 global coordntp
+
 p = [0,0] #Posicion dinamica
 xa = [-79.53169299,-79.53152138,-79.53177739,-79.53184155] #X1 Y X2 corresponden a abcisas del punto inicio y finalsel.
 ya = [9.023410836,9.023175628,9.022897331,9.023147334] #Y1 Y Y2 corresponden a ordenadas del punto inicio y finalsel.
@@ -130,42 +132,42 @@ def get_data_ultra() :
             pos.write("%s, %s \n" % ( ard_ultra_data,time))
 
 def check_gps():
-    gps_sentence = gps.readline()
-    gps_sentences_fields = gps_sentece.split(",")
-    if gps_sentences_fields[0]=="$GPRMC" and gps_sentences_fields[2] == "A":
-        return 1
-    else:
-	return 0
+	gps_sentence = gps.readline()
+	gps_sentences_fields = gps_sentece.split(",")
+	if gps_sentences_fields[0]=="$GPRMC" and gps_sentences_fields[2] == "A":
+        	return 1
+    	else:
+		return 0
 
 	 
 def Data():
-    gps_sentece = gps.readline()
-    gps_sentences_fields = gps_sentece.split(",")
-    #FILTRO DE LA SENTENCIA $GPRMC
-    if gps_sentences_fields[0] == "$GPRMC" and  gps_sentences_fields[2] == "A":
-        get_unformated_latitude = float(gps_sentences_fields[3])
-        get_unformated_longitude = float(gps_sentences_fields[5])
+	gps_sentece = gps.readline()
+	gps_sentences_fields = gps_sentece.split(",")
+	#FILTRO DE LA SENTENCIA $GPRMC
+	if gps_sentences_fields[0] == "$GPRMC" and  gps_sentences_fields[2] == "A":
+        	get_unformated_latitude = float(gps_sentences_fields[3])
+        	get_unformated_longitude = float(gps_sentences_fields[5])
 
 
-        latdeg = int(get_unformated_latitude/100)
-        latmin = get_unformated_latitude - latdeg*100
-        lat = latdeg + (latmin/60)
-        latitud = round(lat,7)
+        	latdeg = int(get_unformated_latitude/100)
+        	latmin = get_unformated_latitude - latdeg*100
+        	lat = latdeg + (latmin/60)
+        	latitud = round(lat,7)
 
-        longdeg = int(get_unformated_longitude/100)
-        longmin = get_unformated_longitude - longdeg*100
-        longi = longdeg + (longmin/60)
-        longitud = round(longi,7)
+        	longdeg = int(get_unformated_longitude/100)
+        	longmin = get_unformated_longitude - longdeg*100
+        	longi = longdeg + (longmin/60)
+        	longitud = round(longi,7)
 
-        if gps_sentences_fields[4] == "S":
-            latitud = -latitud
-        if  gps_sentences_fields[6] == "W":
-            longitud = -longitud
-        now = datetime.datetime.now()
-		with open ("conescapan.csv", "a") as pos:
-            pos.write("%s, %s, %s\n" % ( latitud, longitud,now))word
+        	if gps_sentences_fields[4] == "S":
+            		latitud = -latitud
+        	if  gps_sentences_fields[6] == "W":
+            		longitud = -longitud
+        	now = datetime.datetime.now()
+		with open ("raw_coords.csv", "a") as pos:
+            		pos.write("%s, %s, %s\n" % ( latitud, longitud,now))word
    
-        return latitud,longitud
+	return latitud,longitud
 
 #Calculo de de distancia para cada region (cambiar referencia en cada uno)
 def distReg0(latitud,longitud):
