@@ -100,8 +100,8 @@ def hardrst(inst):
 def wr_i2c (instruction, flag):
 	if flag == 1:
 		data = instruction
-		bus.write_byte(mizq,data)
-		bus.write_byte(mder,data)
+		#bus.write_byte(mizq,data)
+		#bus.write_byte(mder,data)
 	else:
 		#wr_i2c.func_code = (lambda:None).func_code
 		print("instruccion enviada")
@@ -141,6 +141,7 @@ def check_gps():
 
 	 
 def Data():
+<<<<<<< HEAD
 	gps_sentece = gps.readline()
 	gps_sentences_fields = gps_sentece.split(",")
 	#FILTRO DE LA SENTENCIA $GPRMC
@@ -166,6 +167,33 @@ def Data():
         	now = datetime.datetime.now()
 		with open ("raw_coords.csv", "a") as pos:
             		pos.write("%s, %s, %s\n" % ( latitud, longitud,now))word
+=======
+    gps_sentece = gps.readline()
+    gps_sentences_fields = gps_sentece.split(",")
+    #FILTRO DE LA SENTENCIA $GPRMC
+    if gps_sentences_fields[0] == "$GPRMC" and  gps_sentences_fields[2] == "A":
+        get_unformated_latitude = float(gps_sentences_fields[3])
+        get_unformated_longitude = float(gps_sentences_fields[5])
+
+
+        latdeg = int(get_unformated_latitude/100)
+        latmin = get_unformated_latitude - latdeg*100
+        lat = latdeg + (latmin/60)
+        latitud = round(lat,7)
+
+        longdeg = int(get_unformated_longitude/100)
+        longmin = get_unformated_longitude - longdeg*100
+        longi = longdeg + (longmin/60)
+        longitud = round(longi,7)
+
+        if gps_sentences_fields[4] == "S":
+            latitud = -latitud
+        if  gps_sentences_fields[6] == "W":
+            longitud = -longitud
+        now = datetime.datetime.now()
+	with open ("conescapan.csv", "a") as pos:
+            pos.write("%s, %s, %s\n" % ( latitud, longitud,now))word
+>>>>>>> 287e8664f00c2361f8ffcc4fdd63450d4a9eee4d
    
 	return latitud,longitud
 
