@@ -1,6 +1,7 @@
 #CODIGO ARMADO POR WVALDO GABRIEL GRAELL MANZANE WGGM
 #VERSION: RETO TOKIO
 import gps
+import machinarie
 limit = 3
 
 
