@@ -1,2 +1,0 @@
-#RETO_TRICICLO
-no info
