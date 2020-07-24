@@ -2,7 +2,7 @@
 Design of an Autonomous Robot using Open Source Platforms. Project carried by Intelligent Systems Laboratory.
 
 
-Logistical info: 
+Contact info: 
 
 Team Name: Intelligent-Systems-Laboratory
 
